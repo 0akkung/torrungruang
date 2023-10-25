@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->id();
+            $table->id('po_id');
+//            $table->foreignIdFor(Customer::class);
+            $table->date('purchase_date');
+            $table->string('customer_po_id')->comment('PO ID of a customer');
+            $table->double('original_order_price')->nullable();
+            $table->double('total_order_price')->nullable();
+            $table->boolean('produce_status');
+            $table->boolean('payment_status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
