@@ -4,11 +4,11 @@
         <a href="/">Torrungruang</a>
     </h1>
 
-    <a href="#" class="flex btn-sidebar">
+    <a href="/spec" class="flex btn-sidebar">
         <img src="https://i.ibb.co/3y5Bvsv/rope-4.png" alt="Image Description" width="22px">
         <span>Spec</span>
     </a>
-    <a href="#" class="flex btn-sidebar">
+    <a href="/customer" class="flex btn-sidebar">
         <img src="https://i.ibb.co/TvZNC9C/customer.png" alt="Image Description" width="22px">
         <span>Customer</span>
     </a>
@@ -16,19 +16,19 @@
         <img src="https://i.ibb.co/H2b6qrF/document.png" alt="Image Description" width="22px">
         <span>Purchase Order</span>
     </a>
-    <a href="#" class="flex btn-sidebar">
+    <a href="/so" class="flex btn-sidebar">
         <img src="https://i.ibb.co/j3S2LPT/clipboard.png" alt="Image Description" width="22px">
         <span>Sale Order</span>
     </a>
-    <a href="#" class="flex btn-sidebar">
+    <a href="/delivery" class="flex btn-sidebar">
         <img src="https://i.ibb.co/3N7yQgH/delivery.png" alt="Image Description" width="22px">
         <span>Delivery</span>
     </a>
-    <a href="#" class="flex btn-sidebar">
+    <a href="/invoice" class="flex btn-sidebar">
         <img src="https://i.ibb.co/YfjqfvD/invoice.png" alt="Image Description" width="22px">
         <span>Invoice</span>
     </a>
-    <a class="flex btn-sidebar">
+    <a href="/receipt" class="flex btn-sidebar">
         <img src="https://i.ibb.co/SKhHLsf/payment-check.png" alt="Image Description" width="22px">
         <span>Receipt</span>
     </a>

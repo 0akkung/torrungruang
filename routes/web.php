@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\SaleOrderController;
+use App\Http\Controllers\SpecController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +21,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/customer', function () {
+    return view('customer.index');
+});
+Route::get('/spec', function () {
+    return view('spec.index');
+});
+Route::get('/spec/detail', function () {
+    return view('spec.detail');
+});
+Route::get('/so', function () {
+    return view('sale-orders.index');
+});
+Route::get('/invoice', function () {
+    return view('invoice.index');
+});
+Route::get('/delivery', function () {
+    return view('delivery.index');
+});
+Route::get('/receipt', function () {
+    return view('receipt.index');
 });
 
 Route::resource('/po', PurchaseOrderController::class);
+// Route::resource('/customer', CustomerController::class);
+// Route::resource('/spec', SpecController::class);
+// Route::resource('/so', SaleOrderController::class);
+// Route::resource('/delivery', DeliveryController::class);
+// Route::resource('/invoice', InvoiceController::class);
+// Route::resource('/receipt', ReceiptController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

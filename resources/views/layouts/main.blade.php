@@ -9,13 +9,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
+<div class="grid grid-cols-10 bg-gray-100"> 
 
-<div id="content-layout"
-      class="grid grid-cols-10 bg-gray-100 overflow-hidden min-h-screen ">
-
+    
     @include('layouts.subviews.sidebar')
     <div class="col-span-8">
-        <main class="p-4 text-black min-h-screen">
+        <div>
+            @include('layouts.subviews.header')
+        </div>
+        <main class="text-black min-h-screen px-16 py-24 overflow-hidden">
             @yield('content')
         </main>
     </div>
