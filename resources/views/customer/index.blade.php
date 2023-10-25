@@ -40,5 +40,5 @@
 
       </tbody>
   </table>
-  <a th:href="@{/customer/detail}" class="btn btn-primary">CUSTOMER DETAIL (ชั่วคราว)</a>
+  <a href="/customer/detail" class="btn btn-primary">CUSTOMER DETAIL (ชั่วคราว)</a>
 @endsection

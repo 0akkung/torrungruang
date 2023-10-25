@@ -24,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/customer', function () {
     return view('customer.index');
 });
+Route::get('/customer/detail', function () {
+    return view('customer.detail');
+});
+Route::get('/customer/add-address', function () {
+    return view('customer.address');
+});
 Route::get('/spec', function () {
     return view('spec.index');
 });
@@ -42,6 +48,13 @@ Route::get('/delivery', function () {
 Route::get('/receipt', function () {
     return view('receipt.index');
 });
+Route::get('/po/detail', function () {
+    return view('purchase-orders.detail');
+});
+Route::get('/po/add', function () {
+    return view('purchase-orders.add');
+});
+
 
 Route::resource('/po', PurchaseOrderController::class);
 // Route::resource('/customer', CustomerController::class);
