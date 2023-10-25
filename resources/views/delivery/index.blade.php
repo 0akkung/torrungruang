@@ -17,7 +17,7 @@
     </span>
 
     <span class="flex space-x-2 items-center">
-      <div class="btn btn-success font-semi-bold">เพิ่มใบส่งของ</div>
+      <a href="/delivery/add" class="btn btn-success font-semi-bold">เพิ่มใบส่งของ</a>
       <!-- <div class="btn btn-error font-semi-bold">ลบใบสั่งซื้อ</div>  -->
     </span>
   </div>

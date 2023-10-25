@@ -16,7 +16,7 @@
             <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
         </span>
         <span class="flex space-x-2 items-center">
-            <div class="btn btn-success font-semi-bold">เพิ่มspecเชือก</div>
+            <a href="/spec/add" class="btn btn-success font-semi-bold">เพิ่มspecเชือก</a>
         </span>
     </div>
     <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words bg-white
@@ -38,6 +38,6 @@
             </tr>      
           </tbody>
     </table>
-    <a href="/spec/detail" class="btn btn-success">แก้ไขข้อมูล</a>
+    <a href="/spec/detail" class="btn btn-success">spec detail (ชั่วคราว)</a>
 </div>
 @endsection

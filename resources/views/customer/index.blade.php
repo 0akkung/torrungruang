@@ -15,7 +15,7 @@
       <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
     </span>
     <span class="flex space-x-2 items-center">
-        <div class="btn btn-success font-semi-bold">เพิ่มลูกค้า</div>
+        <a href="/customer/add-customer" class="btn btn-success font-semi-bold">เพิ่มลูกค้า</a>
     </span>
   </div>
 

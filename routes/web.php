@@ -27,8 +27,14 @@ Route::get('/customer', function () {
 Route::get('/customer/detail', function () {
     return view('customer.detail');
 });
+Route::get('/customer/add-customer', function () {
+    return view('customer.add');
+});
 Route::get('/customer/add-address', function () {
     return view('customer.address');
+});
+Route::get('/customer/edit', function () {
+    return view('customer.edit');
 });
 Route::get('/spec', function () {
     return view('spec.index');
@@ -36,23 +42,44 @@ Route::get('/spec', function () {
 Route::get('/spec/detail', function () {
     return view('spec.detail');
 });
+Route::get('/spec/edit', function () {
+    return view('spec.edit');
+});
+Route::get('/spec/add', function () {
+    return view('spec.add');
+});
 Route::get('/so', function () {
     return view('sale-orders.index');
+});
+Route::get('/so/add', function () {
+    return view('sale-orders.add');
 });
 Route::get('/invoice', function () {
     return view('invoice.index');
 });
+Route::get('/invoice/add', function () {
+    return view('invoice.add');
+});
 Route::get('/delivery', function () {
     return view('delivery.index');
 });
+Route::get('/delivery/add', function () {
+    return view('delivery.add');
+});
 Route::get('/receipt', function () {
     return view('receipt.index');
+});
+Route::get('/receipt/add', function () {
+    return view('receipt.add');
 });
 Route::get('/po/detail', function () {
     return view('purchase-orders.detail');
 });
 Route::get('/po/add', function () {
     return view('purchase-orders.add');
+});
+Route::get('/po/delete', function () {
+    return view('purchase-orders.delete');
 });
 
 

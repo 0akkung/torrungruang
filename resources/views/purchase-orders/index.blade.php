@@ -18,8 +18,8 @@
         <a href="#" type="submit" class="ml-4 mr-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
         </span>
         <span class="flex space-x-2 items-center">
-            <div class="btn btn-success font-semi-bold">เพิ่มใบสั่งซื้อ</div>
-            <div class="btn btn-error font-semi-bold">ลบใบสั่งซื้อ</div> <!-- มีเวลาค่อยทำ เฉพาะยังไม่เปิดใบสั่งขาย -->
+            <a href="/po/add" class="btn btn-success font-semi-bold">เพิ่มใบสั่งซื้อ</a>
+            <a href="/po/delete" class="btn btn-error font-semi-bold">ลบใบสั่งซื้อ</a> <!-- มีเวลาค่อยทำ เฉพาะยังไม่เปิดใบสั่งขาย -->
         </span>
     </div>
 
@@ -55,7 +55,6 @@
             </tr>
         </tbody>
     </table>
-    <a href="/po/add" class="btn btn-primary">PO ADD (ชั่วคราว)</a>
     <a href="/po/detail" class="btn btn-primary">PO DETAIL (ชั่วคราว)</a>
 </div>
 @endsection

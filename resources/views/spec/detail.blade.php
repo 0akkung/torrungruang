@@ -7,6 +7,6 @@
     ชื่อ SPEC
     ราคาต่อหน่วย
     ดีเทล
-    <a href="/spec/detail" class="btn btn-success">แก้ไขข้อมูล</a>
+    <a href="/spec/edit" class="btn btn-success">แก้ไขข้อมูล</a>
 </div>
 @endsection

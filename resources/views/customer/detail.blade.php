@@ -4,12 +4,13 @@
     <h1 class="text-2xl text-center font-bold">รายละเอียดข้อมูลลูกค้า</h1>
     <div class="flex items-center justify-between mb-6 mt-6">
       รหัส CUSTOMER
-      ชื่อ 
-      เหมือนในตารางหน้าหลัก
-      <div class="btn btn-success">แก้ไขข้อมูล</div>
+      ชื่อบริษัท 
+      ชื่อผู้จัดซื้อ
+      เบอร์โทรศัพท์
+      <a href="/customer/edit"class="btn btn-success">แก้ไขข้อมูล</a>
     </div>
     ที่อยู่ทั้งหมด
-    <div class="btn btn-info">เพิ่มที่อยู่</div>
+    <a href="/customer/add-address" class="btn btn-info">เพิ่มที่อยู่</a>
     <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words 
     bg-white rounded-lg">
       <thead class="bg-gray-900">
@@ -27,6 +28,5 @@
           </tr>
         </tbody>
     </table>
-    <a href="/customer/add-address" class="btn btn-primary">ADD ADDRESS(ชั่วคราว)</a>
 </div>
 @endsection
