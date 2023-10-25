@@ -23,9 +23,6 @@ Web application for rope factory back office system
         laravelsail/php82-composer:latest \
         composer install --ignore-platform-reqs
     ```
-    ```sh
-    sail yarn install
-    ```
   
 * Copy `.env.example` to `.env`
   ```sh
@@ -40,6 +37,16 @@ Web application for rope factory back office system
 * Generate Application Key
     ```sh
     sail artisan key:generate
+    ```
+  
+* Install yarn
+    ```sh
+    sail yarn install
+    ```
+
+* Run css with yarn
+    ```sh
+    sail yarn dev
     ```
 
 ## About Laravel
