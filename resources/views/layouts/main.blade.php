@@ -11,12 +11,11 @@
 <body>
 
 <div id="content-layout"
-      class="grid grid-cols-10 bg-blue-950 overflow-hidden min-h-screen ">
+      class="grid grid-cols-10 bg-gray-100 overflow-hidden min-h-screen ">
 
     @include('layouts.subviews.sidebar')
     <div class="col-span-8">
-{{--        @include('layouts.subviews.header')--}}
-        <main class="bg-gray-100 p-4 min-h-screen">
+        <main class="p-4 text-black min-h-screen">
             @yield('content')
         </main>
     </div>

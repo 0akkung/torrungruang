@@ -1,6 +1,6 @@
 <div class="col-span-2 bg-gray-800">
 
-    <h1 class="text-3xl py-5 text-center text-white">
+    <h1 class="text-3xl py-8 font-bold text-center text-white">
         <a href="/">Torrungruang</a>
     </h1>
 
@@ -12,7 +12,7 @@
         <img src="https://i.ibb.co/TvZNC9C/customer.png" alt="Image Description" width="22px">
         <span>Customer</span>
     </a>
-    <a href="#" class="flex btn-sidebar">
+    <a href="{{ route('po.index') }}" class="flex btn-sidebar">
         <img src="https://i.ibb.co/H2b6qrF/document.png" alt="Image Description" width="22px">
         <span>Purchase Order</span>
     </a>
