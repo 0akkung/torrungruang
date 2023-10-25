@@ -1,4 +1,4 @@
-<nav class="bg-sky-400 border-gray-200 p-1 fixed w-full">
+<header class="bg-blue-950 p-1 fixed w-full">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
         <div class="flex items-center lg:order-2 p-1">
             <a href="#"
@@ -8,4 +8,4 @@
         </div>
 
     </div>
-</nav>
+</header>

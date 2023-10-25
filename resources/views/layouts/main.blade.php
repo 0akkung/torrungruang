@@ -8,10 +8,10 @@
     <title>Torrungruang</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-<div class="grid grid-cols-10 bg-gray-100"> 
 
-    
+<body>
+
+<div class="grid grid-cols-10 bg-gray-100">
     @include('layouts.subviews.sidebar')
     <div class="col-span-8">
         <div>
@@ -22,6 +22,8 @@
         </main>
     </div>
 </div>
+
+@include('layouts.subviews.footer')
 
 </body>
 </html>
