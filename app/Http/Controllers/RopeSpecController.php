@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PurchaseOrder;
+use App\Models\RopeSpec;
 use Illuminate\Http\Request;
 
-class PurchaseOrderController extends Controller
+class RopeSpecController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('purchase-orders.index', [
-            'title' => 'Purchase Orders'
+        return view('specs.index', [
+            'title' => "Rope Specs"
         ]);
     }
 
@@ -36,7 +36,7 @@ class PurchaseOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PurchaseOrder $purchaseOrder)
+    public function show(RopeSpec $ropeSpec)
     {
         //
     }
@@ -44,7 +44,7 @@ class PurchaseOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PurchaseOrder $purchaseOrder)
+    public function edit(RopeSpec $ropeSpec)
     {
         //
     }
@@ -52,7 +52,7 @@ class PurchaseOrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
+    public function update(Request $request, RopeSpec $ropeSpec)
     {
         //
     }
@@ -60,7 +60,7 @@ class PurchaseOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PurchaseOrder $purchaseOrder)
+    public function destroy(RopeSpec $ropeSpec)
     {
         //
     }

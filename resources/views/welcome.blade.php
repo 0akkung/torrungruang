@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Heading -->
-    <h1 class="mb-20 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Welcome to</span> Torrungruang</h1>
+    <h1 class="my-10 text-3xl font-extrabold text-gray-900 md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Welcome to</span> Torrungruang</h1>
 
     <!-- Shortcut Links -->
     <div class="grid grid-cols-2 gap-4">

@@ -1,11 +1,20 @@
-<header class="bg-blue-950 p-1 fixed w-full">
-    <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-        <div class="flex items-center lg:order-2 p-1">
-            <a href="#"
-               class="flex flex-col-reverse text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 focus:outline-none">
-                Logout
-            </a>
+<nav class="bg-gray-900 border-gray-200 fixed w-4/5">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+
+        <!-- Heading -->
+        <div class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            Factory Office System
+            @if (isset($title))
+                <span class="text-gray-400">  >  {{ $title }}</span>
+            @endif
         </div>
 
+        <!-- Logout Button -->
+        <div class="flex md:order-2">
+            <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-red-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">
+                Logout
+            </button>
+        </div>
     </div>
-</header>
+</nav>
+

@@ -4,11 +4,11 @@
         <a href="/">Torrungruang</a>
     </h1>
 
-    <a href="/spec" class="flex btn-sidebar">
+    <a href="{{ route('specs.index') }}" class="flex btn-sidebar">
         <img src="https://i.ibb.co/3y5Bvsv/rope-4.png" alt="Image Description" width="22px">
         <span>Spec</span>
     </a>
-    <a href="/customer" class="flex btn-sidebar">
+    <a href="{{ route('customers.index') }}" class="flex btn-sidebar">
         <img src="https://i.ibb.co/TvZNC9C/customer.png" alt="Image Description" width="22px">
         <span>Customer</span>
     </a>

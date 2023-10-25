@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('po_id');
 //            $table->foreignIdFor(Customer::class);
             $table->date('purchase_date');
-            $table->string('customer_po_id')->comment('PO ID of a customer');
+            $table->string('customer_po_id')->comment('PO ID of a customers');
             $table->double('original_order_price')->nullable();
             $table->double('total_order_price')->nullable();
             $table->boolean('produce_status');
