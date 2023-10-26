@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rope_specs', function (Blueprint $table) {
-            $table->id();
+            $table->id('spec_id');
+            $table->string('spec_name')->uniqe();
+            $table->string('spec_detail');
+            $table->double('unit_price')->nullable()->comment('price of spec per unit');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

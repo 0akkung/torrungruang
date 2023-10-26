@@ -1,6 +1,6 @@
 <?php
-
 use App\Models\SaleOrder;
+use App\Models\RopeSpec;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('deliveries', function (Blueprint $table) {
-            $table->id('delivey_id');
+        Schema::create('so_items', function (Blueprint $table) {
             $table->foreignIdFor(SaleOrder::class);
-            $table->date('delivery_date');
+            $table->foreignIdFor(RopeSpec::class);
+            $table->integer('sale_quantity')->comment('จำนวนที่เปิดใบสั่งขาย ห้ามมากกว่า order_quantity ใน po_item');
+            $table->double('so_item_price')->nullable()->comment('sale_quantity * unit of spec');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('deliveries');
+        Schema::dropIfExists('so_items');
     }
 };

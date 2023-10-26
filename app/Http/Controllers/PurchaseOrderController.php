@@ -22,7 +22,9 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('purchase-orders.create', [
+            'title' => 'Create Purchase Orders'
+        ]);
     }
 
     /**

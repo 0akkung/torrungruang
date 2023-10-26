@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id();
+            $table->id('customer_id');
+            $table->string('company_name');
+            $table->string('purchaser_name');
+            $table->string('phone_number')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

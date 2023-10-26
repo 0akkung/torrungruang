@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Customer;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
+            $table->id('address_id');
+            $table->string('address_detail');
+            $table->foreignIdFor(Customer::class);
             $table->timestamps();
         });
     }
