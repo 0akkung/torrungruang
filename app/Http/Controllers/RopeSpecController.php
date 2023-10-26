@@ -12,8 +12,10 @@ class RopeSpecController extends Controller
      */
     public function index()
     {
+        $specs = RopeSpec::get();
         return view('specs.index', [
-            'title' => "Rope Specs"
+            'title' => "Rope Specs",
+            'specs' => $specs
         ]);
     }
 
@@ -22,7 +24,9 @@ class RopeSpecController extends Controller
      */
     public function create()
     {
-        //
+        return view('specs.create', [
+            'title' => "Create Rope Specs"
+        ]);
     }
 
     /**
@@ -30,7 +34,15 @@ class RopeSpecController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request()->validate([
+        //     'spec_name' => 'required',
+        //     'spec_detail' => 'required',
+        // ]);
+        $spec = new RopeSpec();
+        $spec->spec_name = $request->get('spec_name');
+        $spec->spec_detail = $request->get('spec_detail');
+        $spec->save();
+            return redirect()->route('specs.index');
     }
 
     /**
@@ -38,7 +50,9 @@ class RopeSpecController extends Controller
      */
     public function show(RopeSpec $ropeSpec)
     {
-        //
+        return view('specs.detail', [
+            'title' => "Rope Specs Detail"
+        ]);
     }
 
     /**

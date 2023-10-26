@@ -16,7 +16,7 @@
             <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
         </span>
         <span class="flex space-x-2 items-center">
-            <a href="/spec/add" class="btn btn-success font-semi-bold">เพิ่มspecเชือก</a>
+            <a href="{{ route('specs.create') }}" class="btn btn-success font-semi-bold">เพิ่มspecเชือก</a>
         </span>
     </div>
     <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words bg-white
@@ -25,19 +25,19 @@
           <tr class="text-white font-semibold text-sm uppercase text-center">
             <th class="px-6 py-8"> รหัสSPEC</th>
             <th class="px-6 py-8"> ชื่อSPEC</th>
-            <th class="px-6 py-8">ราคาต่อหน่วย</th>
             <th class="px-6 py-8"></th>
           </tr>
         </thead>
           <tbody class="divide-y divide-gray-200">
+            @foreach ($specs as $spec)
             <tr class="text-center">
-              <td class="px-5 py-6">N00005</td>
-              <td class="px-5 py-6">เชือกร่ม 35 มล</td>
-              <td class="px-5 py-6">2.50</td>
+              <td class="px-5 py-6">{{$spec->spec_id}}</td>
+              <td class="px-5 py-6">{{$spec->spec_detail}}</td>
               <td class="px-5 py-6 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
-            </tr>      
+            </tr>
+            @endforeach      
           </tbody>
     </table>
-    <a href="/spec/detail" class="btn btn-success">spec detail (ชั่วคราว)</a>
+    <a href="" class="btn btn-success">spec detail (ชั่วคราว)</a>
 </div>
 @endsection
