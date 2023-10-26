@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('spec_id');
             $table->string('spec_name')->uniqe();
             $table->string('spec_detail');
-            $table->double('unit_price')->nullable()->comment('price of spec per unit');
             $table->timestamps();
             $table->softDeletes();
         });
