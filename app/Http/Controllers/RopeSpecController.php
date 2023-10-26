@@ -34,10 +34,11 @@ class RopeSpecController extends Controller
      */
     public function store(Request $request)
     {
-        // $request()->validate([
-        //     'spec_name' => 'required',
-        //     'spec_detail' => 'required',
-        // ]);
+        $request()->validate([
+            'spec_name' => 'required',
+            'spec_detail' => 'required',
+        ]);
+        
         $spec = new RopeSpec();
         $spec->spec_name = $request->get('spec_name');
         $spec->spec_detail = $request->get('spec_detail');
