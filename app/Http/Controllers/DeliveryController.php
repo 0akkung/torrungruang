@@ -12,7 +12,9 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
+        return view('deliveries.index', [
+            'title' => 'Deliveries'
+        ]);
     }
 
     /**

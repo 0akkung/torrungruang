@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice;
+use App\Models\SaleOrder;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class SaleOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('invoices.index', [
-            'title' => 'Invoices'
+        return view('sale-orders.index', [
+            'title' => 'Sale Orders'
         ]);
     }
 
@@ -36,7 +36,7 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Invoice $invoice)
+    public function show(SaleOrder $saleOrder)
     {
         //
     }
@@ -44,7 +44,7 @@ class InvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Invoice $invoice)
+    public function edit(SaleOrder $saleOrder)
     {
         //
     }
@@ -52,7 +52,7 @@ class InvoiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, SaleOrder $saleOrder)
     {
         //
     }
@@ -60,7 +60,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(SaleOrder $saleOrder)
     {
         //
     }

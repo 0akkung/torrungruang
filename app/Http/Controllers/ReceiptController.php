@@ -12,7 +12,9 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        //
+        return view('receipts.index', [
+            'title' => 'Receipts'
+        ]);
     }
 
     /**
