@@ -22,29 +22,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('po', PurchaseOrderController::class);
-
-Route::resource('customers', CustomerController::class);
-
- Route::resource('specs', RopeSpecController::class);
-
- Route::resource('so', SaleOrderController::class);
-
- Route::resource('deliveries', DeliveryController::class);
-
- Route::resource('invoices', InvoiceController::class);
-
- Route::resource('receipts', ReceiptController::class);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+/**
+ * Everyone needs to login before using the application
+ */
 Route::middleware('auth')->group(function () {
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::resource('po', PurchaseOrderController::class);
+    Route::resource('customers', CustomerController::class);
+    Route::resource('specs', RopeSpecController::class);
+    Route::resource('so', SaleOrderController::class);
+    Route::resource('deliveries', DeliveryController::class);
+    Route::resource('invoices', InvoiceController::class);
+    Route::resource('receipts', ReceiptController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
