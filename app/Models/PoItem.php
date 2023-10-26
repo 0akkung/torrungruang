@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PoItem extends Model
 {
-    use HasFactory,BelongsTo;
+    use HasFactory;
     public function purchaseOrder(): BelongsTo{
         return $this->belongsTo(PurchaseOrder::class);
     }

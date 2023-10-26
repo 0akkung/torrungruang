@@ -39,7 +39,7 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::find($request->get('id'));   //find customer from create-form naka
+        $customer = Customer::find($request->get('customer_id'));   //find customer from create-form naka
         $purchaseOrder = new PurchaseOrder();
         $purchaseOrder->purchase_date = now();
         $purchaseOrder->due_date = $request->get('due_date');
@@ -51,11 +51,15 @@ class PurchaseOrderController extends Controller
 
         $customer->purchase_order()->save($purchaseOrder);
 
-        foreach ($request->input('po_items') as $poItem) {
-            $poItem = new PoItem();
-            $poItem->order_quantity = $request->get('order_quantity');
-            $poItem->unit_price = $request->get('unit_price');
-            $poItem->remaining_quantity = $request->get('order_quantity');  //ถ้ายังไม่เปิดใบสั่งขายเลย จำนวนจะเท่ากับตอนเปิดใบสั่งซื้อ
+        $poItemsData = $request->input('po_items');  // listข้อมูล
+        foreach ($poItemsData as $poItemData) {
+            $specId = $poItemData['spec_id']; 
+            $spec = RopeSpec::find($specId); //หาspecที่ส่งมา
+            $poItem = new PoItem(); 
+            $poItem->rope_spec_id = $specId;
+            $poItem->order_quantity = $poItemData['order_quantity'];
+            $poItem->unit_price = $poItemData['unit_price'];
+            $poItem->remaining_quantity = $poItemData['order_quantity'];  //ถ้ายังไม่เปิดใบสั่งขายเลย จำนวนจะเท่ากับตอนเปิดใบสั่งซื้อ
             $poItem->po_item_price = $poItem->unit_price * $poItem->order_quantity;  //unit * จำนวนที่สั่ง
             
             $purchaseOrder->original_order_price += $poItem->po_item_price;    // + ราคารวมสเปคที่สั่งทั้งหมด
@@ -65,9 +69,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->total_order_price = $purchaseOrder->original_order_price * (1.07);   // ราคาหลังรวมVAT 7%
         $customer->purchase_order()->save($purchaseOrder); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา
 
-
-        $customer->addresses()->save($purchaseOrder);
-            return redirect()->route('purchase-orders.index',['purchaseOrder' => $purchaseOrder]);
+            return redirect()->route('po.index',['purchaseOrder' => $purchaseOrder]);
     }
 
     /**
