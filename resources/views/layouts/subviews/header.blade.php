@@ -11,9 +11,13 @@
 
         <!-- Logout Button -->
         <div class="flex md:order-2">
-            <button type="button" class="text-white bg-red-600 hover:bg-red-700 focus:ring-red-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">
-                Logout
-            </button>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="text-white bg-red-600 hover:bg-red-700 focus:ring-red-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0">
+                    Logout
+                </button>
+            </form>
+
         </div>
     </div>
 </nav>
