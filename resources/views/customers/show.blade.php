@@ -3,10 +3,10 @@
 <div>
     <h1 class="text-2xl text-center font-bold">รายละเอียดข้อมูลลูกค้า</h1>
     <div class="flex items-center justify-between mb-6 mt-6">
-      รหัส CUSTOMER
-      ชื่อบริษัท 
-      ชื่อผู้จัดซื้อ
-      เบอร์โทรศัพท์
+      {{$customer->id}}
+      {{$customer->company_name}}
+      {{$customer->purchaser_name}}
+      {{$customer->phone_number}}
       <a href="/customer/edit"class="btn btn-success">แก้ไขข้อมูล</a>
     </div>
     ที่อยู่ทั้งหมด

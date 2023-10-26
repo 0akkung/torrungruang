@@ -16,7 +16,11 @@
                                                  class="border border-gray-300 shadow p-3 w-full rounded-lg h-40 py-2 px-3 "></textarea>
                 
             </div>
-            <button type="submit" class="block w-full btn btn-success text-white font-bold p-4 rounded-lg">Submit</button>
+            <div class="flex">
+                <button type="submit" class="block  btn btn-success text-white font-bold p-4 rounded-lg">Submit</button>
+                <a href="{{ route('specs.index') }}" class="block btn btn-error text-white font-bold p-4 rounded-lg">Cancel</a>
+            </div>
         </form>
+    </div>
 </div>
 @endsection

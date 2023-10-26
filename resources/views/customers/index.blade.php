@@ -15,7 +15,7 @@
       <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
     </span>
     <span class="flex space-x-2 items-center">
-        <a href="/customer/add-customer" class="btn btn-success font-semi-bold">เพิ่มลูกค้า</a>
+        <a href="{{ route('customers.create') }}" class="btn btn-success font-semi-bold">เพิ่มลูกค้า</a>
     </span>
   </div>
 
@@ -30,15 +30,16 @@
       </tr>
     </thead>
       <tbody class="divide-y divide-gray-200">
+        @foreach ($customers as $customer)
         <tr class="text-center">
-          <td class="px-5 py-4">C00005</td>
-          <td class="px-5 py-4">หจก.สมโชค จำกัด</td>
-          <td class="px-5 py-4">สมโชค</td>
-          <td class="px-5 py-4 text-center">0856987459 </td>
-          <td class="px-5 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
+          <td class="px-5 py-4">{{$customer->id}}</td>
+          <td class="px-5 py-4">{{$customer->company_name}}</td>
+          <td class="px-5 py-4">{{$customer->purchaser_name}}</td>
+          <td class="px-5 py-4 text-center">{{$customer->phone_number}}</td>
+          <td class="px-5 py-4 text-center"> <a href="{{ route('customers.show', ['customer' => $customer]) }}" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
         </tr>
+        @endforeach
 
       </tbody>
   </table>
-  <a href="/customer/detail" class="btn btn-primary">CUSTOMER DETAIL (ชั่วคราว)</a>
 @endsection

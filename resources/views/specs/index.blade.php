@@ -32,7 +32,7 @@
             @foreach ($specs as $spec)
             <tr class="text-center">
               <td class="px-5 py-6">{{$spec->id}}</td>
-              <td class="px-5 py-6">{{$spec->spec_detail}}</td>
+              <td class="px-5 py-6">{{$spec->spec_name}}</td>
               <td class="px-5 py-6 text-center">
                 <a href="{{ route('specs.show', ['spec' => $spec]) }}">
                   <h3 class="text-purple-800 hover:underline font-bold">Detail</h3>
@@ -42,6 +42,5 @@
             @endforeach
           </tbody>
     </table>
-    <a href="" class="btn btn-success">spec detail (ชั่วคราว)</a>
 </div>
 @endsection

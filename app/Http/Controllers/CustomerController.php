@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Address;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -12,8 +13,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $customers = Customer::get();
         return view('customers.index', [
-            'title' => 'Customers'
+            'title' => "Customers",
+            'customers' => $customers
         ]);
     }
 
@@ -22,7 +25,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create', [
+            'title' => "Customers > Create"
+        ]);
     }
 
     /**
@@ -30,7 +35,12 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = new Customer();
+        $customer->company_name = $request->get('company_name');
+        $customer->purchaser_name = $request->get('purchaser_name');
+        $customer->phone_number = $request->get('phone_number');
+        $customer->save();
+            return redirect()->route('customers.index');
     }
 
     /**
@@ -38,7 +48,10 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.show', [
+            'title' => "Customers > Detail",
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -63,5 +76,25 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+    // public function createAddress(Customer $customer)
+    // {
+    //     return view('address.create', [
+    //         'title' => "Customers > Address > Add Address",
+    //         'customer' => $customer
+    //     ]);
+    // }
+    // public function createAddress(Customer $customer)
+    // {
+    //     return view('address.create', [
+    //         'title' => "Customers > Address > Add Address",
+    //         'customer' => $customer
+    //     ]);
+    // }
+    public function editAddress()
+    {
+        return view('address.edit', [
+            'title' => "Customers > Address > Edit Address"
+        ]);
     }
 }
