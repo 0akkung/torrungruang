@@ -61,7 +61,9 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit', [
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -69,7 +71,11 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $customer->company_name = $request->get('company_name');
+        $customer->purchaser_name = $request->get('purchaser_name');
+        $customer->phone_number = $request->get('phone_number');
+        $customer->save();
+        return redirect()->route('customers.show',['customer' => $customer]);
     }
 
     /**
@@ -93,10 +99,20 @@ class CustomerController extends Controller
         $customer->addresses()->save($address);
             return redirect()->route('customers.show',['customer' => $customer]);
     }
-    public function editAddress()
+    public function editAddress(Customer $customer,Address $address)
     {
-        return view('address.edit', [
-            'title' => "Customers > Address > Edit Address"
+        return view('customers.edit-address', [
+            'title' => "Customers > Address > Edit Address",
+            'customer' => $customer,
+            'address' => $address
         ]);
     }
+    public function updateAddress(Request $request,Customer $customer,Address $address)
+    {
+        $address->address_detail = $request->get('address_detail');
+        $customer->addresses()->save($address);
+            return redirect()->route('customers.show',['customer' => $customer]);
+    }
+
+   
 }

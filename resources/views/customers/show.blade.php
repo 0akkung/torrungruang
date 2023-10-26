@@ -7,7 +7,7 @@
       {{$customer->company_name}}
       {{$customer->purchaser_name}}
       {{$customer->phone_number}}
-      <a href="/customer/edit"class="btn btn-success">แก้ไขข้อมูล</a>
+      <a href="{{ route('customers.edit', ['customer' => $customer]) }}"class="btn btn-success">แก้ไขข้อมูล</a>
     </div>
     ที่อยู่ทั้งหมด
     <a href="{{ route('customers.createAddress', ['customer' => $customer]) }}" class="btn btn-info">เพิ่มที่อยู่</a>
@@ -25,7 +25,8 @@
           <tr class="text-center">
             <td class="px-5 py-4">{{$address->id}}</td>
             <td class="px-5 py-4">{{$address->address_detail}}</td>
-            <td class="px-5 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">แก้ไขที่อยู่</a> </td>
+            <td class="px-5 py-4 text-center"> <a href="{{ route('customers.editAddress', ['customer' => $customer, 'address' => $address]) }}" 
+              class="text-purple-800 hover:underline font-bold">แก้ไขที่อยู่</a> </td>
           </tr>
           @endforeach
         </tbody>

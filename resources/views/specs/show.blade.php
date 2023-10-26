@@ -3,13 +3,10 @@
 <div>
     <h1 class="text-2xl text-center font-bold">รายละเอียด Spec เชือก</h1>
     <div class="flex items-center justify-between mb-6 mt-6">
+        {{$spec->id}}
         {{$spec->spec_name}}
         {{$spec->spec_detail}}
     </div>
-    รหัส spec
-    ชื่อ SPEC
-    ราคาต่อหน่วย
-    ดีเทล
-    <a href="/spec/edit" class="btn btn-success">แก้ไขข้อมูล</a>
+    <a href="{{ route('specs.edit', ['spec' => $spec]) }}" class="btn btn-success">แก้ไขข้อมูล</a>
 </div>
 @endsection

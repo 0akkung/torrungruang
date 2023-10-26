@@ -39,7 +39,10 @@ Route::middleware('auth')->group(function () {
     ->name('customers.createAddress');
     Route::post('/customers/{customer}/store-address', [CustomerController::class, 'storeAddress'])
     ->name('customers.storeAddress');
-
+    Route::get('/customers/{customer}/addresses/{address}/edit', [CustomerController::class, 'editAddress'])
+    ->name('customers.editAddress');
+    Route::put('/customers/{customer}/addresses/{address}', [CustomerController::class, 'updateAddress'])
+    ->name('customers.updateAddress');
 
     Route::resource('specs', RopeSpecController::class);
     Route::resource('so', SaleOrderController::class);

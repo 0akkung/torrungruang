@@ -60,17 +60,22 @@ class RopeSpecController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RopeSpec $ropeSpec)
+    public function edit(RopeSpec $spec)
     {
-        //
+        return view('specs.edit', [
+            'spec' => $spec
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RopeSpec $ropeSpec)
+    public function update(Request $request, RopeSpec $spec)
     {
-        //
+        $spec->spec_name = $request->get('spec_name');
+        $spec->spec_detail = $request->get('spec_name');
+        $spec->save();
+        return redirect()->route('specs.show',['spec' => $spec]);
     }
 
     /**
