@@ -63,6 +63,7 @@ class RopeSpecController extends Controller
     public function edit(RopeSpec $spec)
     {
         return view('specs.edit', [
+            'title' => "Rope Specs > Detail > Edit",
             'spec' => $spec
         ]);
     }

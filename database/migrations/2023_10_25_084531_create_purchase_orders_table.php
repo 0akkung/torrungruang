@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignIdFor(Customer::class);
             $table->date('due_date')->comment('deadline');
             $table->date('purchase_date');
-            $table->string('customer_po_id')->comment('PO ID of a customers');
+            $table->string('customer_po_id')->comment('PO ID of a customers from theirs');
             $table->double('original_order_price')->nullable()->comment('Total PO price before VAT 7%  (sum all po_item_price) ');
             $table->double('total_order_price')->nullable()->comment('Total PO price after VAT 7%');
             $table->boolean('produce_status');

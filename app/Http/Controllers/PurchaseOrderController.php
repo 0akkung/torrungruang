@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\PoItem;
 use App\Models\PurchaseOrder;
+use App\Models\RopeSpec;
 use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
@@ -22,8 +25,12 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
+        $specs = RopeSpec::get();
+        $customers = Customer::get();
         return view('purchase-orders.create', [
-            'title' => 'Create Purchase Orders'
+            'title' => 'Create Purchase Orders',
+            'specs' => $specs,
+            'customers' => $customers
         ]);
     }
 
@@ -32,7 +39,35 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::find($request->get('id'));   //find customer from create-form naka
+        $purchaseOrder = new PurchaseOrder();
+        $purchaseOrder->purchase_date = now();
+        $purchaseOrder->due_date = $request->get('due_date');
+        $purchaseOrder->customer_po_id = $request->get('customer_po_id');
+        // $purchaseOrder->original_order_price = $request->get('original_order_price');
+        // $purchaseOrder->total_order_price = $request->get('total_order_price');
+        $purchaseOrder->produce_status = 0;
+        $purchaseOrder->payment_status = 0;
+
+        $customer->purchase_order()->save($purchaseOrder);
+
+        foreach ($request->input('po_items') as $poItem) {
+            $poItem = new PoItem();
+            $poItem->order_quantity = $request->get('order_quantity');
+            $poItem->unit_price = $request->get('unit_price');
+            $poItem->remaining_quantity = $request->get('order_quantity');  //ถ้ายังไม่เปิดใบสั่งขายเลย จำนวนจะเท่ากับตอนเปิดใบสั่งซื้อ
+            $poItem->po_item_price = $poItem->unit_price * $poItem->order_quantity;  //unit * จำนวนที่สั่ง
+            
+            $purchaseOrder->original_order_price += $poItem->po_item_price;    // + ราคารวมสเปคที่สั่งทั้งหมด
+            $purchaseOrder->poItem()->save($poItem);
+            $spec->poItem()->save($poItem); // save สเปค
+        }
+        $purchaseOrder->total_order_price = $purchaseOrder->original_order_price * (1.07);   // ราคาหลังรวมVAT 7%
+        $customer->purchase_order()->save($purchaseOrder); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา
+
+
+        $customer->addresses()->save($purchaseOrder);
+            return redirect()->route('purchase-orders.index',['purchaseOrder' => $purchaseOrder]);
     }
 
     /**

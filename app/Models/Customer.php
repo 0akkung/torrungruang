@@ -14,7 +14,7 @@ class Customer extends Model
     public function addresses(): HasMany{
         return $this->hasMany(Address::class);
     }
-    public function purchase_order(): HasOne{
-        return $this->hasOne(PurchaseOrder::class);
+    public function purchase_order(): HasMany{
+        return $this->hasMany(PurchaseOrder::class);
     }
 }

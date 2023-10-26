@@ -62,6 +62,7 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         return view('customers.edit', [
+            'title' => "Customers > Detail > Edit",
             'customer' => $customer
         ]);
     }
@@ -102,7 +103,7 @@ class CustomerController extends Controller
     public function editAddress(Customer $customer,Address $address)
     {
         return view('customers.edit-address', [
-            'title' => "Customers > Address > Edit Address",
+            'title' => "Customers > Address > Edit",
             'customer' => $customer,
             'address' => $address
         ]);
