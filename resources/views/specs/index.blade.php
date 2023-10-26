@@ -5,7 +5,7 @@
     <h1 class="text-2xl text-center font-bold">Spec (โชว์หน้าละ 5 ถ้าทำทัน)</h1>
     <div class="flex items-center justify-between mb-6 mt-6">
         <div class="flex items-center">
-            
+
         </div>
     <!-- มีเวลาค่อยทำ seacrbar-->
         <span class="mr-24 flex items-center">
@@ -31,7 +31,7 @@
           <tbody class="divide-y divide-gray-200">
             @foreach ($specs as $spec)
             <tr class="text-center">
-              <td class="px-5 py-6">{{$spec->spec_id}}</td>
+              <td class="px-5 py-6">{{$spec->id}}</td>
               <td class="px-5 py-6">{{$spec->spec_detail}}</td>
               <td class="px-5 py-6 text-center">
                 <a href="{{ route('specs.show', ['spec' => $spec]) }}">
@@ -39,7 +39,7 @@
                 </a>
               </td>
             </tr>
-            @endforeach      
+            @endforeach
           </tbody>
     </table>
     <a href="" class="btn btn-success">spec detail (ชั่วคราว)</a>
