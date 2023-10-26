@@ -48,10 +48,10 @@ class RopeSpecController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RopeSpec $ropeSpec)
+    public function show(RopeSpec $spec)
     {
-        return view('specs.detail', [
-            'title' => "Rope Specs Detail"
+        return view('specs.show', [
+            'spec' => $spec
         ]);
     }
 

@@ -33,7 +33,11 @@
             <tr class="text-center">
               <td class="px-5 py-6">{{$spec->spec_id}}</td>
               <td class="px-5 py-6">{{$spec->spec_detail}}</td>
-              <td class="px-5 py-6 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
+              <td class="px-5 py-6 text-center">
+                <a href="{{ route('specs.show', ['spec' => $spec]) }}">
+                  <h3 class="text-purple-800 hover:underline font-bold">Detail</h3>
+                </a>
+              </td>
             </tr>
             @endforeach      
           </tbody>

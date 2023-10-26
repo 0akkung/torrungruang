@@ -9,6 +9,7 @@ use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
 use App\Http\Controllers\SpecController;
+use App\Models\RopeSpec;
 use Illuminate\Support\Facades\Route;
 
 /*
