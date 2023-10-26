@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('receipts', function (Blueprint $table) {
-            $table->id('receipt_id');
+            $table->id();
             $table->foreignIdFor(PurchaseOrder::class);
             $table->string('receipter_name');
             $table->date('pay_date');

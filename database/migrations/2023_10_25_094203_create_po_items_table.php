@@ -14,6 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('po_items', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(PurchaseOrder::class);
             $table->foreignIdFor(RopeSpec::class);
             $table->integer('order_quantity')->comment('จำนวนที่สั่ง เช่น เชือก A สั่ง 1000 ม้วน');

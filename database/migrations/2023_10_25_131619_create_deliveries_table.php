@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('deliveries', function (Blueprint $table) {
-            $table->id('delivey_id');
+            $table->id();
             $table->foreignIdFor(SaleOrder::class);
             $table->date('delivery_date');
             $table->timestamps();

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->id('po_id');
+            $table->id();
             $table->foreignIdFor(Customer::class);
             $table->date('due_date')->comment('deadline');
             $table->date('purchase_date');

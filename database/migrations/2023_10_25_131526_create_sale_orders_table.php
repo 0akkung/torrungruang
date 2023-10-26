@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sale_orders', function (Blueprint $table) {
-            $table->id('so_id');
+            $table->id();
             $table->foreignIdFor(PurchaseOrder::class);
             $table->date('sale_date');
             $table->double('original_order_price')->nullable()->comment('PO price before VAT 7%');

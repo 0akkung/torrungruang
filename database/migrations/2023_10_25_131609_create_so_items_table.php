@@ -13,6 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('so_items', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(SaleOrder::class);
             $table->foreignIdFor(RopeSpec::class);
             $table->integer('sale_quantity')->comment('จำนวนที่เปิดใบสั่งขาย ห้ามมากกว่า order_quantity ใน po_item');
