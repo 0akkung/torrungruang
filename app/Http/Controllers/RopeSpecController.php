@@ -25,7 +25,7 @@ class RopeSpecController extends Controller
     public function create()
     {
         return view('specs.create', [
-            'title' => "Create Rope Specs"
+            'title' => "Rope Specs > Create"
         ]);
     }
 

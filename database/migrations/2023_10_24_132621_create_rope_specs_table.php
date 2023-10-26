@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('rope_specs', function (Blueprint $table) {
-            $table->id('spec_id');
-            $table->string('spec_name')->uniqe();
+            $table->id();
+            $table->string('spec_name')->unique();
             $table->string('spec_detail');
             $table->timestamps();
             $table->softDeletes();
