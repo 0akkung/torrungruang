@@ -27,6 +27,7 @@ class CustomerController extends Controller
     {
         return view('customers.create', [
             'title' => "Customers > Create"
+
         ]);
     }
 
@@ -50,7 +51,8 @@ class CustomerController extends Controller
     {
         return view('customers.show', [
             'title' => "Customers > Detail",
-            'customer' => $customer
+            'customer' => $customer,
+            'addresses' => $customer->addresses
         ]);
     }
 
@@ -77,20 +79,20 @@ class CustomerController extends Controller
     {
         //
     }
-    // public function createAddress(Customer $customer)
-    // {
-    //     return view('address.create', [
-    //         'title' => "Customers > Address > Add Address",
-    //         'customer' => $customer
-    //     ]);
-    // }
-    // public function createAddress(Customer $customer)
-    // {
-    //     return view('address.create', [
-    //         'title' => "Customers > Address > Add Address",
-    //         'customer' => $customer
-    //     ]);
-    // }
+    public function createAddress(Customer $customer)
+    {
+        return view('customers.add-address', [
+            'title' => "Customers > Address > Add Address",
+            'customer' => $customer
+        ]);
+    }
+    public function storeAddress(Request $request,Customer $customer)
+    {
+        $address = new Address();
+        $address->address_detail = $request->get('address_detail');
+        $customer->addresses()->save($address);
+            return redirect()->route('customers.show',['customer' => $customer]);
+    }
     public function editAddress()
     {
         return view('address.edit', [

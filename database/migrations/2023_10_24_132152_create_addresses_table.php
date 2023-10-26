@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('address_detail');
             $table->foreignIdFor(Customer::class);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

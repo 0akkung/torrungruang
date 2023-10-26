@@ -10,7 +10,7 @@
       <a href="/customer/edit"class="btn btn-success">แก้ไขข้อมูล</a>
     </div>
     ที่อยู่ทั้งหมด
-    <a href="/customer/add-address" class="btn btn-info">เพิ่มที่อยู่</a>
+    <a href="{{ route('customers.createAddress', ['customer' => $customer]) }}" class="btn btn-info">เพิ่มที่อยู่</a>
     <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words 
     bg-white rounded-lg">
       <thead class="bg-gray-900">
@@ -21,11 +21,13 @@
         </tr>
       </thead>
         <tbody class="divide-y divide-gray-200">
+          @foreach ($addresses as $address)
           <tr class="text-center">
-            <td class="px-5 py-4">A00005</td>
-            <td class="px-5 py-4">208/9 ดาวอังคาร</td>
+            <td class="px-5 py-4">{{$address->id}}</td>
+            <td class="px-5 py-4">{{$address->address_detail}}</td>
             <td class="px-5 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">แก้ไขที่อยู่</a> </td>
           </tr>
+          @endforeach
         </tbody>
     </table>
 </div>

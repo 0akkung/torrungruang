@@ -33,7 +33,14 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('po', PurchaseOrderController::class);
+    
     Route::resource('customers', CustomerController::class);
+    Route::get('/customers/{customer}/create-address', [CustomerController::class, 'createAddress'])
+    ->name('customers.createAddress');
+    Route::post('/customers/{customer}/store-address', [CustomerController::class, 'storeAddress'])
+    ->name('customers.storeAddress');
+
+
     Route::resource('specs', RopeSpecController::class);
     Route::resource('so', SaleOrderController::class);
     Route::resource('deliveries', DeliveryController::class);
