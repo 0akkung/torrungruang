@@ -12,24 +12,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PurchaseOrder extends Model
 {
     use HasFactory, SoftDeletes;
-    public function customer(): BelongsTo{
+    public function customer(): BelongsTo {
         return $this->belongsTo(Customer::class);
     }
+
     public function poItem(): HasMany{
         return $this->hasMany(PoItem::class);
     }
+
     public function saleOrders(): HasMany{
         return $this->hasMany(SaleOrder::class);
     }
+
     public function receipt(): HasOne
     {
         return $this->hasOne(Receipt::class);
     }
+
     public function invoice(): HasOne
     {
         return $this->hasOne(Invoice::class);
     }
-    public function address(): HasOne{
+
+    public function address(): HasOne {
         return $this->Hasone(Address::class);
     }
 }

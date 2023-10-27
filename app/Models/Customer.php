@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Customer extends Model
 {
     use HasFactory, SoftDeletes;
-    public function addresses(): HasMany{
+    public function addresses(): HasMany {
         return $this->hasMany(Address::class);
     }
-    public function purchase_order(): HasMany{
+    public function purchase_orders(): HasMany {
         return $this->hasMany(PurchaseOrder::class);
     }
 }
