@@ -22,7 +22,9 @@ class SaleOrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('sale-orders.create', [
+            'title' => 'Sale Orders > Create'
+        ]);
     }
 
     /**
