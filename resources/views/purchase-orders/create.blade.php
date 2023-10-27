@@ -19,6 +19,7 @@
                 @foreach($customers as $customer)
                     <option value="{{ $customer->id }}">{{ $customer->company_name }}</option>
                 @endforeach
+                
             </select>
             
             <label for="address_id" class="block font-bold mb-2">Customer Address</label>
@@ -76,7 +77,9 @@
             <label for="po_items[${poItemCount}][spec_id]" class="block font-bold mb-2">Spec</label>
             <select id="po_items[${poItemCount}][spec_id]" name="po_items[${poItemCount}][spec_id]" class="border rounded-lg p-2 mb-2">
                 @foreach($specs as $spec)
-                    <option value="{{ $spec->id }}">{{ $spec->id }} - {{ $spec->spec_name }}</option>
+                    @if (!in_array($spec->id, $selectedSpecs))
+                        <option value="{{ $spec->id }}">{{ $spec->id }} - {{ $spec->spec_name }}</option>
+                    @endif
                 @endforeach
             </select>
             <label for="po_items[${poItemCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>

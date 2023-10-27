@@ -29,4 +29,7 @@ class PurchaseOrder extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+    public function address(): HasOne{
+        return $this->Hasone(Address::class);
+    }
 }

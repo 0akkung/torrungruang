@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Customer;
 use App\Models\PoItem;
 use App\Models\PurchaseOrder;
@@ -28,6 +29,7 @@ class PurchaseOrderController extends Controller
     public function create()
     {
         $selectedCustomerId = 1;
+        $selectedSpecs = [];
         $selectedCustomer = Customer::find($selectedCustomerId);
         $specs = RopeSpec::get();
         $customers = Customer::get();
@@ -35,7 +37,8 @@ class PurchaseOrderController extends Controller
             'title' => 'Create Purchase Orders',
             'specs' => $specs,
             'customers' => $customers,
-            'selectedCustomer' => $selectedCustomer
+            'selectedCustomer' => $selectedCustomer,
+            'selectedSpecs' => $selectedSpecs
         ]);
     }
 
@@ -45,16 +48,16 @@ class PurchaseOrderController extends Controller
     public function store(Request $request)
     {
         $customer = Customer::find($request->get('customer_id'));   //find customer from create-form naka
+        $address = Address::find($request->get('address_id'));
         $purchaseOrder = new PurchaseOrder();
         $purchaseOrder->purchase_date = now();
-        $purchaseOrder->purchase_address = $request->get('address_id');
         $purchaseOrder->due_date = $request->get('due_date');
         $purchaseOrder->customer_po_id = $request->get('customer_po_id');
         // $purchaseOrder->original_order_price = $request->get('original_order_price');
         // $purchaseOrder->total_order_price = $request->get('total_order_price');
         $purchaseOrder->produce_status = 0;
         $purchaseOrder->payment_status = 0;
-
+        $address->purchase_orders()->save($purchaseOrder); 
         $customer->purchase_order()->save($purchaseOrder);
         
         $poItemsData = $request->input('po_items');  // listข้อมูลจากลูปนรก
@@ -74,7 +77,7 @@ class PurchaseOrderController extends Controller
         }
         $purchaseOrder->total_order_price = $purchaseOrder->original_order_price * (1.07);   // ราคาหลังรวมVAT 7%
         $customer->purchase_order()->save($purchaseOrder); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา
-
+        
             return redirect()->route('po.index',['purchaseOrder' => $purchaseOrder]);
     }
 

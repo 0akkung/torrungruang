@@ -65,7 +65,5 @@
             @endforeach
         </tbody>
     </table>
-    <a th:href="@{/purchaseOrder/add}" class="btn btn-primary">PO ADD (ชั่วคราว)</a>
-    <a th:href="@{/purchaseOrder/detail}" class="btn btn-primary">PO DETAIL (ชั่วคราว)</a>
 </div>
 @endsection
