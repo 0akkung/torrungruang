@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PurchaseOrder extends Model
@@ -16,5 +17,16 @@ class PurchaseOrder extends Model
     }
     public function poItem(): HasMany{
         return $this->hasMany(PoItem::class);
+    }
+    public function saleOrders(): HasMany{
+        return $this->hasMany(SaleOrder::class);
+    }
+    public function receipt(): HasOne
+    {
+        return $this->hasOne(Receipt::class);
+    }
+    public function invoice(): HasOne
+    {
+        return $this->hasOne(Invoice::class);
     }
 }
