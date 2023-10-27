@@ -74,6 +74,11 @@ class RopeSpecController extends Controller
      */
     public function update(Request $request, RopeSpec $spec)
     {
+        $request->validate([
+            'spec_name' => ['required', 'min:2', 'max:255'],
+            'spec_detail' => ['required', 'min:4', 'max:255'],
+        ]);
+
         $spec->spec_name = $request->get('spec_name');
         $spec->spec_detail = $request->get('spec_detail');
         $spec->save();

@@ -9,7 +9,7 @@
 
             <x-text-area name="spec_detail" label="Detail" placeholder="Insert Spec Detail" />
 
-            <x-submit-button label="Submit Form" />
+            <x-submit-button label="Submit" />
         </form>
     </div>
 </div>

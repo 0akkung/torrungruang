@@ -36,12 +36,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'company_name' => ['required', 'min:2', 'max:255'],
+            'purchaser_name' => ['required', 'min:2', 'max:255'],
+            'phone_number' => ['required', 'numeric', 'digits:10']
+        ]);
+
         $customer = new Customer();
         $customer->company_name = $request->get('company_name');
         $customer->purchaser_name = $request->get('purchaser_name');
         $customer->phone_number = $request->get('phone_number');
         $customer->save();
-            return redirect()->route('customers.index');
+
+        return redirect()->route('customers.index')->with('success', 'Customer Created successfully!');
     }
 
     /**
@@ -115,5 +122,5 @@ class CustomerController extends Controller
             return redirect()->route('customers.show',['customer' => $customer]);
     }
 
-   
+
 }
