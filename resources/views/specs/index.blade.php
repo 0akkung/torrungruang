@@ -43,17 +43,17 @@
             <tbody>
             @foreach ($specs as $spec)
                 <tr class="bg-white border-b">
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 font-medium text-gray-900">
                         {{ $spec->id }}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $spec->spec_name }}
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 whitespace-nowrap">
                         {{ $spec->spec_detail }}
                     </td>
                     <td class="pl-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                        <a href="{{ route('specs.edit', $spec) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
                         <a href="{{ route('specs.destroy', $spec) }}"
                            onclick="event.preventDefault();
                            if (confirm('Are you sure you want to delete this rope spec?')) {
