@@ -1,30 +1,27 @@
 @extends('layouts.main')
 
 @section('content')
-    <h1 class="text-2xl text-center font-bold">Spec</h1>
-    <div class="flex items-center justify-between mb-6 mt-6">
-        <div class="flex items-center">
-
+    <div class="flex justify-between">
+        <div class="flex">
+            <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+            <h1 class="px-1 bg-tag py-1"></h1>
+            <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Rope Specifications</h1>
         </div>
-        <!-- มีเวลาค่อยทำ search bar-->
-        <span class="mr-24 flex items-center">
-            <div class="pt-2 relative mx-auto text-gray-600">
-                <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16  rounded-lg text-sm focus:outline-none"
-                       type="search" name="search" placeholder="Search">
-            </div>
-            <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">Search</a>
-        </span>
-        <span class="flex space-x-2 items-center">
-            <a href="{{ route('specs.create') }}"
-               class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                Add
-            </a>
-        </span>
+        <a href="{{ route('specs.create') }}"
+           class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+            + Spec
+        </a>
     </div>
+    <form method="GET" action="{{ route('specs.search') }}" class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full ">
+        <div class="col-span-10 flex">
+            <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search spec name">
+            <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
+        </div>
+    </form>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+            <thead class="text-xs uppercase bg-table text-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Spec ID
