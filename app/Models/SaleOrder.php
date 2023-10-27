@@ -19,7 +19,7 @@ class SaleOrder extends Model
     }
     public function purchaseOrder(): BelongsTo
     {
-    return $this->belongsTo(PurchaseOrder::class, 'foreign_key');
+    return $this->belongsTo(PurchaseOrder::class);
     }
     public function saleOrderItems(): HasMany{
         return $this->hasMany(SoItem::class);

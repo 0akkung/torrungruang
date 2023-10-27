@@ -11,6 +11,6 @@ class Delivery extends Model
     use HasFactory;
     public function saleOrder(): BelongsTo
     {
-    return $this->belongsTo(Customer::class, 'foreign_key');
+    return $this->belongsTo(Customer::class);
     }
 }

@@ -12,6 +12,6 @@ class Receipt extends Model
     use HasFactory, SoftDeletes;
     public function purchaseOrder(): BelongsTo
     {
-    return $this->belongsTo(PurchaseOrder::class, 'foreign_key');
+    return $this->belongsTo(PurchaseOrder::class);
     }
 }

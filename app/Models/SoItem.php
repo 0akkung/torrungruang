@@ -13,6 +13,6 @@ class SoItem extends Model
     use HasFactory, SoftDeletes;
     public function saleOrder(): BelongsTo
 {
-    return $this->belongsTo(SaleOrder::class, 'foreign_key');
+    return $this->belongsTo(SaleOrder::class);
 }
 }

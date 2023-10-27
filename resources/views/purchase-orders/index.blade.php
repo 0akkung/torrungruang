@@ -122,7 +122,7 @@
                 <td class="px-5 py-4 text-center">17/08/2569 </td>
                 <td class="px-2 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
             </tr>
-            <tr class="text-center">
+                        <tr class="text-center">
                 <td class="">P00075</td>
                 <td class="px-5 py-4">C00005</td>
                 <td class="px-5 py-4">หจก.สมโชค จำกัด</td>
