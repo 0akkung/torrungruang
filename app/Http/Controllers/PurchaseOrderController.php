@@ -15,8 +15,10 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
+        $purchaseOrders = PurchaseOrder::get();
         return view('purchase-orders.index', [
-            'title' => 'Purchase Orders'
+            'title' => 'Purchase Orders',
+            'purchaseOrders' => $purchaseOrders
         ]);
     }
 
@@ -51,7 +53,7 @@ class PurchaseOrderController extends Controller
 
         $customer->purchase_order()->save($purchaseOrder);
 
-        $poItemsData = $request->input('po_items');  // listข้อมูล
+        $poItemsData = $request->input('po_items');  // listข้อมูลจากลูปนรก
         foreach ($poItemsData as $poItemData) {
             $specId = $poItemData['spec_id']; 
             $spec = RopeSpec::find($specId); //หาspecที่ส่งมา
