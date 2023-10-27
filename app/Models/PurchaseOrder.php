@@ -16,7 +16,7 @@ class PurchaseOrder extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function poItem(): HasMany{
+    public function poItems(): HasMany{
         return $this->hasMany(PoItem::class);
     }
 
