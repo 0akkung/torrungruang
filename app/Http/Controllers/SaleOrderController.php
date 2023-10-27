@@ -17,8 +17,10 @@ class SaleOrderController extends Controller
      */
     public function index()
     {
+        $saleOrders = SaleOrder::get();
         return view('sale-orders.index', [
-            'title' => 'Sale Orders'
+            'title' => 'Sale Orders',
+            'saleOrders' => $saleOrders
         ]);
     }
 
