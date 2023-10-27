@@ -1,13 +1,14 @@
-<div class="col-span-2 bg-gray-800">
+<div class="col-span-2 bg-gray-900">
 
     <h1 class="text-3xl py-12 font-bold text-center text-white">
-        <!-- <a href="/">Torrungruang</a> -->
+        <a href="/">Torrungruang</a>
     </h1>
 
     <a href="/" class="flex btn-sidebar">
         <img src="https://i.ibb.co/vLstS06/home.png" alt="Home" width="22px">
         <span>Home</span>
     </a>
+    <hr class="h-px mx-3 bg-gray-200 border-0 dark:bg-gray-700">
     <a href="{{ route('specs.index') }}" class="flex btn-sidebar">
         <img src="https://i.ibb.co/3y5Bvsv/rope-4.png" alt="Image Description" width="22px">
         <span>Spec</span>
@@ -36,6 +37,13 @@
         <img src="https://i.ibb.co/SKhHLsf/payment-check.png" alt="Image Description" width="22px">
         <span>Receipt</span>
     </a>
+    <hr class="h-px mx-3 bg-gray-200 border-0 dark:bg-gray-700 mt-2">
+    <form action="{{ route('logout') }}" method="POST" class="btn-sidebar ml-2">
+        @csrf
+        <button type="submit" class="flex">
+            <img src="https://i.ibb.co/dgR2KdP/logout.png" alt="Image Description" width="22px" class="mr-2">
+            <span>Logout</span>
+        </button>
+    </form>
 
-</div>
-
+</div> 
