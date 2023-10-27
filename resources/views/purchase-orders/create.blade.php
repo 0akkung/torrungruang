@@ -11,13 +11,21 @@
             <label for="due_date" class="block font-bold mb-2">Due Date</label>
             <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
 
-            <!-- Customer ทำ search ด้วยไม่เป็น-->
+            {{-- Customer ทำ search ด้วยไม่เป็น --}}
             <label for="customer_id" class="block font-bold mb-2">Customer</label>
             <select id="customer_id" name="customer_id" class="border rounded-lg px-20">
                 @foreach($customers as $customer)
                     <option class="" value="{{ $customer->id }}">{{ $customer->company_name }}</option>
                 @endforeach
             </select>
+
+            {{-- address --}}
+            <select id="customer_id" name="customer_id" class="border rounded-lg px-20">
+                @foreach($customer->addresses as $address)
+                    <option class="" value="{{ $address->id }}">{{ $address->address_detail }}</option>
+                @endforeach
+            </select>
+          
 
             <label for="customer_po_id" class="block font-bold mb-2">Customer PO ID</label>
             <input type="text" id="customer_po_id" name="customer_po_id" class="border rounded-lg p-2 mb-2">

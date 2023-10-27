@@ -52,7 +52,7 @@ class PurchaseOrderController extends Controller
         $purchaseOrder->payment_status = 0;
 
         $customer->purchase_order()->save($purchaseOrder);
-
+        
         $poItemsData = $request->input('po_items');  // listข้อมูลจากลูปนรก
         foreach ($poItemsData as $poItemData) {
             $specId = $poItemData['spec_id']; 
