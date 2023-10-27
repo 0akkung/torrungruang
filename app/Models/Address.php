@@ -13,4 +13,7 @@ class Address extends Model
     public function customer(): BelongsTo{
         return $this->belongsTo(Customer::class);
     }
+    public function purchase_orders():BelongsTo{
+        return $this->belongsTo(PurchaseOrder::class);
+    }
 }
