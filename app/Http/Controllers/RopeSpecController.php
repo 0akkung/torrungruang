@@ -44,7 +44,7 @@ class RopeSpecController extends Controller
         $spec->spec_detail = $request->get('spec_detail');
         $spec->save();
 
-        return redirect()->route('specs.index');
+        return redirect()->route('specs.index')->with('success', 'Rope Spec Created successfully!');;
     }
 
     /**
