@@ -12,7 +12,7 @@
     </div>
     <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full ">
         <div class="col-span-10 flex">
-            <input class="border-2 border-cyan-700 bg-white h-10 w-full rounded-l-lg text-sm focus:outline-none" type="search" name="search" placeholder="มีเวลาค่อยทำ">
+            <input class="border-2 border-cyan-700 bg-white h-12 w-full rounded-l-lg text-sm focus:outline-none" type="search" name="search" placeholder="มีเวลาค่อยทำ">
             <button href="#" type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">search</button>
         </div>
         <div class="col-span-2">
@@ -30,7 +30,7 @@
 
 
     <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words bg-white rounded-lg">
-        <thead class="bg-table">
+        <thead class="bg-black">
             <tr class="text-white font-semibold text-sm uppercase text-center">
                 <th class="px-6 py-4">รหัสPO</th>
                 <th class="px-6 py-4">รหัสลูกค้า </th>

@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ asset('storage/torrungruang-icon.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@12.0.1/dist/sweetalert2.min.css">
     <title>Torrungruang</title>
+    @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
