@@ -9,13 +9,12 @@
             <button class="btn join-item btn-warning">รอจ่ายเงิน</button>
             <button class="btn join-item btn-success">เสร็จสิ้น</button>
         </div>
-            <!-- มีเวลาค่อยทำ seacrbar-->
+        <!-- มีเวลาค่อยทำ seacrbar-->
         <span class="mr-8 flex items-center">
             <div class="pt-2 relative mx-auto text-gray-600">
-                <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 ml-8 rounded-lg text-sm focus:outline-none"
-                   type="search" name="search" placeholder="มีเวลาค่อยทำ">
+                <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 ml-8 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="มีเวลาค่อยทำ">
             </div>
-        <a href="#" type="submit" class="ml-4 mr-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
+            <a href="#" type="submit" class="ml-4 mr-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
         </span>
         <span class="flex space-x-2 items-center">
             <a href="{{ route('po.create') }}" class="btn btn-success font-semi-bold">เพิ่มใบสั่งซื้อ</a>
@@ -46,16 +45,16 @@
                 <td class="px-5 py-4">{{$purchaseOrder->total_order_price}}</td>
                 <td class="px-5 py-4">
                     @if ($purchaseOrder->produce_status == 0)
-                        <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
+                    <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
                     @else
-                        <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
+                    <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-center">
                     @if ($purchaseOrder->payment_status == 0)
-                        <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
+                    <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
                     @else
-                        <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
+                    <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-center">{{$purchaseOrder->purchase_date}}</td>
