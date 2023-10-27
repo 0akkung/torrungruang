@@ -16,4 +16,7 @@ class SoItem extends Model
     {
         return $this->belongsTo(SaleOrder::class);
     }
+    public function ropeSpec(): BelongsTo{
+        return $this->belongsTo(RopeSpec::class);
+    }
 }
