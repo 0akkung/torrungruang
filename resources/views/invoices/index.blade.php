@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <h1 class="text-2xl text-center font-bold">Invoice (โชว์หน้าละ 5 ถ้าทำทัน)</h1>
+    <h1 class="text-2xl text-center font-bold">Invoice</h1>
     <div class="flex items-center justify-between mb-6 mt-6">
         <div class="join">
             <button class="btn join-item btn-error ">ยังไม่เสร็จสิ้น</button>
