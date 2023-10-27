@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('po', PurchaseOrderController::class);
-    
+
     Route::resource('customers', CustomerController::class);
     Route::get('/customers/{customer}/create-address', [CustomerController::class, 'createAddress'])
     ->name('customers.createAddress');
@@ -43,7 +43,10 @@ Route::middleware('auth')->group(function () {
     ->name('customers.editAddress');
     Route::put('/customers/{customer}/addresses/{address}', [CustomerController::class, 'updateAddress'])
     ->name('customers.updateAddress');
+
     Route::resource('specs', RopeSpecController::class);
+    Route::get('/specs-search', [RopeSpecController::class, 'search'])->name('specs.search');
+
     Route::resource('so', SaleOrderController::class);
     Route::resource('deliveries', DeliveryController::class);
     Route::resource('invoices', InvoiceController::class);

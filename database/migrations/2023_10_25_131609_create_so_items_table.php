@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('sale_quantity')->comment('จำนวนที่เปิดใบสั่งขาย ห้ามมากกว่า order_quantity ใน po_item');
             $table->double('so_item_price')->nullable()->comment('sale_quantity * unit_price ของแต่ละ spec ใน PO');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

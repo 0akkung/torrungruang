@@ -21,7 +21,7 @@ class SaleOrder extends Model
     {
     return $this->belongsTo(PurchaseOrder::class);
     }
-    public function saleOrderItems(): HasMany{
+    public function soItems(): HasMany{
         return $this->hasMany(SoItem::class);
     }
     

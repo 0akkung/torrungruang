@@ -38,12 +38,12 @@
         <span>Receipt</span>
     </a>
     <hr class="h-px mx-3 bg-gray-200 border-0 dark:bg-gray-700 mt-2">
-    <form action="{{ route('logout') }}" method="POST" class="btn-sidebar ml-2">
+    <form action="{{ route('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="flex">
+        <button type="submit" class="flex btn-sidebar w-full">
             <img src="https://i.ibb.co/dgR2KdP/logout.png" alt="Image Description" width="22px" class="mr-2">
             <span>Logout</span>
         </button>
     </form>
 
-</div> 
+</div>

@@ -15,4 +15,8 @@ class RopeSpec extends Model
     public function soItems(): HasMany{
         return $this->hasMany(SoItem::class);
     }
+
+    public function scopeSpecName($query, $name) {
+        return $query->where('spec_name', 'like', "%$name%");
+    }
 }

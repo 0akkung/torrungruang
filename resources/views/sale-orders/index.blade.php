@@ -35,15 +35,17 @@
             </tr>
         </thead>
       <tbody class="divide-y divide-gray-200">
+        @foreach($saleOrders as $saleOrder)
         <tr class="text-center">
-            <td class="">S00001</td>
-            <td class="">P00075</td>
-            <td class="px-5 py-4">C00005</td>
-            <td class="px-5 py-4">หจก.สมโชค จำกัด</td>
-            <td class="px-5 py-4">5,000,000</td>
-            <td class="px-5 py-4 text-center">17/06/2569 </td>
+            <td class="">{{$saleOrder->id}}</td>
+            <td class="">{{$saleOrder->purchaseOrder->id}}</td>
+            <td class="px-5 py-4">{{$saleOrder->purchaseOrder->customer->id}}</td>
+            <td class="px-5 py-4">{{$saleOrder->purchaseOrder->customer->company_name}}</td>
+            <td class="px-5 py-4">{{$saleOrder->total_order_price}}</td>
+            <td class="px-5 py-4 text-center">{{$saleOrder->sale_date}} </td>
             <td class="px-2 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
         </tr>
+        @endforeach
       </tbody>
   </table>
 </div>

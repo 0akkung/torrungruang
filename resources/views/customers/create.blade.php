@@ -5,22 +5,12 @@
     <div>
         <form action="{{ route('customers.store') }}" method="POST">
             @csrf
-            <div class="mb-5">
-                <label for="name" class="block mb-2 font-bold text-gray-600"></label>
-                <label for="name" class="block mb-2 font-bold text-gray-600">Company Name</label>  
-                <input type="text" id="company_name" name="company_name" autocomplete="off" 
-                    placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
-                <label for="name" class="block mb-2 font-bold text-gray-600">Purchaser Name</label>                                 
-                <input type="text" id="purchaser_name" name="purchaser_name" autocomplete="off" 
-                    placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
-                <label for="name" class="block mb-2 font-bold text-gray-600">Phone Number</label>
-                <input type="text" id="phone_number" name="phone_number" autocomplete="off" 
-                    placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
+            <x-custom-text-input name="company_name" label="Company Name" type="text" placeholder="Company Name Inc." />
+            <x-custom-text-input name="purchaser_name" label="Purchaser Name" type="text" placeholder="Name - Surname" />
+            <div class="w-1/6">
+                <x-custom-text-input name="phone_number" label="Phone No." type="text" placeholder="0912345678" />
             </div>
-            <div class="flex">
-                <button type="submit" class="block  btn btn-success text-white font-bold p-4 rounded-lg">Submit</button>
-                <a href="{{ route('customers.index') }}" class="block btn btn-error text-white font-bold p-4 rounded-lg">Cancel</a>
-            </div>
+            <x-submit-button label="Submit" />
         </form>
     </div>
 </div>
