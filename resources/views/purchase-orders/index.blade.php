@@ -45,16 +45,16 @@
                 <td class="px-5 py-4">{{$purchaseOrder->total_order_price}}</td>
                 <td class="px-5 py-4">
                     @if ($purchaseOrder->produce_status == 0)
-                    <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
+                        <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
                     @else
-                    <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
+                        <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-center">
                     @if ($purchaseOrder->payment_status == 0)
-                    <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
+                        <span class="text-white text-sm w-1/3 pb-2 bg-red-600 font-semibold px-2 py-2 rounded-full">UNFinish</span>
                     @else
-                    <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
+                        <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full"> Finish</span>
                     @endif
                 </td>
                 <td class="px-5 py-4 text-center">{{$purchaseOrder->purchase_date}}</td>

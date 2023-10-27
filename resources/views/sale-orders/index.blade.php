@@ -15,9 +15,10 @@
             </div>
             <a href="#" type="submit" class="ml-4 mr-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
         </span>
-    
+
     <span class="flex space-x-2 items-center">
-        <a href="/so/add"class="btn btn-success font-semi-bold">เพิ่มใบสั่งขาย</a>
+        <a href="{{ route('so.create') }}"
+           class="btn btn-success font-semi-bold">เพิ่มใบสั่งขาย</a>
         <!-- <div class="btn btn-error font-semi-bold">ลบใบสั่งซื้อ</div>  -->
     </span>
     </div>

@@ -1,13 +1,12 @@
-<nav class="bg-gray-900 border-gray-200 fixed w-4/5">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<nav class="bg-white border-gray-200 fixed w-full">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between p-6">
 
         <!-- Heading -->
-        <div class="self-center text-xl font-semibold whitespace-nowrap text-white">
-            Factory Office System
-            @if (isset($title))
-                <span class="text-gray-400">  >  {{ $title }}</span>
-            @endif
+        <div class="flex">
+            <img src="companyLogo.png" alt="" class="h-10 w-70">
+            <p>Torrungraung</p>
         </div>
+        
 
         <!-- Logout Button -->
         <div class="flex md:order-2">

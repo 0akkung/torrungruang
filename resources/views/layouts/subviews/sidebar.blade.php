@@ -1,9 +1,13 @@
 <div class="col-span-2 bg-gray-800">
 
-    <h1 class="text-3xl py-8 font-bold text-center text-white">
-        <a href="/">Torrungruang</a>
+    <h1 class="text-3xl py-12 font-bold text-center text-white">
+        <!-- <a href="/">Torrungruang</a> -->
     </h1>
 
+    <a href="/" class="flex btn-sidebar">
+        <img src="https://i.ibb.co/vLstS06/home.png" alt="Home" width="22px">
+        <span>Home</span>
+    </a>
     <a href="{{ route('specs.index') }}" class="flex btn-sidebar">
         <img src="https://i.ibb.co/3y5Bvsv/rope-4.png" alt="Image Description" width="22px">
         <span>Spec</span>

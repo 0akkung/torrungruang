@@ -12,20 +12,24 @@
             <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
 
             {{-- Customer ทำ search ด้วยไม่เป็น --}}
-            <label for="customer_id" class="block font-bold mb-2">Customer</label>
-            <select id="customer_id" name="customer_id" class="border rounded-lg px-20">
-                @foreach($customers as $customer)
-                    <option class="" value="{{ $customer->id }}">{{ $customer->company_name }}</option>
-                @endforeach
-            </select>
+            
 
-            {{-- address --}}
-            <select id="customer_id" name="customer_id" class="border rounded-lg px-20">
-                @foreach($customer->addresses as $address)
-                    <option class="" value="{{ $address->id }}">{{ $address->address_detail }}</option>
+            <label for="customer_id" class="block font-bold mb-2">Customer</label>
+            <select id="customer_id" name="customer_id" class="border rounded-lg px-20" data-addresses="{{ json_encode($customers->pluck('addresses', 'id')) }}">
+                @foreach($customers as $customer)
+                    <option value="{{ $customer->id }}">{{ $customer->company_name }}</option>
                 @endforeach
             </select>
-          
+            
+            <label for="address_id" class="block font-bold mb-2">Customer Address</label>
+            <select id="address_id" name="address_id" class="border rounded-lg px-20">
+                @foreach($selectedCustomer->addresses as $address)
+                    <option value="{{ $address->id }}">{{ $address->address_detail }}</option>
+                @endforeach
+            </select>
+            
+
+
 
             <label for="customer_po_id" class="block font-bold mb-2">Customer PO ID</label>
             <input type="text" id="customer_po_id" name="customer_po_id" class="border rounded-lg p-2 mb-2">
@@ -40,6 +44,23 @@
 </div>
 
 <script>
+    const customerSelect = document.getElementById('customer_id');
+    const addressSelect = document.getElementById('address_id');
+    const addressesData = JSON.parse(customerSelect.getAttribute('data-addresses'));
+    
+    customerSelect.addEventListener('change', function() {
+        const customerId = this.value;
+        const addresses = addressesData[customerId];
+    
+        addressSelect.innerHTML = '';
+        addresses.forEach(address => {
+            const option = document.createElement('option');
+            option.value = address.id;
+            option.textContent = address.address_detail;
+            addressSelect.appendChild(option);
+        });
+    });
+
     let poItemCount = 0;
 
     function addPoItemField() {
