@@ -72,8 +72,8 @@ class PurchaseOrderController extends Controller
             $poItem->po_item_price = $poItem->unit_price * $poItem->order_quantity;  //unit * จำนวนที่สั่ง
             
             $purchaseOrder->original_order_price += $poItem->po_item_price;    // + ราคารวมสเปคที่สั่งทั้งหมด
-            $purchaseOrder->poItem()->save($poItem);
-            $spec->poItem()->save($poItem); // save สเปค
+            $purchaseOrder->poItems()->save($poItem);
+            $spec->poItems()->save($poItem); // save สเปค
         }
         $purchaseOrder->total_order_price = $purchaseOrder->original_order_price * (1.07);   // ราคาหลังรวมVAT 7%
         $customer->purchase_order()->save($purchaseOrder); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา

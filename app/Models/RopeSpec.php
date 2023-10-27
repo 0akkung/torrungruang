@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class RopeSpec extends Model
 {
     use HasFactory;
-    public function poItem(): HasMany{
+    public function poItems(): HasMany{
         return $this->hasMany(PoItem::class);
+    }
+    public function soItems(): HasMany{
+        return $this->hasMany(SoItem::class);
     }
 }

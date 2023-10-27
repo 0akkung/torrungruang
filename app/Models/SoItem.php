@@ -11,8 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SoItem extends Model
 {
     use HasFactory, SoftDeletes;
+
     public function saleOrder(): BelongsTo
-{
-    return $this->belongsTo(SaleOrder::class);
-}
+    {
+        return $this->belongsTo(SaleOrder::class);
+    }
+    public function ropeSpec(): BelongsTo{
+        return $this->belongsTo(RopeSpec::class);
+    }
 }

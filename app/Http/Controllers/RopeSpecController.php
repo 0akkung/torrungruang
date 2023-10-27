@@ -34,16 +34,17 @@ class RopeSpecController extends Controller
      */
     public function store(Request $request)
     {
-        // $request()->validate([
-        //     'spec_name' => 'required',
-        //     'spec_detail' => 'required',
-        // ]);
-        
+         $request->validate([
+             'spec_name' => ['required', 'min:2', 'max:255'],
+             'spec_detail' => ['required', 'min:4', 'max:255'],
+         ]);
+
         $spec = new RopeSpec();
         $spec->spec_name = $request->get('spec_name');
         $spec->spec_detail = $request->get('spec_detail');
         $spec->save();
-            return redirect()->route('specs.index');
+
+        return redirect()->route('specs.index')->with('success', 'Rope Spec Created successfully!');;
     }
 
     /**
@@ -74,16 +75,19 @@ class RopeSpecController extends Controller
     public function update(Request $request, RopeSpec $spec)
     {
         $spec->spec_name = $request->get('spec_name');
-        $spec->spec_detail = $request->get('spec_name');
+        $spec->spec_detail = $request->get('spec_detail');
         $spec->save();
-        return redirect()->route('specs.show',['spec' => $spec]);
+
+        return redirect()->route('specs.show', ['spec' => $spec]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RopeSpec $ropeSpec)
+    public function destroy(RopeSpec $spec)
     {
-        //
+        $spec->delete();
+
+        return redirect(route('specs.index'));
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Delivery extends Model
 {
     use HasFactory;
+
     public function saleOrder(): BelongsTo
     {
     return $this->belongsTo(Customer::class);
