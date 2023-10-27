@@ -27,12 +27,15 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
+        $selectedCustomerId = 1;
+        $selectedCustomer = Customer::find($selectedCustomerId);
         $specs = RopeSpec::get();
         $customers = Customer::get();
         return view('purchase-orders.create', [
             'title' => 'Create Purchase Orders',
             'specs' => $specs,
-            'customers' => $customers
+            'customers' => $customers,
+            'selectedCustomer' => $selectedCustomer
         ]);
     }
 
@@ -44,6 +47,7 @@ class PurchaseOrderController extends Controller
         $customer = Customer::find($request->get('customer_id'));   //find customer from create-form naka
         $purchaseOrder = new PurchaseOrder();
         $purchaseOrder->purchase_date = now();
+        $purchaseOrder->purchase_address = $request->get('address_id');
         $purchaseOrder->due_date = $request->get('due_date');
         $purchaseOrder->customer_po_id = $request->get('customer_po_id');
         // $purchaseOrder->original_order_price = $request->get('original_order_price');
