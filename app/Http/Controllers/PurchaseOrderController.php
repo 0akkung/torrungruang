@@ -112,4 +112,12 @@ class PurchaseOrderController extends Controller
     {
         //
     }
+
+    public function searchPurchaseOrders(Request $request)
+    {
+        $term = $request->input('term');
+        $purchaseOrders = PurchaseOrder::where('field_to_search', 'like', '%'.$term.'%')->get();
+        return response()->json($purchaseOrders);
+    }
+
 }

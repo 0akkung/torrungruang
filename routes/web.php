@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('po', PurchaseOrderController::class);
+    Route::get('/search-purchase-orders', 'PurchaseOrderController@searchPurchaseOrders');
+
 
     Route::resource('customers', CustomerController::class);
     Route::get('/customers/{customer}/create-address', [CustomerController::class, 'createAddress'])

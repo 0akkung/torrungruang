@@ -15,7 +15,16 @@
             {{-- {{dd($poItems)}} --}}
         
             <div id="poItemsTable">
-                <table id = "poItemsTable">
+                <table id = "poItemsTable" class="">
+                    <thead class="text-xs uppercase bg-table text-white">
+                        <tr>
+                            <th class="px-6 py-3 text-center">SPEC ID</th>
+                            <th class="px-6 py-3 text-center"> SPEC NAME</th>
+                            <th class="px-6 py-3 text-center"> ORDER QUANTITY</th>
+                            <th class="px-6 py-3 text-center"> จำนวนที่ต้องการเบิก (คิดไม่อกก)</th>
+                            <th class="px-6 py-3 text-center"></th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
         </div>
@@ -28,45 +37,50 @@
 <script>
     
     document.getElementById('purchaseOrder_id').addEventListener('change', function() {
-        var purchaseOrderId = this.value;
-        var poItems = @json($poItems->toArray());
-        var filteredPoItems = poItems.filter(function(poItem) {
-            return poItem.purchase_order_id == purchaseOrderId;
-        });
-        displayPoItems(filteredPoItems);
+    var purchaseOrderId = this.value;
+    var poItems = @json($poItems->toArray());
+    var filteredPoItems = poItems.filter(function(poItem) {
+        return poItem.purchase_order_id == purchaseOrderId;
     });
-    function displayPoItems(poItems) {
-        // console.log(poItems); // แสดงข้อมูลใน Developer Console  ผ่าน
+    displayPoItems(filteredPoItems);
+});
 
-        var tableBody = document.createElement('tbody');
+function displayPoItems(poItems) {
+    var tableHTML = `
+        <table id="poItemsTable" class="">
+            <thead class="text-xs uppercase bg-table text-white">
+                <tr>
+                    <th class="px-6 py-3 text-center">SPEC ID</th>
+                    <th class="px-6 py-3 text-center">SPEC NAME</th>
+                    <th class="px-6 py-3 text-center">ORDER QUANTITY</th>
+                    <th class="px-6 py-3 text-center">จำนวนที่ต้องการเบิก (คิดไม่อกก)</th>
+                    <th class="px-6 py-3 text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
 
-        poItems.forEach(function(poItem) {
-            console.log(poItem);
+    poItems.forEach(function(poItem) {
+        if (poItem.rope_spec_id && poItem.rope_spec_id) {
+            tableHTML += `
+                <tr class="text-center">
+                    <td class="px-6 py-4">${poItem.rope_spec_id}</td>
+                    <td class="px-6 py-4">${poItem.rope_spec.spec_name}</td>
+                    <td class="px-6 py-4">${poItem.remaining_quantity}</td>
+                    <td class="px-6 py-4 text-center">
+                        <input type="number" id="sale_quantity_${poItem.id}" name="sale_quantity_${poItem.id}" class="border rounded-lg p-2 mb-2">
+                    </td>
+                    <td class="px-6 py-4 text-center"></td>
+                </tr>
+            `;
+        }
+    });
 
-            var row = document.createElement('tr');
-            row.classList.add('text-center');
+    tableHTML += `</tbody></table>`;
 
-            if (poItem.rope_spec_id && poItem.rope_spec_id) {
+    document.getElementById('poItemsTable').innerHTML = tableHTML;
+}
 
-                row.innerHTML = `
-                
-                <td class="px-5 py-4">${poItem.rope_spec_id}</td>
-                <td class="px-5 py-4">${poItem.rope_spec.spec_name}</td>
-                <td class="px-5 py-4">${poItem.remaining_quantity}</td>
-                <td class="px-2 py-4 text-center">
-                    <label for="sale_quantity_${poItem.id}" class="block font-bold mb-2"></label>
-                    <input type="number" id="sale_quantity_${poItem.id}" name="sale_quantity_${poItem.id}" class="border rounded-lg p-2 mb-2">
-                </td>
-                `;
-            } 
-
-            tableBody.appendChild(row);
-        });
-
-        var poItemsTable = document.getElementById('poItemsTable');
-        poItemsTable.innerHTML = '';
-        poItemsTable.appendChild(tableBody);
-    }
 
 </script>
 
