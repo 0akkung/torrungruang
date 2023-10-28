@@ -1,55 +1,61 @@
 @extends('layouts.main')
 
 @section('content')
-<div>
-<div class="flex mb-5">
-        <h1 class="px-1 bg-tag py-1 mr-1"></h1>
-        <h1 class="px-1 bg-tag py-1"></h1>
-        <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Delivery</h1>
-    </div>
-  <div class="flex items-center justify-between mb-6 mt-6">
-    <div class="join">
-        <button class="btn join-item btn-error ">ยังไม่เสร็จสิ้น</button>
-        <button class="btn join-item btn-success">เสร็จสิ้น</button>
-    </div>
-    <span class="mr-64 flex items-center">
-        <div class="pt-2 relative mx-auto text-gray-600">
-            <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 ml-8 rounded-lg text-sm focus:outline-none"
-               type="search" name="search" placeholder="มีเวลาค่อยทำ">
-        </div>
-        <a href="#" type="submit" class="ml-4 mr-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
-    </span>
 
-    <span class="flex space-x-2 items-center">
-      <a href="/delivery/add" class="btn btn-success font-semi-bold">เพิ่มใบส่งของ</a>
-      <!-- <div class="btn btn-error font-semi-bold">ลบใบสั่งซื้อ</div>  -->
-    </span>
+<div>
+  <div class="flex justify-between">
+    <div class="flex">
+      <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+      <h1 class="px-1 bg-tag py-1"></h1>
+      <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Delivery</h1>
+    </div>
+    <a href="/delivery/add" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Delivery</a>
+  </div>
+  <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
+    <div class="col-span-10">
+      <form method="GET" action="{{ route('specs.search') }}" class="flex">
+        <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Delivery ID (ยังไม่ทำrouteSearch)">
+        <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
+      </form>
+    </div>
+    <div class="col-span-2">
+      <select id="status" name="status" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <option selected>Choose Delivery status</option>
+        <option value="notYetComplete">Not yet completed</option>
+        <option value="Complete">Complete</option>
+      </select>
+    </div>
+
   </div>
 
-  <table class="table-fixed divide-y divide-gray-300 overflow-y-auto mx-auto min-w-full min-h-full md:w-5/6 lg:w-2/3break-words bg-white rounded-lg">
-    <thead class="bg-gray-900">
-      <tr class="text-white font-semibold text-sm uppercase text-center">
-        <th class="px-6 py-4"> รหัสDelivey</th>
-        <th class="px-6 py-4"> รหัสPO </th>
-        <th class="px-6 py-4"> รหัสSO </th>
-        <th class="px-6 py-4"> รหัสลูกค้า </th>
-        <th class="px-6 py-4"> ชื่อบริษัท</th>
-        <th class="px-6 py-4">ราคา(use + VAT)</th>
-        <th class="px-6 py-4">วันที่ส่ง</th>
-        <th class="px-6 py-4"></th>
-      </tr>
-    </thead>
-      <tbody class="divide-y divide-gray-200">
-        <tr class="text-center">
-            <td class="">D00024</td>
-            <td class="">P00075</td>
-            <td class="">S00001</td>
-            <td class="px-5 py-4">C00005</td>
-            <td class="px-5 py-4">หจก.สมโชค จำกัด</td>
-            <td class="px-5 py-4">5,000,000</td>
-            <td class="px-5 py-4 text-center">17/06/2569 </td>
-            <td class="px-2 py-4 text-center"> <a href="#" class="text-purple-800 hover:underline font-bold">Detail</a> </td>
+  <div class="overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-400">
+      <thead class="text-xs uppercase bg-table text-white">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-center">Delivery ID</th>
+          <th scope="col" class="px-6 py-3 text-center">PO ID </th>
+          <th scope="col" class="px-6 py-3 text-center">SO ID </th>
+          <th scope="col" class="px-6 py-3 text-center">Customer ID</th>
+          <th scope="col" class="px-6 py-3 text-center">Company Name</th>
+          <th scope="col" class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
+          <th scope="col" class="px-6 py-3 text-center">Delivery Date</th>
+          <th scope="col" class="px-6 py-3 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-white border-b">
+          <td class="px-6 py-4 font-medium text-gray-900">DeliveryID</td>
+          <td class="px-6 py-4 font-medium text-gray-900">PO-ID</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">SO-ID</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">CustomerID</td>
+          <td class="px-6 py-4 font-medium text-gray-900">CompanyName</td>
+          <td class="px-6 py-4 font-medium text-gray-900">Price</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Date</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Action</td> 
         </tr>
       </tbody>
-  </table>
+    </table>
+  </div>
+</div>
+
 @endsection
