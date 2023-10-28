@@ -53,7 +53,7 @@ class RopeSpecController extends Controller
     public function show(RopeSpec $spec)
     {
         return view('specs.show', [
-            'title' => "Rope Specs > Detail",
+            'title' => "Rope Specs > " . $spec->spec_name,
             'spec' => $spec
         ]);
     }
