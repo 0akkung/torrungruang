@@ -100,17 +100,12 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $po)
     {
-<<<<<<< HEAD
-
         return view('purchase-orders.show', [
             'title' => "PurchaseOrders > Detail",
             'purchaseOrder' => $po,
             'customer' => $po->customer,
             'poItems' => $po->poItems
         ]);
-=======
-
->>>>>>> 23c8fa4 (Fix PO creating)
     }
 
     /**
