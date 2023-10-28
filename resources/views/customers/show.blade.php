@@ -3,17 +3,15 @@
 <div>
   <div class="flex justify-between mb-5">
     <div class="flex">
-      <h1 class="px-1 bg-tag py-1 mr-1 rounded-l-md"></h1>
-      <h1 class="px-1 bg-tag py-1"></h1>
-      <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold">Customer Information</h1>
       <h1 class="px-1 bg-tag py-1 mr-1"></h1>
-      <h1 class="px-1 bg-tag py-1 rounded-r-md"></h1>
+      <h1 class="px-1 bg-tag py-1"></h1>
+      <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Customer Information</h1>
     </div>
     <a href="{{ route('customers.createAddress', ['customer' => $customer]) }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Address</a>
   </div>
   <div class="grid grid-rows-2 grid-flow-col gap-4 mt-5 mb-5 text-md font-medium ">
     <div class="row-span-2 bg-white flex flex-col rounded-md p-1">
-      <div class="p-2 flex space-x-2 mb-1 mb-2">
+      <div class="p-2 flex space-x-2 mt-2 mb-2">
         <img src="https://i.ibb.co/FVKCcYC/id.png" alt="Image Description" width="18px" height="18px">
         <span class="">Customer ID :</span> &nbsp;&nbsp;
         <span>{{$customer->id}}</span>

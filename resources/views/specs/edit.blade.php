@@ -1,7 +1,11 @@
 @extends('layouts.main')
 @section('content')
 <div>
-    <h1 class="text-2xl text-center font-bold mb-10">Edit Rope Spec</h1>
+    <div class="flex mb-5">
+        <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+        <h1 class="px-1 bg-tag py-1"></h1>
+        <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Edit Rope Spec</h1>
+    </div>
     <div>
         <form action="{{ route('specs.update', ['spec' => $spec]) }}" method="POST">
             @csrf

@@ -39,15 +39,16 @@
             </thead>
             <tbody>
             @foreach ($specs as $spec)
-                <tr onclick="location.href='{{ route('specs.show', ['spec' => $spec]) }}'"  class="bg-white border-b hover:bg-gray-50">
+                <tr onclick="location.href='{{ route('specs.show', ['spec' => $spec]) }}'"
+                    class="bg-white border-b hover:bg-gray-50 cursor-pointer">
                     <td class="px-6 py-4 font-medium text-gray-900">
                         {{ $spec->id }}
                     </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ $spec->spec_name }}
                     </th>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        {{ $spec->spec_detail }}
+                    <td class="px-6 py-4 whitespace-nowrap" title="{{ $spec->spec_detail }}">
+                        {{ Str::limit($spec->spec_detail, 50) }}
                     </td>
                     <td class="pl-6 py-4">
                         <a href="{{ route('specs.edit', $spec) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
