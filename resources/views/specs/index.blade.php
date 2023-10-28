@@ -39,7 +39,7 @@
             </thead>
             <tbody>
             @foreach ($specs as $spec)
-                <tr class="bg-white border-b">
+                <tr onclick="location.href='{{ route('specs.show', ['spec' => $spec]) }}'"  class="bg-white border-b hover:bg-gray-50">
                     <td class="px-6 py-4 font-medium text-gray-900">
                         {{ $spec->id }}
                     </td>
