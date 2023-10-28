@@ -82,9 +82,11 @@
                 @endforeach
             </select>
             <label for="po_items[${poItemCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
-            <input type="number" id="po_items[${poItemCount}][order_quantity]" name="po_items[${poItemCount}][order_quantity]" class="border rounded-lg p-2 mb-2">
+            <input type="number" id="po_items[${poItemCount}][order_quantity]" name="po_items[${poItemCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
+            value="0" min="0" step="0.01">
             <label for="po_items[${poItemCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
-            <input type="number" id="po_items[${poItemCount}][unit_price]" name="po_items[${poItemCount}][unit_price]" class="border rounded-lg p-2 mb-2">
+            <input type="number" id="po_items[${poItemCount}][unit_price]" name="po_items[${poItemCount}][unit_price]" class="border rounded-lg p-2 mb-2"
+            value="0" min="0" step="0.01">
             <label for="po_items[${poItemCount}][unit]" class="block font-bold mb-2">Unit</label>
             <select id="po_items[${poItemCount}][unit]" name="po_items[${poItemCount}][unit]" class="border rounded-lg p-2 mb-2">
                 <option value="kilogram">Kilogram</option>

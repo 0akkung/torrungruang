@@ -13,12 +13,26 @@
             <label for="purchaseOrder_id" class="block font-bold mb-4">Select Purchase Order</label>
             <select id="purchaseOrder_id" name="purchaseOrder_id" class="border rounded-lg px-20 mb-4">
                 @foreach($purchaseOrders as $purchaseOrder)
-                <option value="{{ $purchaseOrder->id }}">{{ $purchaseOrder->id }}
-                     {{ $purchaseOrder->customer->company_name }}</option>
-                
+                    @if( $purchaseOrder->produce_status !== 1 && $purchaseOrder->payment_status !== 1)
+                        {{-- เช็ค poItem remain_quantity --}}
+                        @php
+                            $isValidPurchaseOrder = false;
+                            foreach ($purchaseOrder->poItems as $poItem) {
+                                if ($poItem->remaining_quantity !== 0) {
+                                    $isValidPurchaseOrder = true;
+                                    break;
+                                }
+                            }
+                        @endphp                        
+                        @if($isValidPurchaseOrder)
+                        <option value="{{ $purchaseOrder->id }}" data-customer="{{ $purchaseOrder->customer }}">{{ $purchaseOrder->id }}</option>
+                        @endif
+                        
+                    @endif
                 @endforeach
             </select>
-            {{-- {{dd($poItems)}} --}}
+            <div id="poShow"></div>
+            
         
             <div id="poItemsTable">
                 <table id = "poItemsTable" class="">
@@ -41,25 +55,38 @@
 </div>
 
 <script>
-        window.onload = function() {
-        var purchaseOrderId = document.getElementById('purchaseOrder_id').value;
-        var poItems = @json($poItems->toArray());
-        var filteredPoItems = poItems.filter(function(poItem) {
-            return poItem.purchase_order_id == purchaseOrderId;
+    window.onload = function() {
+            var purchaseOrderId = document.getElementById('purchaseOrder_id').value;
+            var poItems = @json($poItems->toArray());
+            var filteredPoItems = poItems.filter(function(poItem) {
+                return poItem.purchase_order_id == purchaseOrderId;
         });
         displayPoItems(filteredPoItems);
     };
         document.getElementById('purchaseOrder_id').addEventListener('change', function() {
-        var purchaseOrderId = this.value;
-        var poItems = @json($poItems->toArray());
-        var filteredPoItems = poItems.filter(function(poItem) {
-            return poItem.purchase_order_id == purchaseOrderId;
+
+            var purchaseOrderId = this.value;
+            
+            var poItems = @json($poItems->toArray());
+            var filteredPoItems = poItems.filter(function(poItem) {
+                return poItem.purchase_order_id == purchaseOrderId;
         });
         displayPoItems(filteredPoItems);
     });
+    
+    //อันนี้โชว์po ที่เลือก
+    var selectElement = document.getElementById("purchaseOrder_id");
+    var selectedValueElement = document.getElementById("poShow");
+    selectElement.addEventListener("change", function() {
+        var selectedValue = selectElement.value;
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var customer = JSON.parse(selectedOption.getAttribute("data-customer"));
+        selectedValueElement.textContent = "PO ID : " + selectedValue + " Customer ID : " + customer.id + 
+        " Company Name : " + customer.company_name;
+    });
 
     function displayPoItems(poItems) {
-        var tableHTML = `
+        var tableHTML = ` 
             <table id="poItemsTable" class="">
                 <thead class="text-xs uppercase bg-table text-white">
                     <tr>

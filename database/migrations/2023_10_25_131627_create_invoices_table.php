@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(PurchaseOrder::class);
             $table->date('bill_date')->comment('date where invoice sent');
             $table->date('payment_date');
+            $table->string('Billing_Officer')->comment('เสมียน');
+            $table->string('Billing_Receiver')->nullable()->comment('คนรับบิล');
             $table->timestamps();
             $table->softDeletes();
         });
