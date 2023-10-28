@@ -10,7 +10,7 @@
         <span>รหัสPO ลูกค้า {{$purchaseOrder->customer_po_id}}</span>
         <h1>ชื่อผู้จัดซื้อ{{$customer->purchaser_name}}</h1> 
         <h1>เบอร์โทรศัพท์{{$customer->phone_number}}</h1>
-        <h1>ที่อยู่ที่ส่งในใบPO<h1> 
+        <h1>ที่อยู่ที่ส่งในใบPO {{$address->address_detail}}<h1> 
         ----------------------------------
         <h1>Total Item {{count($poItems)}}</h1>
 
@@ -66,6 +66,6 @@
             @endif
 
         </div>
-        <div class="btn btn-success">แก้ไขข้อมูล ต้องยังไม่เปิดใบสั่งขายSO เท่านั้น</div>
+        <div class="btn btn-success">แก้ไขข้อมูล ต้องยังไม่เปิดใบสั่งขายSO เท่านั้น ไม่ทันไม่ทำโว้ย</div>
 </div>
 @endsection

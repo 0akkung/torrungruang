@@ -90,7 +90,7 @@ class PurchaseOrderController extends Controller
             $spec->poItems()->save($item); // save สเปค
         }
 
-        $purchase_order->total_order_price *= 1.07;   // ราคาหลังรวมVAT 7%
+        $purchase_order->total_order_price = $purchase_order->original_order_price * 1.07;   // ราคาหลังรวมVAT 7%
         $customer->purchaseOrders()->save($purchase_order); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา
 
         return redirect()->route('po.index',['purchaseOrder' => $purchase_order]);
@@ -101,12 +101,13 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $po)
     {
+        $address = Address::find($po->address_id);
         return view('purchase-orders.show', [
             'title' => "PurchaseOrders > Detail",
             'purchaseOrder' => $po,
             'customer' => $po->customer,
             'poItems' => $po->poItems,
-            'address' => $po->address
+            'address' =>  $address
             
         ]);
     }
