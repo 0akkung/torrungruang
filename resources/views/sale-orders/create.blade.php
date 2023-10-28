@@ -71,6 +71,7 @@
 
         poItems.forEach(function(poItem) {
             if (poItem.rope_spec_id && poItem.rope_spec_id) {
+                HELLO
                 tableHTML += `
                     <tr class="text-center">
                         <td class="px-6 py-4">${poItem.rope_spec_id}</td>
