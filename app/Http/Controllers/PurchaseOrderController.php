@@ -87,6 +87,12 @@ class PurchaseOrderController extends Controller
     public function show(PurchaseOrder $purchaseOrder)
     {
         
+        return view('purchase-orders.show', [
+            'title' => "PurchaseOrders > Detail",
+            'purchaseOrder' => $purchaseOrder,
+            'customer' => $purchaseOrder->customer,
+            'poItems' => $purchaseOrder->poItems
+        ]);
     }
 
     /**

@@ -92,9 +92,16 @@ class SaleOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SaleOrder $saleOrder)
+    public function show(SaleOrder $so)
     {
-        //
+        
+        return view('sale-orders.show', [
+            'title' => "SalesOrders > Detail",
+            'saleOrder' => $so,
+            'purchaseOrder' => $so->purchaseOrder,
+            'soItems' => $so->soItems,
+            'customer' => $so->purchaseOrder->customer,
+        ]);
     }
 
     /**

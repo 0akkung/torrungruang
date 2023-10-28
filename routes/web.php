@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('specs', RopeSpecController::class);
     Route::get('/specs-search', [RopeSpecController::class, 'search'])->name('specs.search');
 
+    
     Route::resource('so', SaleOrderController::class);
     Route::resource('deliveries', DeliveryController::class);
     Route::resource('invoices', InvoiceController::class);

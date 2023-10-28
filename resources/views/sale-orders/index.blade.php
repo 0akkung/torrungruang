@@ -52,11 +52,15 @@
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->purchaseOrder->customer->company_name}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->total_order_price}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->sale_date}} </td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> <a href="#" class="text-cyan-800 hover:underline font-bold">Detail</a> </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
+                        <a href="{{ route('so.show',['so'=> $saleOrder]) }}" 
+                        class="text-cyan-800 hover:underline font-bold">Detail</a> 
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+
 @endsection
