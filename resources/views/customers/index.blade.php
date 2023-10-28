@@ -2,79 +2,82 @@
 
 @section('content')
 <div>
-  <h1 class="text-2xl text-center font-bold">Customer</h1>
-  <div class="flex items-center justify-between mb-6 mt-6">
-    <div class="flex items-center">
+        <div class="flex">
+            <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+            <h1 class="px-1 bg-tag py-1"></h1>
+            <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Customer</h1>
+        </div>
+        
+    <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
+        <div class="col-span-10">
+            <form method="GET" action="{{ route('specs.search') }}" class="flex">
+                <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Customer ID (ยังไม่ทำrouteSearch)">
+                <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
+            </form>
+        </div>
+        <div class="col-span-2">
+            <button href="{{ route('customers.create') }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 w-full">+ Customer</button>
+        </div>
 
-    </div>
-    <span class="mr-24 flex items-center">
-      <div class="pt-2 relative mx-auto text-gray-600">
-      <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16  rounded-lg text-sm focus:outline-none"
-           type="search" name="search" placeholder="Search">
-      </div>
-      <a href="#" type="submit" class="ml-4 mt-2 text-purple-800 hover:underline text-lg">ค้นหา</a>
-    </span>
-    <span class="flex space-x-2 items-center">
-        <a href="{{ route('customers.create') }}"
-           class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-                Add
-            </a>
-    </span>
-  </div>
+</div>
 
-    <div class="overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Customer ID
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Purchaser Name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Company Name
-                </th>
-                <th scope="col" class="pl-6 py-3">
-                    Phone Number
-                </th>
-                <th scope="col" class="pl-6 py-3">
-                    Actions
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($customers as $customer)
-                <tr class="bg-white border-b">
-                    <th class="px-6 py-4 font-medium text-gray-900">
-                        {{ $customer->id }}
-                    </th>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{ $customer->purchaser_name }}
-                    </th>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        {{ $customer->company_name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        {{ $customer->phone_number }}
-                    </td>
-                    <td class="pl-6 py-4">
-                        <a href="{{ route('customers.edit', $customer) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
-                        <a href="{{ route('customers.destroy', $customer) }}"
-                           onclick="event.preventDefault();
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left text-gray-400">
+                <thead class="text-xs uppercase bg-gray-700 text-white">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Customer ID
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Purchaser Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
+                            Company Name
+                        </th>
+                        <th scope="col" class="pl-6 py-3 text-center">
+                            Phone Number
+                        </th>
+                        <th scope="col" class="pl-6 py-3 text-center">
+                            Address
+                        </th>
+                        <th scope="col" class="pl-6 py-3 text-center">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($customers as $customer)
+                    <tr class="bg-white border-b text-center">
+                        <th class="px-6 py-4 font-medium text-gray-900">
+                            {{ $customer->id }}
+                        </th>
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ $customer->purchaser_name }}
+                        </th>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $customer->company_name }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $customer->phone_number }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a class="p-2 bg-sky-300 shadow-md text-black hover:bg-sky-200 text-md font-bold rounded-lg inline" href="{{ route('customers.show', ['customer' => $customer])}}">Address</a>
+                        </td>
+                        <td class="pl-6 py-4">
+                            <a href="{{ route('customers.edit', $customer) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
+                            <a href="{{ route('customers.destroy', $customer) }}" onclick="event.preventDefault();
                            if (confirm('Are you sure you want to delete this customer?')) {
                                document.getElementById('delete-form-{{ $customer->id }}').submit();
-                           }"
-                           class="pl-6 font-medium text-red-600 hover:underline">Delete</a>
+                           }" class="pl-6 font-medium text-red-600 hover:underline">Delete</a>
 
-                        <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
-@endsection
+                            <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endsection
