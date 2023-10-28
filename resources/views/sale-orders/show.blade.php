@@ -10,12 +10,15 @@
         <h1>รหัสใบสั่งซื้อ PO {{$purchaseOrder->id}}</h1>
         <h1>ชื่อบริษัท {{$customer->company_name}}</h1> 
         <span>รหัสPO ลูกค้า {{$purchaseOrder->customer_po_id}}</span>
-        <h1>ที่อยู่ที่ส่งในใบPO (รอ sir oak)></h1> 
+        <h1>ชื่อผู้จัดซื้อ{{$customer->purchaser_name}}</h1> 
+        <h1>เบอร์โทรศัพท์{{$customer->phone_number}}</h1>
+        <h1>ที่อยู่ที่ส่งในใบPO {{$address->address_detail}}<h1> 
     <div>
         รายละเอียด
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs uppercase bg-table text-white">
                 <tr>
+                    <th scope="col" class="px-6 py-3 text-center">NO.</th>
                     <th scope="col" class="px-6 py-3 text-center">SPEC ID</th>
                     <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                     <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
@@ -27,6 +30,7 @@
             <tbody>
                 @foreach ($soItems as $soItem)
                 <tr class="bg-white border-b">
+                    <td class="px-6 py-3 font-medium text-gray-900">{{$loop->iteration}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->rope_spec_id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->ropeSpec->spec_name}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->sale_quantity}}</td>
@@ -50,7 +54,7 @@
             </tbody>
         </table>
     </div>
-
+    หมายเหตุ {{$purchaseOrder->note}}
     <div>
         <div>ราคาทั้งหมด {{$saleOrder->original_order_price}}</div>
         <div>ราคาหลังรวมVAT 7% {{$saleOrder->total_order_price}}</div>
