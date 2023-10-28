@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-6">Create Purchase Order</h1>
+    <div class="flex mb-5">
+        <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+        <h1 class="px-1 bg-tag py-1"></h1>
+        <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Create Purchase Order</h1>
+    </div>
 
     <form action="{{ route('po.store') }}" method="POST">
         @csrf
