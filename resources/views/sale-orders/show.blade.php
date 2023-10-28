@@ -10,10 +10,7 @@
         <h1>รหัสใบสั่งซื้อ PO {{$purchaseOrder->id}}</h1>
         <h1>ชื่อบริษัท {{$customer->company_name}}</h1> 
         <span>รหัสPO ลูกค้า {{$purchaseOrder->customer_po_id}}</span>
-
-
-        ที่อยู่อาจจะใส่
-
+        <h1>ที่อยู่ที่ส่งในใบPO (รอ sir oak)></h1> 
     <div>
         รายละเอียด
         <table class="w-full text-sm text-left text-gray-400">
@@ -31,15 +28,19 @@
                 <tr class="bg-white border-b">
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->rope_spec_id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->ropeSpec->spec_name}}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$soItem->sale_quantity}}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900">
-                        @foreach ($soItem->saleOrder->purchaseOrder->poItems as $poItem)
-        @if ($poItem->rope_spec_id == $soItem->rope_spec_id)
-            {{ $poItem->unit_price }}
-            @break
-        @endif
-    @endforeach
-                    </td>
+                    @foreach ($soItem->saleOrder->purchaseOrder->poItems as $poItem)
+                            @if ($poItem->rope_spec_id == $soItem->rope_spec_id)
+                                <td class="px-6 py-4 font-medium text-gray-900">
+                                    {{ $soItem->sale_quantity }} {{ $poItem->unit }}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900">
+                                    {{ $poItem->unit_price }} 
+                                </td>
+                                
+                                @break
+                            @endif
+                            @endforeach
+                    
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$soItem->so_item_price}}</td>
                    
                 </tr>
@@ -48,6 +49,9 @@
         </table>
     </div>
 
+    <div>
+        <div>ราคาทั้งหมด {{$saleOrder->original_order_price}}</div>
+        <div>ราคาหลังรวมVAT 7% {{$saleOrder->total_order_price}}</div>
     </div>
 
 

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(RopeSpec::class);
             $table->integer('order_quantity')->comment('จำนวนที่สั่ง เช่น เชือก A สั่ง 1000 ม้วน');
             $table->double('unit_price')->nullable()->comment('price of spec per unit');
+            $table->string('unit')->nullable()->comment('หน่วยของเชือกที่สั่ง เช่น ม้วน แกน กิโล เมตร');
             $table->integer('remaining_quantity')->comment('จำนวนที่เหลือยังไมไ่ด้ส่งผลิต ให้ start เท่า Order_quantity เมื่อเปิดใบสั่งขาย ให้มาลบกับอันนี้');
             $table->double('po_item_price')->nullable()->comment('order_quantity * unit_price');
             $table->timestamps();

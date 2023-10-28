@@ -21,7 +21,6 @@
                     <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                     <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
                     <th scope="col" class="px-6 py-3 text-center">REMANINIG QUANTITY</th>
-                    <th scope="col" class="px-6 py-3 text-center">UNIT</th>
                     <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
                     <th scope="col" class="px-6 py-3 text-center">PRICE</th>
                 </tr>
@@ -32,8 +31,7 @@
                     <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->rope_spec_id}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->order_quantity}}</td>
-                    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->remaining_quantity}}</td>
-                    <td class="px-6 py-3 font-medium text-gray-900">เก็บไว้ให้คิด</td>
+                    <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->remaining_quantity}} {{$poItem->unit}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->unit_price}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->po_item_price}}</td>
                 </tr>

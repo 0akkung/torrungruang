@@ -67,6 +67,7 @@ class PurchaseOrderController extends Controller
             $poItem = new PoItem(); 
             $poItem->rope_spec_id = $specId;
             $poItem->order_quantity = $poItemData['order_quantity'];
+            $poItem->unit = $poItemData['unit'];  // collect unit like kg / meter
             $poItem->unit_price = $poItemData['unit_price'];
             $poItem->remaining_quantity = $poItemData['order_quantity'];  //ถ้ายังไม่เปิดใบสั่งขายเลย จำนวนจะเท่ากับตอนเปิดใบสั่งซื้อ
             $poItem->po_item_price = $poItem->unit_price * $poItem->order_quantity;  //unit * จำนวนที่สั่ง
