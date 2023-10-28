@@ -61,6 +61,10 @@ class SaleOrderController extends Controller
         foreach ($poItems as $poItem){  // list จากลูปpoItems
             //dd($poItem); pass
             $saleQuantity = $request->input('sale_quantity_' . $poItem->id);
+
+            if($saleQuantity == null){
+                $saleQuantity = 0;
+            }
             $spec = RopeSpec::find($poItem->rope_spec_id);
             //dd($spec); 
             $soItem = new SoItem(); 

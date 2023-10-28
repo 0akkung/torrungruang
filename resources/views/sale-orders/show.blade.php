@@ -59,6 +59,6 @@
 
 
 
-    <div class="btn btn-success">แก้ไขข้อมูล ต้องยังไม่เปิดใบสั่งขายSO เท่านั้น</div>
+    <div class="btn btn-success">แก้ไขข้อมูล ต้องยังไม่เปิดใบdelivery เท่านั้น</div>
 </div>
 @endsection
