@@ -61,6 +61,7 @@ class PurchaseOrderController extends Controller
         $purchase_order->purchase_date = now();
         $purchase_order->due_date = $request->get('due_date');
         $purchase_order->customer_po_id = $request->get('customer_po_id');
+        $purchase_order->note = $request->get('note');
         $purchase_order->address_id = $address_id;
         // $purchaseOrder->original_order_price = $request->get('original_order_price');
         // $purchaseOrder->total_order_price = $request->get('total_order_price');
@@ -104,7 +105,9 @@ class PurchaseOrderController extends Controller
             'title' => "PurchaseOrders > Detail",
             'purchaseOrder' => $po,
             'customer' => $po->customer,
-            'poItems' => $po->poItems
+            'poItems' => $po->poItems,
+            'address' => $po->address
+            
         ]);
     }
 

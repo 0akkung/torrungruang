@@ -34,6 +34,9 @@
 
             <label for="customer_po_id" class="block font-bold mb-2">Customer PO ID</label>
             <input type="text" id="customer_po_id" name="customer_po_id" class="border rounded-lg p-2 mb-2">
+
+            <label for="customer_po_id" class="block font-bold mb-2">Note: (หมายเหตุ)</label>
+            <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
         </div>
         <div id="poItemsContainer">
         </div>

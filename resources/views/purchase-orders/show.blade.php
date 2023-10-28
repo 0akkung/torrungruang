@@ -9,14 +9,17 @@
         <h1>ชื่อบริษัท{{$customer->company_name}}</h1> 
         <span>รหัสPO ลูกค้า {{$purchaseOrder->customer_po_id}}</span>
         <h1>ชื่อผู้จัดซื้อ{{$customer->purchaser_name}}</h1> 
-        <h1>เบอร์โทรศัพท์{{$customer->phone_number}}</h1> 
-        <h1>ที่อยู่ที่ส่งในใบPO (รอ sir oak)></h1> 
+        <h1>เบอร์โทรศัพท์{{$customer->phone_number}}</h1>
+        <h1>ที่อยู่ที่ส่งในใบPO<h1> 
+        ----------------------------------
+        <h1>Total Item {{count($poItems)}}</h1>
 
     </div>
     รายละเอียด
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs uppercase bg-table text-white">
                 <tr>
+                    <th scope="col" class="px-6 py-3 text-center">NO.</th>
                     <th scope="col" class="px-6 py-3 text-center">SPEC ID</th>
                     <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                     <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
@@ -29,6 +32,7 @@
             <tbody>
                 @foreach ($poItems as $poItem)
                 <tr class="bg-white border-b">
+                    <td class="px-6 py-3 font-medium text-gray-900">{{$loop->iteration}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->rope_spec_id}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
                     <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->order_quantity}}</td>
@@ -44,6 +48,7 @@
             <div>ราคาทั้งหมด {{$purchaseOrder->original_order_price}}</div>
             <div>ราคาหลังรวมVAT 7% {{$purchaseOrder->total_order_price}}</div>
         </div>
+        หมายเหตุ {{$purchaseOrder->note}}
         <div>
             สถานะการส่งของ 
             @if($purchaseOrder->produce_status == 0)
