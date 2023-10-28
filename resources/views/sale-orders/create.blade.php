@@ -2,23 +2,33 @@
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div>
-    <div class="flex mb-5">
-        <h1 class="px-1 bg-tag py-1 mr-1"></h1>
-        <h1 class="px-1 bg-tag py-1"></h1>
-        <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Create Sale Order</h1>
-    </div>
+    <h1 class="text-2xl font-bold mb-6">Create Sale Order</h1>
     <form action="{{ route('so.store') }}" method="POST">
         @csrf
         <div class="mb-6">
             <label for="purchaseOrder_id" class="block font-bold mb-2">Select Purchase Order</label>
             <select id="purchaseOrder_id" name="purchaseOrder_id" class="border rounded-lg px-20">
                 @foreach($purchaseOrders as $purchaseOrder)
-                <option value="{{ $purchaseOrder->id }}">{{ $purchaseOrder->id }}
-                     {{ $purchaseOrder->customer->company_name }}</option>
-                
+                    @if( $purchaseOrder->produce_status !== 1 && $purchaseOrder->payment_status !== 1)
+                        {{-- เช็ค poItem remain_quantity --}}
+                        @php
+                            $isValidPurchaseOrder = false;
+                            foreach ($purchaseOrder->poItems as $poItem) {
+                                if ($poItem->remaining_quantity !== 0) {
+                                    $isValidPurchaseOrder = true;
+                                    break;
+                                }
+                            }
+                        @endphp                        
+                        @if($isValidPurchaseOrder)
+                        <option value="{{ $purchaseOrder->id }}" data-customer="{{ $purchaseOrder->customer }}">{{ $purchaseOrder->id }}</option>
+                        @endif
+                        
+                    @endif
                 @endforeach
             </select>
-            {{-- {{dd($poItems)}} --}}
+            <div id="poShow"></div>
+            
         
             <div id="poItemsTable">
                 <table id = "poItemsTable" class="">
@@ -41,25 +51,38 @@
 </div>
 
 <script>
-        window.onload = function() {
-        var purchaseOrderId = document.getElementById('purchaseOrder_id').value;
-        var poItems = @json($poItems->toArray());
-        var filteredPoItems = poItems.filter(function(poItem) {
-            return poItem.purchase_order_id == purchaseOrderId;
+    window.onload = function() {
+            var purchaseOrderId = document.getElementById('purchaseOrder_id').value;
+            var poItems = @json($poItems->toArray());
+            var filteredPoItems = poItems.filter(function(poItem) {
+                return poItem.purchase_order_id == purchaseOrderId;
         });
         displayPoItems(filteredPoItems);
     };
         document.getElementById('purchaseOrder_id').addEventListener('change', function() {
-        var purchaseOrderId = this.value;
-        var poItems = @json($poItems->toArray());
-        var filteredPoItems = poItems.filter(function(poItem) {
-            return poItem.purchase_order_id == purchaseOrderId;
+
+            var purchaseOrderId = this.value;
+            
+            var poItems = @json($poItems->toArray());
+            var filteredPoItems = poItems.filter(function(poItem) {
+                return poItem.purchase_order_id == purchaseOrderId;
         });
         displayPoItems(filteredPoItems);
     });
+    
+    //อันนี้โชว์po ที่เลือก
+    var selectElement = document.getElementById("purchaseOrder_id");
+    var selectedValueElement = document.getElementById("poShow");
+    selectElement.addEventListener("change", function() {
+        var selectedValue = selectElement.value;
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var customer = JSON.parse(selectedOption.getAttribute("data-customer"));
+        selectedValueElement.textContent = "PO ID : " + selectedValue + " Customer ID : " + customer.id + 
+        " Company Name : " + customer.company_name;
+    });
 
     function displayPoItems(poItems) {
-        var tableHTML = `
+        var tableHTML = ` 
             <table id="poItemsTable" class="">
                 <thead class="text-xs uppercase bg-table text-white">
                     <tr>
@@ -75,7 +98,6 @@
 
         poItems.forEach(function(poItem) {
             if (poItem.rope_spec_id && poItem.rope_spec_id) {
-                HELLO
                 tableHTML += `
                     <tr class="text-center">
                         <td class="px-6 py-4">${poItem.rope_spec_id}</td>
