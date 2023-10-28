@@ -71,42 +71,50 @@
 
     let poItemCount = 0;
 
-    function addPoItemField() {
+    function addPoItemField() {    
         poItemCount++;
-
         const container = document.getElementById('poItemsContainer');
-
         const div = document.createElement('div');
         div.className = 'mb-4';
-
+        const poItemId = `poItem-${poItemCount}`;
+        //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
-            <h2 class="text-xl font-semibold mb-2">Po Item #${poItemCount}</h2>
-            <label for="po_items[${poItemCount}][spec_id]" class="block font-bold mb-2">Spec</label>
-            <select id="po_items[${poItemCount}][spec_id]" name="po_items[${poItemCount}][spec_id]" class="border rounded-lg p-2 mb-2">
-                @foreach($specs as $spec)
-                    @if (!in_array($spec->id, $selectedSpecs))
-                        <option value="{{ $spec->id }}">{{ $spec->id }} - {{ $spec->spec_name }}</option>
-                    @endif
-                @endforeach
-            </select>
-            <label for="po_items[${poItemCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
-            <input type="number" id="po_items[${poItemCount}][order_quantity]" name="po_items[${poItemCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0" step="0.01">
-            <label for="po_items[${poItemCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
-            <input type="number" id="po_items[${poItemCount}][unit_price]" name="po_items[${poItemCount}][unit_price]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0" step="0.01">
-            <label for="po_items[${poItemCount}][unit]" class="block font-bold mb-2">Unit</label>
-            <select id="po_items[${poItemCount}][unit]" name="po_items[${poItemCount}][unit]" class="border rounded-lg p-2 mb-2">
-                <option value="kilogram">Kilogram</option>
-                <option value="meter">Meter</option>
-                <option value="roll">Roll</option>
-                <option value="reel">Reel</option>
-                <option value="coil">Coil</option>
-                <option value="piece">Piece</option>
-            </select>
+            <div id="${poItemId}">   
+                <h2 class="text-xl font-semibold mb-2">Po Item #${poItemCount}</h2>
+                <label for="po_items[${poItemCount}][spec_id]" class="block font-bold mb-2">Spec</label>
+                <select id="po_items[${poItemCount}][spec_id]" name="po_items[${poItemCount}][spec_id]" class="border rounded-lg p-2 mb-2">
+                    @foreach($specs as $spec)
+                        @if (!in_array($spec->id, $selectedSpecs))
+                            <option value="{{ $spec->id }}">{{ $spec->id }} - {{ $spec->spec_name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+                <label for="po_items[${poItemCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
+                <input type="number" id="po_items[${poItemCount}][order_quantity]" name="po_items[${poItemCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
+                value="0" min="0" step="0.01">
+                <label for="po_items[${poItemCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
+                <input type="number" id="po_items[${poItemCount}][unit_price]" name="po_items[${poItemCount}][unit_price]" class="border rounded-lg p-2 mb-2"
+                value="0" min="0" step="0.01">
+                <label for="po_items[${poItemCount}][unit]" class="block font-bold mb-2">Unit</label>
+                <select id="po_items[${poItemCount}][unit]" name="po_items[${poItemCount}][unit]" class="border rounded-lg p-2 mb-2">
+                    <option value="kilogram">Kilogram</option>
+                    <option value="meter">Meter</option>
+                    <option value="roll">Roll</option>
+                    <option value="reel">Reel</option>
+                    <option value="coil">Coil</option>
+                    <option value="piece">Piece</option>
+                </select>
+                <button type="button" onclick="deletePoItem('${poItemId}')">Delete</button>
+            <div>
         `;
 
         container.appendChild(div);
+    }
+    function deletePoItem(poItemId) {
+        const poItemElement = document.getElementById(poItemId);
+        if(poItemElement) {
+            poItemElement.remove();
+        }
     }
 </script>
 @endsection

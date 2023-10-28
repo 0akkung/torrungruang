@@ -9,12 +9,12 @@
             <label for="purchaseOrder_id" class="block font-bold mb-2">Select Purchase Order</label>
             <select id="purchaseOrder_id" name="purchaseOrder_id" class="border rounded-lg px-20">
                 @foreach($purchaseOrders as $purchaseOrder)
-                    @if( $purchaseOrder->produce_status !== 1 && $purchaseOrder->payment_status !== 1)
+                    @if( $purchaseOrder->produce_status !== 1 && $purchaseOrder->payment_status !== 1)        {{-- ลองกรองจากcontrollerแล้วไม่ผ่าน งง --}}
                         {{-- เช็ค poItem remain_quantity --}}
                         @php
                             $isValidPurchaseOrder = false;
-                            foreach ($purchaseOrder->poItems as $poItem) {
-                                if ($poItem->remaining_quantity !== 0) {
+                            foreach($purchaseOrder->poItems as $poItem) {
+                                if($poItem->remaining_quantity !== 0) {
                                     $isValidPurchaseOrder = true;
                                     break;
                                 }
@@ -97,7 +97,7 @@
         `;
 
         poItems.forEach(function(poItem) {
-            if (poItem.rope_spec_id && poItem.rope_spec_id) {
+            if(poItem.rope_spec_id && poItem.rope_spec_id){
                 tableHTML += `
                     <tr class="text-center">
                         <td class="px-6 py-4">${poItem.rope_spec_id}</td>
