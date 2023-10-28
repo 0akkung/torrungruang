@@ -35,7 +35,7 @@ class RopeSpecController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'spec_name' => ['required', 'min:2', 'max:255'],
+             'spec_name' => ['required', 'unique:\App\Models\RopeSpec', 'min:2', 'max:255'],
              'spec_detail' => ['required', 'min:4', 'max:255'],
          ]);
 
@@ -64,7 +64,7 @@ class RopeSpecController extends Controller
     public function edit(RopeSpec $spec)
     {
         return view('specs.edit', [
-            'title' => "Rope Specs > Detail > Edit",
+            'title' => "Rope Specs > " . $spec->spec_name . " > Edit",
             'spec' => $spec
         ]);
     }
@@ -75,7 +75,7 @@ class RopeSpecController extends Controller
     public function update(Request $request, RopeSpec $spec)
     {
         $request->validate([
-            'spec_name' => ['required', 'min:2', 'max:255'],
+            'spec_name' => ['required', 'unique:\App\Models\RopeSpec', 'min:2', 'max:255'],
             'spec_detail' => ['required', 'min:4', 'max:255'],
         ]);
 
