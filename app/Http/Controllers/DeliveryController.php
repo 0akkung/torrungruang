@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\SaleOrder;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
@@ -12,8 +13,10 @@ class DeliveryController extends Controller
      */
     public function index()
     {
+        $deliveries = Delivery::get();
         return view('deliveries.index', [
-            'title' => 'Deliveries'
+            'title' => 'Deliveries',
+            'deliveries' => $deliveries
         ]);
     }
 
@@ -22,7 +25,13 @@ class DeliveryController extends Controller
      */
     public function create()
     {
-        //
+        $saleOrders = SaleOrder::doesntHave('delivery')->get();
+        //dd($saleOrders);
+
+        return view('deliveries.create', [
+            'title' => "Delivery > Create",
+            'saleOrders' => $saleOrders
+        ]);
     }
 
     /**
@@ -30,7 +39,12 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $saleOrder = SaleOrder::find($request->get('saleOrder_id'));
+        //dd($saleOrder);
+        $delivery = new Delivery();
+        $delivery->delivery_date = now();
+        $saleOrder->delivery()->save($delivery);
+        return redirect()->route('deliveries.index')->with('success', 'Delivery Bill Created successfully!');
     }
 
     /**

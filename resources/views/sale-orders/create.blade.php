@@ -48,8 +48,9 @@
                 </table>
             </div>
         </div>
-        <div class="mb-6">
-            <button type="submit" class="bg-sky-500 text-white px-4 py-2 rounded-lg">Create Purchase Order</button>
+        <div class="mb-6 flex space-x-8">
+            <x-submit-button label="Submit" />
+            <x-back-button label="Cancel" />
         </div>
     </form>
 </div>

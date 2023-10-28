@@ -9,7 +9,7 @@
       <h1 class="px-1 bg-tag py-1"></h1>
       <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Delivery</h1>
     </div>
-    <a href="/delivery/add" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Delivery</a>
+    <a href="{{ route('deliveries.create') }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Delivery</a>
   </div>
   <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
@@ -43,16 +43,18 @@
         </tr>
       </thead>
       <tbody>
+        @foreach($deliveries as $delivery)
         <tr class="bg-white border-b">
-          <td class="px-6 py-4 font-medium text-gray-900">DeliveryID</td>
-          <td class="px-6 py-4 font-medium text-gray-900">PO-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">SO-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">CustomerID</td>
-          <td class="px-6 py-4 font-medium text-gray-900">CompanyName</td>
-          <td class="px-6 py-4 font-medium text-gray-900">Price</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Date</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->saleOrder->purchase_order_id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$delivery->saleOrder->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$delivery->saleOrder->purchaseOrder->customer->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->saleOrder->purchaseOrder->customer->company_name}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->saleOrder->total_order_price}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$delivery->delivery_date}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Action</td> 
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

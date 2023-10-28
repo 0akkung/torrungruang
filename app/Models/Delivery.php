@@ -12,6 +12,6 @@ class Delivery extends Model
 
     public function saleOrder(): BelongsTo
     {
-    return $this->belongsTo(Customer::class);
+    return $this->belongsTo(SaleOrder::class);
     }
 }

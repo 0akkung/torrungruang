@@ -91,7 +91,7 @@ class SaleOrderController extends Controller
         $saleOrder->save();
         $purchaseOrder->saleOrders()->save($saleOrder);
         
-            return redirect()->route('so.index',['saleOrder' => $saleOrder]);
+            return redirect()->route('so.index')->with('success', 'Sale Order Created successfully!');
     }
 
     /**

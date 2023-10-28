@@ -93,7 +93,7 @@ class PurchaseOrderController extends Controller
         $purchase_order->total_order_price = $purchase_order->original_order_price * 1.07;   // ราคาหลังรวมVAT 7%
         $customer->purchaseOrders()->save($purchase_order); // เซฟอีกรอบเพื่อความเป็นสิริมงคล หลัง add ราคา
 
-        return redirect()->route('po.index',['purchaseOrder' => $purchase_order]);
+        return redirect()->route('po.index')->with('success', 'Purchased Order Created successfully!');
     }
 
     /**

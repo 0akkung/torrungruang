@@ -25,4 +25,5 @@ class SaleOrder extends Model
         return $this->hasMany(SoItem::class);
     }
     
+    
 }

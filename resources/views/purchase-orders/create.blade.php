@@ -36,8 +36,9 @@
     <div id="poItemsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
     <button type="button" onclick="addPoItemField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add PoItem</button>
     </div>
-    <div class="mb-6">
-        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg">Create Purchase Order</button>
+    <div class="mb-6 flex space-x-8">
+        <x-submit-button label="Submit" />
+        <x-back-button label="Cancel" />
     </div>
 </form>
 
