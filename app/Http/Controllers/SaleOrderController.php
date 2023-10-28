@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\PoItem;
 use App\Models\SaleOrder;
 use App\Models\SoItem;
+use App\Models\Address;
 use Illuminate\Http\Request;
 
 class SaleOrderController extends Controller
@@ -61,6 +62,10 @@ class SaleOrderController extends Controller
         foreach ($poItems as $poItem){  // list จากลูปpoItems
             //dd($poItem); pass
             $saleQuantity = $request->input('sale_quantity_' . $poItem->id);
+
+            if($saleQuantity == null){
+                $saleQuantity = 0;
+            }
             $spec = RopeSpec::find($poItem->rope_spec_id);
             //dd($spec); 
             $soItem = new SoItem(); 
@@ -92,9 +97,18 @@ class SaleOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SaleOrder $saleOrder)
+    public function show(SaleOrder $so)
     {
-        //
+        $address = Address::find($so->purchaseOrder->address_id);
+        //dd($address);
+        return view('sale-orders.show', [
+            'title' => "SalesOrders > Detail",
+            'saleOrder' => $so,
+            'purchaseOrder' => $so->purchaseOrder,
+            'soItems' => $so->soItems,
+            'customer' => $so->purchaseOrder->customer,
+            'address' => $address
+        ]);
     }
 
     /**
