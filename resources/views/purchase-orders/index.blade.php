@@ -68,7 +68,9 @@
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->purchase_date}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->due_date}}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> <a href="{{ route('po.show', $purchaseOrder) }}" class="text-cyan-800 hover:underline font-bold">Detail</a> </td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
+                        <a href="{{ route('po.show',['po'=> $purchaseOrder]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a> 
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

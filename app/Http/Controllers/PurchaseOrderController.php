@@ -84,14 +84,14 @@ class PurchaseOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PurchaseOrder $purchaseOrder)
+    public function show(PurchaseOrder $po)
     {
         
         return view('purchase-orders.show', [
             'title' => "PurchaseOrders > Detail",
-            'purchaseOrder' => $purchaseOrder,
-            'customer' => $purchaseOrder->customer,
-            'poItems' => $purchaseOrder->poItems
+            'purchaseOrder' => $po,
+            'customer' => $po->customer,
+            'poItems' => $po->poItems
         ]);
     }
 
