@@ -20,6 +20,7 @@
                     <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                     <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
                     <th scope="col" class="px-6 py-3 text-center">UNIT</th>
+                    <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
                     <th scope="col" class="px-6 py-3 text-center">PRICE</th>
                 </tr>
             </thead>
@@ -28,10 +29,11 @@
                 <tr class="bg-white border-b">
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->rope_spec_id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->ropeSpec->spec_name}}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900">{{$soItem->sale_quantity}}</td>
                     @foreach ($soItem->saleOrder->purchaseOrder->poItems as $poItem)
                             @if ($poItem->rope_spec_id == $soItem->rope_spec_id)
                                 <td class="px-6 py-4 font-medium text-gray-900">
-                                    {{ $soItem->sale_quantity }} {{ $poItem->unit }}
+                                    {{ $poItem->unit }}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-gray-900">
                                     {{ $poItem->unit_price }} 
