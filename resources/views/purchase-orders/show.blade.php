@@ -44,7 +44,7 @@
             </div>
             <div>
                 <div class="p-2 bg-table text-white font-bold text-lg text-center rounded-t-lg">
-                    PO Items
+                    Description
                 </div>
                 <hr class="border-2 border-gray-300">
                 <table class="w-full text-sm text-left text-gray-400 rounded-lg">
@@ -57,7 +57,7 @@
                             <th scope="col" class="px-6 py-3 text-center">REMAINING QUANTITY</th>
                             <th scope="col" class="px-6 py-3 text-center">UNIT</th>
                             <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
-                            <th scope="col" class="px-6 py-3 text-center">PRICE</th>
+                            <th scope="col" class="px-6 py-3 text-center">amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +100,9 @@
                     <span class="text-white text-sm w-1/3 pb-2 bg-green-600 font-semibold px-2 py-2 rounded-full mb-2">Finish</span>
                     @endif
                 </div>
+            </div>
+            <div>
+                สถานะการจ่ายเงิน
             </div>
         </div>
     </div>

@@ -58,6 +58,7 @@ class SaleOrderController extends Controller
         // dd($poItems); pass   
         $saleOrder = new SaleOrder();
         $saleOrder->sale_date = now();
+        $saleOrder->delivery_status = false;
 
         foreach ($poItems as $poItem){  // list จากลูปpoItems
             //dd($poItem); pass

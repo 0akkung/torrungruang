@@ -65,8 +65,8 @@ class PurchaseOrderController extends Controller
         $purchase_order->address_id = $address_id;
         // $purchaseOrder->original_order_price = $request->get('original_order_price');
         // $purchaseOrder->total_order_price = $request->get('total_order_price');
-        $purchase_order->produce_status = 0;
-        $purchase_order->payment_status = 0;
+        $purchase_order->produce_status = false;
+        $purchase_order->payment_status = false;
 
         $customer->purchaseOrders()->save($purchase_order);
 

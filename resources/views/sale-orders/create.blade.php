@@ -62,9 +62,10 @@
             var filteredPoItems = poItems.filter(function(poItem) {
                 return poItem.purchase_order_id == purchaseOrderId;
         });
+        
         displayPoItems(filteredPoItems);
     };
-        document.getElementById('purchaseOrder_id').addEventListener('change', function() {
+    document.getElementById('purchaseOrder_id').addEventListener('change', function() {
 
             var purchaseOrderId = this.value;
             

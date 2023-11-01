@@ -36,7 +36,7 @@
           <th scope="col" class="px-6 py-3 text-center">Customer ID </th>
           <th scope="col" class="px-6 py-3 text-center">Company Name</th>
           <th scope="col" class="px-6 py-3 text-center">Price<br>(+ VAT 1.07%)</th>
-          <th scope="col" class="px-6 py-3 text-center">Delivery Date</th>
+          <th scope="col" class="px-6 py-3 text-center">Bill Date</th>
           <th scope="col" class="px-6 py-3 text-center">Pay Date</th>
           <th scope="col" class="px-6 py-3 text-center">Action</th>
         </tr>
@@ -51,7 +51,10 @@
           <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->purchaseOrder->total_order_price}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->bill_date}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->payment_date}}</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Action</td> 
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
+            <a href="{{ route('invoices.show',['invoice'=> $invoice]) }}" 
+            class="text-cyan-800 hover:underline font-bold">Detail</a> 
+          </td>
         </tr>
         @endforeach
       </tbody>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Address;
+use App\Models\Delivery;
 use App\Models\PurchaseOrder;
+use App\Models\SaleOrder;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -23,7 +26,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->get();
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('invoice')->get();
         return view('invoices.create', [
             'title' => "Invoice > Create",
             'purchaseOrders'=> $purchaseOrders
@@ -40,9 +43,10 @@ class InvoiceController extends Controller
         //dd($purchaseOrder);
         $invoice = new Invoice();
         $invoice->bill_date = now();
+        $invoice->billing_officer = auth()->user()->name;  
         $invoice->payment_date = now()->addMonth();   //กำหนดจ่ายตังภายใน 1 เดือน
         $purchaseOrder->invoice()->save($invoice);
-        return redirect()->route('inovices.index')->with('success', 'Invoice Created successfully!');
+        return redirect()->route('invoices.index')->with('success', 'Invoice Created successfully!');
     }
 
     /**
@@ -50,7 +54,23 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        $address = Address::find($invoice->purchaseOrder->address_id);
+        // dd($address);
+        $saleOrders = SaleOrder::where('purchase_order_id', $invoice->purchaseOrder->id)->get();  //ดึง saleOrders
+        //dd($saleOrders);
+        // $deliveries = $saleOrders->flatMap(function ($saleOrder) {
+        //     return $saleOrder->delivery;
+        // })->filter();
+        // dd($deliveries);
+        return view('invoices.show', [
+            'title' => "Invoice > Detail",
+            'invoice' => $invoice,
+            'purchaseOrder' => $invoice->purchaseOrder,
+            // 'deliveries' => $invoice->purchaseOrder->saleOrder->delivery,
+            'customer' => $invoice->purchaseOrder->customer,
+            'address' => $address,
+            'saleOrders' => $saleOrders
+        ]);
     }
 
     /**

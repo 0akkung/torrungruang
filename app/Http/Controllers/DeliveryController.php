@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery;
+use App\Models\Address;
 use App\Models\SaleOrder;
+use App\Models\PurchaseOrder;
 use App\Models\PoItem;
 use Illuminate\Http\Request;
 
@@ -45,7 +47,23 @@ class DeliveryController extends Controller
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
-       
+        $purchaseOrder = PurchaseOrder::find($saleOrder->purchase_order_id);
+        //dd($purchaseOrder);
+        $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
+        //dd($poItems);
+        foreach ($poItems as $poItem){
+            $check_item = true;
+            if($poItem->remaining_quantity !== 0) {
+                $check_item = false;
+                break;
+            }
+        }
+        if($check_item){
+            $saleOrder->delivery_status = true;
+            $purchaseOrder->produce_status = true;
+        }
+        $purchaseOrder->save();
+        $saleOrder->save();
         return redirect()->route('deliveries.index')->with('success', 'Delivery Bill Created successfully!');
     }
 
@@ -54,7 +72,17 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-        //
+        $address = Address::find($delivery->saleOrder->purchaseOrder->address_id);
+        // dd($address);
+        return view('deliveries.show', [
+            'title' => "Delivery > Detail",
+            'delivery' => $delivery,
+            'saleOrder' => $delivery->saleOrder,
+            'purchaseOrder' => $delivery->saleOrder->purchaseOrder,
+            'soItems' => $delivery->saleOrder->soItems,
+            'customer' => $delivery->saleOrder->purchaseOrder->customer,
+            'address' => $address
+        ]);
     }
 
     /**

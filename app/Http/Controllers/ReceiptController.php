@@ -25,7 +25,7 @@ class ReceiptController extends Controller
      */
     public function create()
     {
-        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->has('invoice')->get();  //เอาที่สร้างใบวางบิลแล้ว
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('receipt')->get();  //เอาที่สร้างใบวางบิลแล้ว
         return view('receipts.create', [
             'title' => "Receipt > Create",
             'purchaseOrders'=> $purchaseOrders
@@ -44,7 +44,8 @@ class ReceiptController extends Controller
         $receipt->pay_date = now();
         $receipt->receipter_name = auth()->user()->name;  
         $purchaseOrder->receipt()->save($receipt);
-        $purchaseOrder->payment_status = 1;
+        $purchaseOrder->payment_status = true;
+        $purchaseOrder->save();
         return redirect()->route('receipts.index')->with('success', 'Receipt Created successfully!');
     }
 
