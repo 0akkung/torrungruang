@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Receipt;
+use App\Models\Address;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,17 @@ class ReceiptController extends Controller
      */
     public function show(Receipt $receipt)
     {
-        //
+        $address = Address::find($receipt->purchaseOrder->address_id);
+        return view('receipts.show', [
+            'title' => "Receipt > Detail",
+            'receipt' => $receipt,
+            'purchaseOrder' => $receipt->purchaseOrder,
+            // 'deliveries' => $invoice->purchaseOrder->saleOrder->delivery,
+            'customer' => $receipt->purchaseOrder->customer,
+            'address' => $address,
+            'poItems' => $receipt->purchaseOrder->poItems
+
+        ]);
     }
 
     /**
