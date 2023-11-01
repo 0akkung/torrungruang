@@ -52,17 +52,6 @@
                     </td>
                     <td class="pl-6 py-4">
                         <a href="{{ route('specs.edit', $spec) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
-                        <a href="{{ route('specs.destroy', $spec) }}"
-                           onclick="event.preventDefault();
-                           if (confirm('Are you sure you want to delete this rope spec?')) {
-                               document.getElementById('delete-form-{{ $spec->id }}').submit();
-                           }"
-                            class="pl-6 font-medium text-red-600 hover:underline">Delete</a>
-
-                        <form id="delete-form-{{ $spec->id }}" action="{{ route('specs.destroy', $spec) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
                     </td>
                 </tr>
             @endforeach

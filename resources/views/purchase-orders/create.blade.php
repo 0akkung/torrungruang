@@ -34,7 +34,7 @@
         <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
     </div>
     <div id="poItemsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
-    <button type="button" onclick="addPoItemField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add PoItem</button>
+    <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
     </div>
     <div class="mb-6 flex space-x-8">
         <x-submit-button label="Submit" />
@@ -61,34 +61,34 @@
         });
     });
 
-    let poItemCount = 0;
+    let specCount = 0;
 
-    function addPoItemField() {    
-        poItemCount++;
+    function addPoItemField() {
+        specCount++;
         const container = document.getElementById('poItemsContainer');
         const div = document.createElement('div');
         div.className = 'mb-4';
-        const poItemId = `poItem-${poItemCount}`;
+        const specId = `poItem-${specCount}`;
         //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
-            <div class="bg-gray-100 rounded-lg p-5" id="${poItemId}>
-            <h2 class="text-xl font-semibold mb-2">Po Item #${poItemCount}</h2>
-            <label for="po_items[${poItemCount}][spec_id]" class="block font-bold mb-2">Spec</label>
-            <select id="po_items[${poItemCount}][spec_id]" name="po_items[${poItemCount}][spec_id]" class="border rounded-lg p-2 mb-2">
+            <div class="bg-gray-100 rounded-lg p-5" id="${specId}>
+            <h2 class="text-xl font-semibold mb-2">Po Item #${specCount}</h2>
+            <label for="po_items[${specCount}][spec_id]" class="block font-bold mb-2">Spec</label>
+            <select id="po_items[${specCount}][spec_id]" name="po_items[${specCount}][spec_id]" class="border rounded-lg p-2 mb-2">
                 @foreach($specs as $spec)
                     @if (!in_array($spec->id, $selectedSpecs))
                         <option value="{{ $spec->id }}">{{ $spec->id }} - {{ $spec->spec_name }}</option>
                     @endif
                 @endforeach
             </select>
-            <label for="po_items[${poItemCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
-            <input type="number" id="po_items[${poItemCount}][order_quantity]" name="po_items[${poItemCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
+            <label for="po_items[${specCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
+            <input type="number" id="po_items[${specCount}][order_quantity]" name="po_items[${specCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
             value="0" min="0" step="0.01">
-            <label for="po_items[${poItemCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
-            <input type="number" id="po_items[${poItemCount}][unit_price]" name="po_items[${poItemCount}][unit_price]" class="border rounded-lg p-2 mb-2"
+            <label for="po_items[${specCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
+            <input type="number" id="po_items[${specCount}][unit_price]" name="po_items[${specCount}][unit_price]" class="border rounded-lg p-2 mb-2"
             value="0" min="0" step="0.01">
-            <label for="po_items[${poItemCount}][unit]" class="block font-bold mb-2">Unit</label>
-            <select id="po_items[${poItemCount}][unit]" name="po_items[${poItemCount}][unit]" class="border rounded-lg p-2 mb-2">
+            <label for="po_items[${specCount}][unit]" class="block font-bold mb-2">Unit</label>
+            <select id="po_items[${specCount}][unit]" name="po_items[${specCount}][unit]" class="border rounded-lg p-2 mb-2">
                 <option value="kilogram">Kilogram</option>
                 <option value="meter">Meter</option>
                 <option value="roll">Roll</option>
@@ -96,7 +96,7 @@
                 <option value="coil">Coil</option>
                 <option value="piece">Piece</option>
             </select>
-                <button type="button" onclick="deletePoItem('${poItemId}')">Delete</button>
+                <button type="button" onclick="deletePoItem('${specId}')">Delete</button>
             </div>
         `;
 

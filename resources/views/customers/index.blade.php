@@ -67,15 +67,6 @@
                     </td>
                     <td class="pl-6 py-4">
                         <a href="{{ route('customers.edit', $customer) }}" class="font-medium text-blue-600 hover:underline">Edit</a>
-                        <a href="{{ route('customers.destroy', $customer) }}" onclick="event.preventDefault();
-                           if (confirm('Are you sure you want to delete this customer?')) {
-                               document.getElementById('delete-form-{{ $customer->id }}').submit();
-                           }" class="pl-6 font-medium text-red-600 hover:underline">Delete</a>
-
-                        <form id="delete-form-{{ $customer->id }}" action="{{ route('customers.destroy', $customer) }}" method="POST" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form>
                     </td>
                 </tr>
                 @endforeach
