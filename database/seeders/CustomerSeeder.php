@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\RopeSpec;
+use App\Models\Customer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RopeSpecSeeder extends Seeder
+class CustomerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        RopeSpec::factory(20)->create();
+        Customer::factory(30)->create();
     }
 }
