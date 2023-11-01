@@ -42,16 +42,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b text-sm">
-          <td class="px-6 py-4 font-medium text-gray-900">InvoiceID</td>
-          <td class="px-6 py-4 font-medium text-gray-900">PO-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Customer-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">CompanyName</td>
-          <td class="px-6 py-4 font-medium text-gray-900">Price</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Deli-Date</td>
-          <td class="px-6 py-4 font-medium text-gray-900">Pay-Date</td>
+        @foreach($invoices as $invoice)
+        <tr class="bg-white border-b">
+          <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->purchase_order_id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->purchaseOrder->customer->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->purchaseOrder->customer->company_name}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->purchaseOrder->total_order_price}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->bill_date}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->payment_date}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Action</td> 
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>

@@ -44,6 +44,7 @@ class DeliveryController extends Controller
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
+        
         return redirect()->route('deliveries.index')->with('success', 'Delivery Bill Created successfully!');
     }
 

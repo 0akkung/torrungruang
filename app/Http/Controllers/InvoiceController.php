@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
+        $invoices = Invoice::get();
         return view('invoices.index', [
-            'title' => 'Invoices'
+            'title' => 'Invoices',
+            'invoices' => $invoices
         ]);
     }
 
@@ -42,7 +42,7 @@ class InvoiceController extends Controller
         $invoice->bill_date = now();
         $invoice->payment_date = now()->addMonth();   //กำหนดจ่ายตังภายใน 1 เดือน
         $purchaseOrder->invoice()->save($invoice);
-        return redirect()->route('deliveries.index')->with('success', 'Invoice Created successfully!');
+        return redirect()->route('inovices.index')->with('success', 'Invoice Created successfully!');
     }
 
     /**

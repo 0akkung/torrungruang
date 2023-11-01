@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(PurchaseOrder::class);
-            $table->string('receipter_name');
+            $table->string('receipter_name')->comment('ชื่อพนักงานรับเงิน');
             $table->date('pay_date');
             $table->timestamps();
             $table->softDeletes();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Receipt;
+use App\Models\PurchaseOrder;
 use Illuminate\Http\Request;
 
 class ReceiptController extends Controller
@@ -12,8 +13,10 @@ class ReceiptController extends Controller
      */
     public function index()
     {
+        $receipts = Receipt::get();
         return view('receipts.index', [
-            'title' => 'Receipts'
+            'title' => 'Receipts',
+            'receipts' => $receipts
         ]);
     }
 
@@ -22,7 +25,12 @@ class ReceiptController extends Controller
      */
     public function create()
     {
-        //
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->has('invoice')->get();  //เอาที่สร้างใบวางบิลแล้ว
+        return view('receipts.create', [
+            'title' => "Receipt > Create",
+            'purchaseOrders'=> $purchaseOrders
+            
+        ]);
     }
 
     /**
@@ -30,7 +38,13 @@ class ReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $purchaseOrder = PurchaseOrder::find($request->get('purchaseOrder_id'));
+        //dd($purchaseOrder);
+        $receipt = new Receipt();
+        $receipt->pay_date = now();
+        $receipt->receipter_name = auth()->user()->name;  
+        $purchaseOrder->receipt()->save($receipt);
+        return redirect()->route('receipts.index')->with('success', 'Receipt Created successfully!');
     }
 
     /**

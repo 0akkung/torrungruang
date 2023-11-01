@@ -9,7 +9,7 @@
       <h1 class="px-1 bg-tag py-1"></h1>
       <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Receipt</h1>
     </div>
-    <a href="/delivery/add" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Receipt</a>
+    <a href="{{ route('receipts.create') }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Receipt</a>
   </div>
   <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
@@ -42,15 +42,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b text-sm">
-          <td class="px-6 py-4 font-medium text-gray-900">ReceiptID</td>
-          <td class="px-6 py-4 font-medium text-gray-900">PO-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Customer-ID</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">CompanyName</td>
-          <td class="px-6 py-4 font-medium text-gray-900">Price</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Receipt-Date</td>
+        @foreach($receipts as $receipt)
+        <tr class="bg-white border-b">
+          <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->purchase_order_id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$receipt->purchaseOrder->customer->id}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->purchaseOrder->customer->company_name}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->purchaseOrder->total_order_price}}</td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$receipt->payment_date}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Action</td> 
         </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
