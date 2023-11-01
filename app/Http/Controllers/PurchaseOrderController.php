@@ -108,7 +108,7 @@ class PurchaseOrderController extends Controller
             'customer' => $po->customer,
             'poItems' => $po->poItems,
             'address' =>  $address
-            
+
         ]);
     }
 
@@ -136,11 +136,14 @@ class PurchaseOrderController extends Controller
         //
     }
 
-    public function searchPurchaseOrders(Request $request)
+    public function search(Request $request)
     {
         $term = $request->input('term');
         $purchaseOrders = PurchaseOrder::where('field_to_search', 'like', '%'.$term.'%')->get();
-        return response()->json($purchaseOrders);
+        return view('purchase-orders.index', [
+            'title' => 'Purchase Orders > Search > ' . $term,
+            'purchaseOrders' => $purchaseOrders
+        ]);
     }
 
 }

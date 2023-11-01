@@ -8,8 +8,6 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
-use App\Http\Controllers\SpecController;
-use App\Models\RopeSpec;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +31,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('po', PurchaseOrderController::class);
-    Route::get('/search-purchase-orders', 'PurchaseOrderController@searchPurchaseOrders');
+    Route::get('/po-search', [PurchaseOrderController::class, 'search'])->name('purchase-order.search');
 
 
     Route::resource('customers', CustomerController::class);
@@ -49,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('specs', RopeSpecController::class);
     Route::get('/specs-search', [RopeSpecController::class, 'search'])->name('specs.search');
 
-    
+
     Route::resource('so', SaleOrderController::class);
     Route::resource('deliveries', DeliveryController::class);
     Route::resource('invoices', InvoiceController::class);
