@@ -54,6 +54,7 @@
                             <th scope="col" class="px-6 py-3 text-center">SPEC ID</th>
                             <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                             <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
+                            <th scope="col" class="px-6 py-3 text-center">REMAINING QUANTITY</th>
                             <th scope="col" class="px-6 py-3 text-center">UNIT</th>
                             <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
                             <th scope="col" class="px-6 py-3 text-center">PRICE</th>

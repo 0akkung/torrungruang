@@ -39,6 +39,7 @@
                     <th class="px-6 py-3 text-center"> Company ID </th>
                     <th class="px-6 py-3 text-center"> Company Name</th>
                     <th class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
+                    <th class="px-6 py-3 text-center">Delivery Status</th>
                     <th class="px-6 py-3 text-center">Create SO Date</th>
                     <th class="px-6 py-3 text-center">Action</th>
                 </tr>
@@ -51,6 +52,7 @@
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->purchaseOrder->customer->id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->purchaseOrder->customer->company_name}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->total_order_price}}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"></td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->sale_date}} </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
                         <a href="{{ route('so.show',['so'=> $saleOrder]) }}" 

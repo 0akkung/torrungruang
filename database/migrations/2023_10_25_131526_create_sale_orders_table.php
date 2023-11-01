@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(PurchaseOrder::class);
             $table->date('sale_date');
+            $table->boolean('delivery_status');
             $table->double('original_order_price')->nullable()->comment('PO price before VAT 7%');
             $table->double('total_order_price')->nullable()->comment('PO price after VAT 7%');
             $table->timestamps();

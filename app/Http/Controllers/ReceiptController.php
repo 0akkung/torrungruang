@@ -44,6 +44,7 @@ class ReceiptController extends Controller
         $receipt->pay_date = now();
         $receipt->receipter_name = auth()->user()->name;  
         $purchaseOrder->receipt()->save($receipt);
+        $purchaseOrder->payment_status = 1;
         return redirect()->route('receipts.index')->with('success', 'Receipt Created successfully!');
     }
 

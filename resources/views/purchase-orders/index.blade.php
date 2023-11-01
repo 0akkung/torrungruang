@@ -39,7 +39,7 @@
                     <th scope="col" class="px-6 py-3 text-center">Company Name</th>
                     <th scope="col" class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
                     <th scope="col" class="px-6 py-3 text-center">Payment Status</th>
-                    <th scope="col" class="px-6 py-3 text-center">Delivery Status</th>
+                    <th scope="col" class="px-6 py-3 text-center">Produce Status</th>
                     <th scope="col" class="px-6 py-3 text-center">Order Date</th>
                     <th scope="col" class="px-6 py-3 text-center">Delivery Date</th>
                     <th scope="col" class="px-6 py-3 text-center">Action</th>

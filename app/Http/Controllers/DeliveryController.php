@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Delivery;
 use App\Models\SaleOrder;
+use App\Models\PoItem;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
@@ -44,7 +45,7 @@ class DeliveryController extends Controller
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
-        
+       
         return redirect()->route('deliveries.index')->with('success', 'Delivery Bill Created successfully!');
     }
 
