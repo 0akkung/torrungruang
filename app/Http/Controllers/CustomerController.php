@@ -86,6 +86,22 @@ class CustomerController extends Controller
         return redirect()->route('customers.show',['customer' => $customer]);
     }
 
+    public function search(Request $request)
+    {   
+        $searchQuery = $request->input('search');
+        $customers = Customer::where(function ($query) use ($searchQuery) {
+            $query->where('company_name', 'like', '%' . $searchQuery . '%')
+                  ->orWhere('purchaser_name', 'like', '%' . $searchQuery . '%')
+                  ->orWhere('phone_number', 'like', '%' . $searchQuery . '%')
+                  ->orWhere('id', 'like', '%' . $searchQuery . '%');
+        })->get();
+
+        return view('customers.index', [
+            'title' => 'Customer > Search > ' . $searchQuery,
+            'customers' => $customers
+        ], compact("searchQuery"));
+    }
+
     /**
      * Remove the specified resource from storage.
      */

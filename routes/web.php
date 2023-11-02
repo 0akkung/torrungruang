@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
     ->name('customers.editAddress');
     Route::put('/customers/{customer}/addresses/{address}', [CustomerController::class, 'updateAddress'])
     ->name('customers.updateAddress');
+    Route::get('/customer-search', [CustomerController::class, 'search'])->name('customers.search');
+
 
     Route::resource('specs', RopeSpecController::class);
     Route::get('/specs-search', [RopeSpecController::class, 'search'])->name('specs.search');

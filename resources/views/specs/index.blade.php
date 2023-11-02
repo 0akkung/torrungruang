@@ -11,7 +11,7 @@
 <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
         <form method="GET" action="{{ route('specs.search') }}" class="flex">
-            <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Spec name">
+            <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Spec name" value="{{isset($search) ? $search : ''}}">
             <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
         </form>
     </div>
