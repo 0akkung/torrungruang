@@ -138,5 +138,17 @@ class CustomerController extends Controller
             return redirect()->route('customers.show',['customer' => $customer]);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $customers = Customer::name($search)->get();
+
+        return view('customers.index', [
+            'customers' => $customers,
+            'title' => "Customers > Search > " . $search
+        ]);
+    }
+
 
 }

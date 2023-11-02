@@ -17,4 +17,9 @@ class Customer extends Model
     public function purchaseOrders(): HasMany {
         return $this->hasMany(PurchaseOrder::class);
     }
+
+    public function scopeName($query, $name) {
+        return $query->where('purchaser_name', 'like', "%$name%")
+            ->orWhere('company_name', 'like', "%$name%");
+    }
 }
