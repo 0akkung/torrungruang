@@ -20,7 +20,6 @@
                 <button type="submit" class="p-2.5 shadow-md focus:outline-none bg-po-button text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 w-full">+ Customer</button>
             </form>
         </div>
-
     </div>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
