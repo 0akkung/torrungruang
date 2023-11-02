@@ -88,18 +88,13 @@ class CustomerController extends Controller
 
     public function search(Request $request)
     {
-        $searchQuery = $request->input('search');
-        $customers = Customer::where(function ($query) use ($searchQuery) {
-            $query->where('company_name', 'like', '%' . $searchQuery . '%')
-                  ->orWhere('purchaser_name', 'like', '%' . $searchQuery . '%')
-                  ->orWhere('phone_number', 'like', '%' . $searchQuery . '%')
-                  ->orWhere('id', 'like', '%' . $searchQuery . '%');
-        })->get();
+        $search = $request->input('search');
+        $customers = Customer::search($search)->get();
 
         return view('customers.index', [
-            'title' => 'Customer > Search > ' . $searchQuery,
+            'title' => 'Customer > Search > ' . $search,
             'customers' => $customers
-        ], compact("searchQuery"));
+        ]);
     }
 
     /**
