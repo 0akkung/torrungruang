@@ -8,6 +8,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/invoice-search', [InvoiceController::class, 'search'])->name('invoice.search');
 
     Route::resource('receipts', ReceiptController::class);
+    Route::get('/receipt-search', [ReceiptController::class, 'search'])->name('receipt.search');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
