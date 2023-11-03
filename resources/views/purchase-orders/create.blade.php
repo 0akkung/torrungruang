@@ -63,7 +63,7 @@
 
     let specCount = 0;
 
-    function addPoItemField() {
+    function addSpecField() {
         specCount++;
         const container = document.getElementById('poItemsContainer');
         const div = document.createElement('div');

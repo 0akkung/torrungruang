@@ -85,7 +85,7 @@ class CustomerController extends Controller
         $customer->save();
         return redirect()->route('customers.show',['customer' => $customer]);
     }
-
+    
     public function search(Request $request)
     {
         $search = $request->input('search');

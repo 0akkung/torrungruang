@@ -142,12 +142,14 @@ class PurchaseOrderController extends Controller
         //
     }
 
+
     public function search(Request $request)
     {
-        $term = $request->input('term');
-        $purchaseOrders = PurchaseOrder::where('field_to_search', 'like', '%'.$term.'%')->get();
+        $search = $request->input('search');
+        $purchaseOrders = PurchaseOrder::search($search)->get();
+
         return view('purchase-orders.index', [
-            'title' => 'Purchase Orders > Search > ' . $term,
+            'title' => 'Purchase Orders > Search > ' . $search,
             'purchaseOrders' => $purchaseOrders
         ]);
     }
