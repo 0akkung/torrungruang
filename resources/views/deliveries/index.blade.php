@@ -43,6 +43,13 @@
         </tr>
       </thead>
       <tbody>
+        @if( count($deliveries) === 0 )
+        <tr class="bg-white border-b hover:bg-gray-50">
+          <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
+            No Delivery Available
+          </td>
+        </tr>
+        @endif
         @foreach($deliveries as $delivery)
         <tr class="bg-white border-b">
           <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->id}}</td>
@@ -52,9 +59,8 @@
           <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->saleOrder->purchaseOrder->customer->company_name}}</td>
           <td class="px-6 py-4 font-medium text-gray-900">{{$delivery->saleOrder->total_order_price}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$delivery->delivery_date}}</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
-            <a href="{{ route('deliveries.show',['delivery'=> $delivery]) }}" 
-            class="text-cyan-800 hover:underline font-bold">Detail</a> 
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            <a href="{{ route('deliveries.show',['delivery'=> $delivery]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
           </td>
         </tr>
         @endforeach

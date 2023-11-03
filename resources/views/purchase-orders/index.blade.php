@@ -46,13 +46,13 @@
                 </tr>
             </thead>
             <tbody>
-            @if( count($purchaseOrders) === 0 )
+                @if( count($purchaseOrders) === 0 )
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
                         No Purchase Orders Available
                     </td>
                 </tr>
-            @endif
+                @endif
 
                 @foreach ($purchaseOrders as $purchaseOrder)
                 <tr class="bg-white border-b">

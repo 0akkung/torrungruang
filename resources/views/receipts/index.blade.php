@@ -14,7 +14,7 @@
   <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
       <form method="GET" action="{{ route('specs.search') }}" class="flex">
-        <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Invoice ID (ยังไม่ทำrouteSearch)">
+        <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Receipt ID, Purchase ID, Customer ID and Company Name">
         <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
       </form>
     </div>
@@ -42,6 +42,13 @@
         </tr>
       </thead>
       <tbody>
+        @if( count($receipts) === 0 )
+        <tr class="bg-white border-b hover:bg-gray-50">
+          <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
+            No Receipt Available
+          </td>
+        </tr>
+        @endif
         @foreach($receipts as $receipt)
         <tr class="bg-white border-b">
           <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->id}}</td>
@@ -50,10 +57,9 @@
           <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->purchaseOrder->customer->company_name}}</td>
           <td class="px-6 py-4 font-medium text-gray-900">{{$receipt->purchaseOrder->total_order_price}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$receipt->pay_date}}</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
-            <a href="{{ route('receipts.show',['receipt'=> $receipt]) }}" 
-            class="text-cyan-800 hover:underline font-bold">Detail</a> 
-        </td>
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            <a href="{{ route('receipts.show',['receipt'=> $receipt]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
+          </td>
         </tr>
         @endforeach
       </tbody>

@@ -15,4 +15,15 @@ class Invoice extends Model
     {
         return $this->belongsTo(PurchaseOrder::class);
     }
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('id', 'like', '%' . $search . '%')
+            ->orWhereHas('purchaseOrder', function ($poQuery) use ($search) {
+                $poQuery->where('id', 'like', '%' . $search . '%')
+                    ->orWhereHas('customer', function ($customerQuery) use ($search) {
+                        $customerQuery->where('company_name', 'like', '%' . $search . '%')
+                                    ->orWhere('id', 'like', '%' . $search . '%');
+                    });
+            });
+    }
 }

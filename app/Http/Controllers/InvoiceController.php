@@ -21,6 +21,7 @@ class InvoiceController extends Controller
         ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -95,5 +96,17 @@ class InvoiceController extends Controller
     public function destroy(Invoice $invoice)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $invoices = Invoice::search($search)->get();
+
+        return view('invoices.index', [
+            'title' => 'Invoices > Search > ' . $search,
+            'invoices' => $invoices
+
+        ]);
     }
 }

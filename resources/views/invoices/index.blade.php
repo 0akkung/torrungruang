@@ -12,7 +12,7 @@
   </div>
   <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
-      <form method="GET" action="{{ route('specs.search') }}" class="flex">
+      <form method="GET" action="{{ route('invoice.search') }}" class="flex">
         <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Invoice ID (ยังไม่ทำrouteSearch)">
         <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
       </form>
@@ -42,6 +42,13 @@
         </tr>
       </thead>
       <tbody>
+        @if( count($invoices) === 0 )
+        <tr class="bg-white border-b hover:bg-gray-50">
+          <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
+            No Invoice Available
+          </td>
+        </tr>
+        @endif
         @foreach($invoices as $invoice)
         <tr class="bg-white border-b">
           <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->id}}</td>
@@ -51,9 +58,8 @@
           <td class="px-6 py-4 font-medium text-gray-900">{{$invoice->purchaseOrder->total_order_price}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->bill_date}}</td>
           <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$invoice->payment_date}}</td>
-          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
-            <a href="{{ route('invoices.show',['invoice'=> $invoice]) }}" 
-            class="text-cyan-800 hover:underline font-bold">Detail</a> 
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+            <a href="{{ route('invoices.show',['invoice'=> $invoice]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
           </td>
         </tr>
         @endforeach

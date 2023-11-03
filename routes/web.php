@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/delivery-search', [DeliveryController::class, 'search'])->name('delivery.search');
 
     Route::resource('invoices', InvoiceController::class);
+    Route::get('/invoice-search', [InvoiceController::class, 'search'])->name('invoice.search');
+
     Route::resource('receipts', ReceiptController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
