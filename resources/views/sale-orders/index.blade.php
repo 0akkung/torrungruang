@@ -13,8 +13,8 @@
 
     <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
         <div class="col-span-10">
-            <form method="GET" action="{{ route('specs.search') }}" class="flex">
-                <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Sale Order ID (ยังไม่ทำ routeSearch)">
+            <form method="GET" action="{{ route('sale-order.search') }}" class="flex">
+                <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Sale Order ID, Purchase ID, Customer ID and Company Name">
                 <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
             </form>
         </div>
@@ -35,7 +35,7 @@
             <thead class="text-xs uppercase bg-table text-white">
                 <tr>
                     <th class="px-6 py-3 text-center">SO ID</th>
-                    <th class="px-6 py-3 text-center"> PO TD </th>
+                    <th class="px-6 py-3 text-center"> PO ID </th>
                     <th class="px-6 py-3 text-center"> Company ID </th>
                     <th class="px-6 py-3 text-center"> Company Name</th>
                     <th class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
@@ -45,6 +45,13 @@
                 </tr>
             </thead>
             <tbody>
+                @if( count($saleOrders) === 0 )
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
+                        No Sale Orders Available
+                    </td>
+                </tr>
+                @endif
                 @foreach($saleOrders as $saleOrder)
                 <tr class="bg-white border-b">
                     <td class="px-6 py-4 font-medium text-gray-900">{{$saleOrder->id}}</td>
@@ -60,9 +67,8 @@
                         @endif
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$saleOrder->sale_date}} </td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
-                        <a href="{{ route('so.show',['so'=> $saleOrder]) }}" 
-                        class="text-cyan-800 hover:underline font-bold">Detail</a> 
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <a href="{{ route('so.show',['so'=> $saleOrder]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
                     </td>
                 </tr>
                 @endforeach

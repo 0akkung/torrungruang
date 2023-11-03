@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('so', SaleOrderController::class);
+    Route::get('/so-search', [SaleOrderController::class, 'search'])->name('sale-order.search');
+
     Route::resource('deliveries', DeliveryController::class);
     Route::resource('invoices', InvoiceController::class);
     Route::resource('receipts', ReceiptController::class);
