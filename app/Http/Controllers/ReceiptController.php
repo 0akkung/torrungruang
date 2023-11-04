@@ -20,6 +20,16 @@ class ReceiptController extends Controller
             'receipts' => $receipts
         ]);
     }
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $receipts = Receipt::search($search)->get();
+
+        return view('receipts.index', [
+            'title' => 'Receipts > Search > ' . $search,
+            'receipts' => $receipts
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

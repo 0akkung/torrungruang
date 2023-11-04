@@ -37,4 +37,18 @@ class PurchaseOrder extends Model
     public function address(): HasOne {
         return $this->Hasone(Address::class);
     }
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('id', 'like', '%' . $search . '%')
+                ->orWhereHas('customer', function ($customerQuery) use ($search) {
+                    $customerQuery->where('company_name', 'like', '%' . $search . '%')
+                                ->orWhere('id', 'like', '%' . $search . '%');
+                });
+        });
+    }
+    
+
 }
+

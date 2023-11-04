@@ -8,6 +8,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('customers', CustomerController::class);
+
     Route::get('/customers/{customer}/create-address', [CustomerController::class, 'createAddress'])
     ->name('customers.createAddress');
     Route::post('/customers/{customer}/store-address', [CustomerController::class, 'storeAddress'])
@@ -43,15 +45,23 @@ Route::middleware('auth')->group(function () {
     ->name('customers.editAddress');
     Route::put('/customers/{customer}/addresses/{address}', [CustomerController::class, 'updateAddress'])
     ->name('customers.updateAddress');
+    Route::get('/customers-search', [CustomerController::class, 'search'])->name('customers.search');
 
     Route::resource('specs', RopeSpecController::class);
     Route::get('/specs-search', [RopeSpecController::class, 'search'])->name('specs.search');
 
 
     Route::resource('so', SaleOrderController::class);
+    Route::get('/so-search', [SaleOrderController::class, 'search'])->name('sale-order.search');
+
     Route::resource('deliveries', DeliveryController::class);
+    Route::get('/delivery-search', [DeliveryController::class, 'search'])->name('delivery.search');
+
     Route::resource('invoices', InvoiceController::class);
+    Route::get('/invoice-search', [InvoiceController::class, 'search'])->name('invoice.search');
+
     Route::resource('receipts', ReceiptController::class);
+    Route::get('/receipt-search', [ReceiptController::class, 'search'])->name('receipt.search');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

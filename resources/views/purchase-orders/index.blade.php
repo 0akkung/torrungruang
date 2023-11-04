@@ -12,8 +12,8 @@
     </div>
     <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
         <div class="col-span-10">
-            <form method="GET" action="{{ route('specs.search') }}" class="flex">
-                <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search PO ID (ยังไม่ทำrouteSearch)">
+            <form method="GET" action="{{ route('purchase-order.search') }}" class="flex">
+                <input type="search" class="border-2 border-cyan-700 bg-white h-11 w-full rounded-l-lg text-sm focus:outline-none" name="search" placeholder="Search Purchase Order ID ,Customer ID and Company Name">
                 <button type="submit" class="p-2 bg-tag text-white hover:bg-cyan-700 text-base font-semibold rounded-r-lg">Search</button>
             </form>
         </div>
@@ -34,18 +34,26 @@
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs uppercase bg-table text-white">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-center">PO ID</th>
-                    <th scope="col" class="px-6 py-3 text-center">Customer ID </th>
-                    <th scope="col" class="px-6 py-3 text-center">Company Name</th>
-                    <th scope="col" class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
-                    <th scope="col" class="px-6 py-3 text-center">Payment Status</th>
-                    <th scope="col" class="px-6 py-3 text-center">Produce Status</th>
-                    <th scope="col" class="px-6 py-3 text-center">Order Date</th>
-                    <th scope="col" class="px-6 py-3 text-center">Delivery Date</th>
-                    <th scope="col" class="px-6 py-3 text-center">Action</th>
+                    <th scope="col" class="px-6 py-3">PO ID</th>
+                    <th scope="col" class="px-6 py-3">Customer ID </th>
+                    <th scope="col" class="px-6 py-3">Company Name</th>
+                    <th scope="col" class="px-6 py-3">Price (add VAT + 1.07%)</th>
+                    <th scope="col" class="px-6 py-3">Payment Status</th>
+                    <th scope="col" class="px-6 py-3 ">Produce Status</th>
+                    <th scope="col" class="px-6 py-3 ">Order Date</th>
+                    <th scope="col" class="px-6 py-3 ">Delivery Date</th>
+                    <th scope="col" class="px-6 py-3 ">Action</th>
                 </tr>
             </thead>
             <tbody>
+                @if( count($purchaseOrders) === 0 )
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td colspan="9" class="px-6 py-4 text-center font-medium text-gray-900">
+                        No Purchase Orders Available
+                    </td>
+                </tr>
+                @endif
+
                 @foreach ($purchaseOrders as $purchaseOrder)
                 <tr class="bg-white border-b">
                     <td class="px-6 py-4 font-medium text-gray-900">{{$purchaseOrder->id}}</td>
@@ -68,8 +76,8 @@
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->purchase_date}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->due_date}}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"> 
-                        <a href="{{ route('po.show',['po'=> $purchaseOrder]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a> 
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        <a href="{{ route('po.show',['po'=> $purchaseOrder]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
                     </td>
                 </tr>
                 @endforeach

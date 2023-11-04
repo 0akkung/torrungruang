@@ -85,6 +85,17 @@ class CustomerController extends Controller
         $customer->save();
         return redirect()->route('customers.show',['customer' => $customer]);
     }
+    
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $customers = Customer::search($search)->get();
+
+        return view('customers.index', [
+            'title' => 'Customer > Search > ' . $search,
+            'customers' => $customers
+        ]);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -121,6 +132,7 @@ class CustomerController extends Controller
         $customer->addresses()->save($address);
             return redirect()->route('customers.show',['customer' => $customer]);
     }
+
 
 
 }

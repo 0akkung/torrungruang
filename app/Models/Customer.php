@@ -17,4 +17,11 @@ class Customer extends Model
     public function purchaseOrders(): HasMany {
         return $this->hasMany(PurchaseOrder::class);
     }
+
+    public function scopeSearch($query, $search) {
+        return $query->where('company_name', 'like', '%' . $search . '%')
+            ->orWhere('purchaser_name', 'like', '%' . $search . '%')
+            ->orWhere('phone_number', 'like', '%' . $search . '%')
+            ->orWhere('id', 'like', '%' . $search . '%');
+    }
 }

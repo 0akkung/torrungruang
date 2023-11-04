@@ -101,9 +101,6 @@
                     @endif
                 </div>
             </div>
-            <div>
-                สถานะการจ่ายเงิน
-            </div>
         </div>
     </div>
 </div>

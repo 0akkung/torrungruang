@@ -30,7 +30,7 @@ class SaleOrderController extends Controller
      */
     public function create()
     {
-        
+
         $specs = RopeSpec::get();
         $selectedPurchaseOrder = 1;
         $customers = Customer::get();
@@ -60,17 +60,17 @@ class SaleOrderController extends Controller
         $saleOrder->sale_date = now();
         $saleOrder->delivery_status = false;
 
-        foreach ($poItems as $poItem){  // list จากลูปpoItems
+        foreach ($poItems as $poItem) {  // list จากลูปpoItems
             //dd($poItem); pass
             $saleQuantity = $request->input('sale_quantity_' . $poItem->id);
 
-            if($saleQuantity == null){
+            if ($saleQuantity == null) {
                 $saleQuantity = 0;
             }
             $spec = RopeSpec::find($poItem->rope_spec_id);
             //dd($spec); 
-            $soItem = new SoItem(); 
-            $soItem->sale_quantity = $saleQuantity; 
+            $soItem = new SoItem();
+            $soItem->sale_quantity = $saleQuantity;
             // dd($soItem);
             $soItem->rope_spec_id = $spec->id;
             $soItem->so_item_price = $poItem->unit_price * $soItem->sale_quantity;
@@ -86,13 +86,13 @@ class SaleOrderController extends Controller
             $saleOrder->original_order_price += $soItem->so_item_price;
 
             $purchaseOrder->poItems()->save($poItem); // save after update remaining_quantity
-            
+
         }
-        $saleOrder->total_order_price = $saleOrder->original_order_price * (1.07); 
+        $saleOrder->total_order_price = $saleOrder->original_order_price * (1.07);
         $saleOrder->save();
         $purchaseOrder->saleOrders()->save($saleOrder);
-        
-            return redirect()->route('so.index')->with('success', 'Sale Order Created successfully!');
+
+        return redirect()->route('so.index')->with('success', 'Sale Order Created successfully!');
     }
 
     /**
@@ -134,5 +134,17 @@ class SaleOrderController extends Controller
     public function destroy(SaleOrder $saleOrder)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $saleOrders = SaleOrder::search($search)->get();
+
+        return view('sale-orders.index', [
+            'title' => 'Sale Orders > Search > ' . $search,
+            'saleOrders' => $saleOrders
+
+        ]);
     }
 }

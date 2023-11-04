@@ -23,6 +23,17 @@ class DeliveryController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $deliveries = Delivery::search($search)->get();
+
+        return view('deliveries.index', [
+            'title' => 'Deliveries > Search > ' . $search,
+            'deliveries' => $deliveries
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

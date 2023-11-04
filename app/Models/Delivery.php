@@ -12,6 +12,23 @@ class Delivery extends Model
 
     public function saleOrder(): BelongsTo
     {
-    return $this->belongsTo(SaleOrder::class);
+        return $this->belongsTo(SaleOrder::class);
+    }
+
+
+
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('id', 'like', '%' . $search . '%')
+            ->orWhereHas('saleOrder', function ($soQuery) use ($search) {
+                $soQuery->where('id', 'like', '%' . $search . '%')
+                    ->orWhereHas('purchaseOrder', function ($poQuery) use ($search) {
+                        $poQuery->where('id', 'like', '%' . $search . '%')
+                            ->orWhereHas('customer', function ($customerQuery) use ($search) {
+                                $customerQuery->where('id', 'like', '%' . $search . '%')
+                                    ->orWhere('company_name', 'like', '%' . $search . '%');
+                            });
+                    });
+            });
     }
 }

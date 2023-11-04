@@ -28,11 +28,17 @@ class PurchaseOrderController extends Controller
      */
     public function create()
     {
+        $specs = RopeSpec::get();
+        $customers = Customer::get();
+
+        if ( count($specs) === 0 || count($customers) === 0 ) {
+            return redirect()->back()->with('error', 'Cannot Create Purchase Order without any Customers and Specs');
+        }
+
         $selectedCustomerId = 1;
         $selectedSpecs = [];
         $selectedCustomer = Customer::find($selectedCustomerId);
-        $specs = RopeSpec::get();
-        $customers = Customer::get();
+
         return view('purchase-orders.create', [
             'title' => 'Create Purchase Orders',
             'specs' => $specs,
@@ -136,12 +142,14 @@ class PurchaseOrderController extends Controller
         //
     }
 
+
     public function search(Request $request)
     {
-        $term = $request->input('term');
-        $purchaseOrders = PurchaseOrder::where('field_to_search', 'like', '%'.$term.'%')->get();
+        $search = $request->input('search');
+        $purchaseOrders = PurchaseOrder::search($search)->get();
+
         return view('purchase-orders.index', [
-            'title' => 'Purchase Orders > Search > ' . $term,
+            'title' => 'Purchase Orders > Search > ' . $search,
             'purchaseOrders' => $purchaseOrders
         ]);
     }
