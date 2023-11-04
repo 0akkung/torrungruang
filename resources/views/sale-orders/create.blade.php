@@ -111,7 +111,7 @@
                         <td class="px-6 py-4">${poItem.remaining_quantity}</td>
                         <td class="px-6 py-4 text-center">
                             <input type="number" id="sale_quantity_${poItem.id}" name="sale_quantity_${poItem.id}" 
-                            class="border rounded-lg p-2 mb-2" value="0" min="0" 
+                            class="border rounded-lg p-2 mb-2" value="0" min="0" max="${poItem.remaining_quantity}"
                             ${poItem.remaining_quantity === 0 ? 'disabled' : 'value="0"'}>
                         </td>
                         <td class="px-6 py-4 text-center"></td>
