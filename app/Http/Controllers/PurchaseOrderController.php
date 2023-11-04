@@ -114,9 +114,8 @@ class PurchaseOrderController extends Controller
             'customer' => $po->customer,
             'poItems' => $po->poItems,
             'address' =>  $address
-
         ]);
-    }
+    }   
 
     /**
      * Show the form for editing the specified resource.
@@ -151,6 +150,27 @@ class PurchaseOrderController extends Controller
         return view('purchase-orders.index', [
             'title' => 'Purchase Orders > Search > ' . $search,
             'purchaseOrders' => $purchaseOrders
+        ]);
+    }
+
+    public function option(Request $request)
+    {   
+        $status = $request->input('sort_by');
+        // dd($status);
+        if ($status === 'PaymentHasBeenMade') {
+            // Query the PurchaseOrder table to find records where 'produce_status' is true
+            $po = PurchaseOrder::where('produce_status', true)->get();
+            
+        }
+        else if ($status === 'awaitingPayment'){
+            $po = PurchaseOrder::where('payment_status', false)->get();
+        }
+        else if ($status === 'notYetComplete'){
+            $po = PurchaseOrder::where('produce_status', false)->get();
+        }
+        return view('purchase-orders.index', [
+            'title' => 'Purchase Orders > Payment Successfully',
+            'purchaseOrders' => $po
         ]);
     }
 

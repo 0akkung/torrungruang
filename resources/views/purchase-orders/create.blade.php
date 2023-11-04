@@ -8,7 +8,7 @@
     <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Create Purchase Order</h1>
 </div>
 
-<form action="{{ route('po.store') }}" method="POST">
+<form id="poForm" action="{{ route('po.store') }}" method="POST">
     @csrf
     <div class="bg-white p-5 border w-1/2 rounded-[12px] shadow-md">
         <label for="due_date" class="block font-bold mb-2">Due Date</label>
@@ -34,12 +34,13 @@
         <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
     </div>
     <div id="poItemsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
-    <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
+        <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
     </div>
     <div class="mb-6 flex space-x-8">
         <x-submit-button label="Submit" />
         <x-back-button label="Cancel" />
     </div>
+    
 </form>
 
 
@@ -71,7 +72,7 @@
         const specId = `poItem-${specCount}`;
         //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
-            <div class="bg-gray-100 rounded-lg p-5" id="${specId}>
+            <div class="bg-gray-100 rounded-lg p-5" id="${specId}">
             <h2 class="text-xl font-semibold mb-2">Po Item #${specCount}</h2>
             <label for="po_items[${specCount}][spec_id]" class="block font-bold mb-2">Spec</label>
             <select id="po_items[${specCount}][spec_id]" name="po_items[${specCount}][spec_id]" class="border rounded-lg p-2 mb-2">
@@ -102,11 +103,19 @@
 
         container.appendChild(div);
     }
+
     function deletePoItem(poItemId) {
         const poItemElement = document.getElementById(poItemId);
-        if(poItemElement) {
+        if (poItemElement) {
             poItemElement.remove();
         }
     }
+
+    document.getElementById('poForm').addEventListener('submit', function(event) {
+        if (specCount === 0) {
+            event.preventDefault(); // Prevent form submission if specCount is 0
+            alert('Please add at least one spec before submitting.');
+        }
+    });
 </script>
 @endsection

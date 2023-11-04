@@ -10,10 +10,11 @@
     <title>Torrungruang</title>
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-
+    
     <!-- For POPUP -->
     @include('sweetalert::alert')
 

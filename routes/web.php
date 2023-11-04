@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('po', PurchaseOrderController::class);
     Route::get('/po-search', [PurchaseOrderController::class, 'search'])->name('purchase-order.search');
-
+    Route::get('/purchase-order/option', [PurchaseOrderController::class,'option'])->name('purchase-order.option');
 
     Route::resource('customers', CustomerController::class);
 
