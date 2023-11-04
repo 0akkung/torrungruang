@@ -40,6 +40,8 @@ class DeliveryController extends Controller
     public function create()
     {
         $saleOrders = SaleOrder::doesntHave('delivery')->get();
+        //$saleOrders = SaleOrder::doesntHave('delivery')->dd();  query
+
         //dd($saleOrders);
 
         return view('deliveries.create', [

@@ -97,16 +97,16 @@
                 <option value="coil">Coil</option>
                 <option value="piece">Piece</option>
             </select>
-                <button type="button" onclick="deletePoItem('${specId}')">Delete</button>
+                <button type="button" onclick="deletePoItem('${specId}')" class="ml-3">Delete</button>
             </div>
         `;
 
         container.appendChild(div);
     }
-
-    function deletePoItem(poItemId) {
-        const poItemElement = document.getElementById(poItemId);
-        if (poItemElement) {
+    function deletePoItem(specId) {
+        const poItemElement = document.getElementById(specId);
+        console.log("Deleting item with ID:", specId);
+        if(poItemElement) {
             poItemElement.remove();
         }
     }
