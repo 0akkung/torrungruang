@@ -10,7 +10,7 @@
 
 <form id="poForm" action="{{ route('po.store') }}" method="POST">
     @csrf
-    <div class="bg-white p-5 border w-1/2 rounded-[12px] shadow-md">
+    <div class="bg-white p-5 border w-auto rounded-[12px] shadow-md">
         <label for="due_date" class="block font-bold mb-2">Due Date</label>
         <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
         {{-- Customer ทำ search ด้วยไม่เป็น --}}

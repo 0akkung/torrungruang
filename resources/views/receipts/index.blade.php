@@ -3,14 +3,13 @@
 @section('content')
 
 <div>
-  <div class="flex justify-between">
-    <div class="flex">
-      <h1 class="px-1 bg-tag py-1 mr-1"></h1>
-      <h1 class="px-1 bg-tag py-1"></h1>
-      <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Receipt</h1>
-    </div>
-    <a href="{{ route('receipts.create') }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ Receipt</a>
+
+  <div class="flex">
+    <h1 class="px-1 bg-tag py-1 mr-1"></h1>
+    <h1 class="px-1 bg-tag py-1"></h1>
+    <h1 class="text-header bg-white rounded-r-lg shadow-md px-5 py-1 inline text-2xl font-bold">Receipt</h1>
   </div>
+
   <div class="grid grid-cols-12 gap-2 mb-6 mt-6 w-full">
     <div class="col-span-10">
       <form method="GET" action="{{ route('receipt.search') }}" class="flex">
@@ -19,26 +18,23 @@
       </form>
     </div>
     <div class="col-span-2">
-      <select id="status" name="status" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option selected>Choose Receipt status</option>
-        <option value="notYetComplete">Not yet completed</option>
-        <option value="Complete">Complete</option>
-      </select>
+      <form method="GET" action="{{ route('receipts.create') }}" class="">
+        <button type="submit" class="p-2.5 shadow-md focus:outline-none bg-po-button text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 w-full">+ Receipt</button>
+      </form>
     </div>
-
   </div>
 
   <div class="overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-400">
-      <thead class="text-sm uppercase bg-table text-white">
+  <table class="w-full text-table text-left text-gray-400">
+        <thead class="text-table-header uppercase bg-table text-white">
         <tr>
-          <th scope="col" class="px-6 py-3 text-center">Receipt ID</th>
-          <th scope="col" class="px-6 py-3 text-center">PO ID</th>
-          <th scope="col" class="px-6 py-3 text-center">Customer ID </th>
-          <th scope="col" class="px-6 py-3 text-center">Company Name</th>
-          <th scope="col" class="px-6 py-3 text-center">Price<br>(+ VAT 1.07%)</th>
-          <th scope="col" class="px-6 py-3 text-center">Receipt Date</th>
-          <th scope="col" class="px-6 py-3 text-center">Action</th>
+          <th scope="col" class="px-6 py-3">Receipt ID</th>
+          <th scope="col" class="px-6 py-3">PO ID</th>
+          <th scope="col" class="px-6 py-3">Customer ID </th>
+          <th scope="col" class="px-6 py-3">Company Name</th>
+          <th scope="col" class="px-6 py-3">Price<br>(+ VAT 1.07%)</th>
+          <th scope="col" class="px-6 py-3">Receipt Date</th>
+          <th scope="col" class="px-6 py-3">Action</th>
         </tr>
       </thead>
       <tbody>

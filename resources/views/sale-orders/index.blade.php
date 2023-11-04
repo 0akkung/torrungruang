@@ -32,17 +32,17 @@
     </div>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-table text-white">
+    <table class="w-full text-table text-left text-gray-400">
+        <thead class="text-table-header uppercase bg-table text-white">
                 <tr>
-                    <th class="px-6 py-3 text-center">SO ID</th>
-                    <th class="px-6 py-3 text-center"> PO ID </th>
-                    <th class="px-6 py-3 text-center"> Company ID </th>
-                    <th class="px-6 py-3 text-center"> Company Name</th>
-                    <th class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
-                    <th class="px-6 py-3 text-center">Delivery Status</th>
-                    <th class="px-6 py-3 text-center">Create SO Date</th>
-                    <th class="px-6 py-3 text-center">Action</th>
+                    <th class="px-6 py-3">SO ID</th>
+                    <th class="px-6 py-3"> PO ID </th>
+                    <th class="px-6 py-3"> Company ID </th>
+                    <th class="px-6 py-3"> Company Name</th>
+                    <th class="px-6 py-3">Price (add VAT + 1.07%)</th>
+                    <th class="px-6 py-3">Delivery Status</th>
+                    <th class="px-6 py-3">Create SO Date</th>
+                    <th class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>
