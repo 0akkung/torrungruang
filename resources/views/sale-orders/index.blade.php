@@ -19,13 +19,14 @@
             </form>
         </div>
         <div class="col-span-2">
-            <!-- มีเวลาค่อยทำ seachbar-->
-            <!-- <button href="/po/delete" class="p-2 bg-gray-900 text-white hover:bg-gray-800 text-md font-semibold">ลบใบสั่งซื้อ</button> มีเวลาค่อยทำ เฉพาะยังไม่เปิดใบสั่งขาย -->
-            <select id="status" name="status" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Choose SO status</option>
-                <option value="notYetComplete">Not yet completed</option>
-                <option value="awaitingPayment">Completed</option>
-            </select>
+            <form action="{{ route('sale-order.option') }}" method="GET">
+                @csrf
+                <select name="sort_by" id="sortBy" onchange="this.form.submit()" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="" selected>Choose SO status</option>
+                    <option value="notYetComplete">Unfinished</option>
+                    <option value="completed">Finished</option>
+                </select>
+            </form>
         </div>
 
     </div>

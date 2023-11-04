@@ -156,20 +156,24 @@ class PurchaseOrderController extends Controller
     public function option(Request $request)
     {   
         $status = $request->input('sort_by');
+        $po = PurchaseOrder::get();
+        $title = "";
         // dd($status);
         if ($status === 'PaymentHasBeenMade') {
             // Query the PurchaseOrder table to find records where 'produce_status' is true
-            $po = PurchaseOrder::where('produce_status', true)->get();
-            
+            $po = PurchaseOrder::where('payment_status', true)->get();
+            $title = "Payment Successfully";
         }
         else if ($status === 'awaitingPayment'){
             $po = PurchaseOrder::where('payment_status', false)->get();
+            $title = "Waiting for payment";
         }
         else if ($status === 'notYetComplete'){
             $po = PurchaseOrder::where('produce_status', false)->get();
+            $title = "Unfinished";
         }
         return view('purchase-orders.index', [
-            'title' => 'Purchase Orders > Payment Successfully',
+            'title' => 'Purchase Orders > ' .$title,
             'purchaseOrders' => $po
         ]);
     }
