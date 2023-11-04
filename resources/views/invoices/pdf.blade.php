@@ -1,12 +1,7 @@
-@extends('layouts.main')
-@section('content')
 <div class="flex mb-5">
     <h1 class="px-1 bg-tag py-1 mr-1"></h1>
     <h1 class="px-1 bg-tag py-1"></h1>
     <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Delivery Detail</h1>
-    <div class="flex">
-        <a href="{{ route('invoices.printPDF',['invoice'=> $invoice]) }}" class="p-2 bg-po-button shadow-md text-black hover:bg-yellow-500 text-md font-bold rounded-lg px-4 inline">+ PO</a>
-    </div>
 </div>
 <div class="w-full">
     <div class="bg-white p-5 border w-full rounded-[12px] shadow-md">
@@ -77,4 +72,3 @@
         </div>
     </div>
 </div>
-@endsection

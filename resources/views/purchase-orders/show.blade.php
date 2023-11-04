@@ -4,6 +4,7 @@
     <h1 class="px-1 bg-tag py-1 mr-1"></h1>
     <h1 class="px-1 bg-tag py-1"></h1>
     <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Purchase Order Detail</h1>
+    
 </div>
 <div class="w-full">
     <div class="bg-white p-5 border w-full rounded-[12px] shadow-md">

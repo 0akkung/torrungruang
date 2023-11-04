@@ -3,11 +3,13 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
+use App\Models\Invoice;
 use App\Models\Receipt;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +71,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/pdf', [PDFController::class, 'pdf'])->name('pdf');
+    Route::get('/invoices/{invoice}/pdf', [InvoiceController::class, 'printPDF'])
+    ->name('invoices.printPDF');
 });
 
 require __DIR__.'/auth.php';

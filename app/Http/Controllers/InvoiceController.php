@@ -8,6 +8,7 @@ use App\Models\Delivery;
 use App\Models\PurchaseOrder;
 use App\Models\SaleOrder;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\PDF;
 
 class InvoiceController extends Controller
 {
@@ -108,5 +109,23 @@ class InvoiceController extends Controller
             'invoices' => $invoices
 
         ]);
+    }
+    public function printPDF(Invoice $invoice)
+    {
+        $address = Address::find($invoice->purchaseOrder->address_id);
+        $saleOrders = SaleOrder::where('purchase_order_id', $invoice->purchaseOrder->id)->get();  //ดึง saleOrders
+        
+        $pdf = app('dompdf.wrapper')->loadView('invoices.pdf', [
+
+            'title' => "Invoice > Detail",
+            'invoice' => $invoice,
+            'purchaseOrder' => $invoice->purchaseOrder,
+            // 'deliveries' => $invoice->purchaseOrder->saleOrder->delivery,
+            'customer' => $invoice->purchaseOrder->customer,
+            'address' => $address,
+            'saleOrders' => $saleOrders
+        ]
+        );
+        return $pdf->download('invoices.pdf');
     }
 }
