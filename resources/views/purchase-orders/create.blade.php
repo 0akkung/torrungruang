@@ -8,9 +8,9 @@
     <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Create Purchase Order</h1>
 </div>
 
-<form action="{{ route('po.store') }}" method="POST">
+<form id="poForm" action="{{ route('po.store') }}" method="POST">
     @csrf
-    <div class="bg-white p-5 border w-1/2 rounded-[12px] shadow-md">
+    <div class="bg-white p-5 border w-auto rounded-[12px] shadow-md">
         <label for="due_date" class="block font-bold mb-2">Due Date</label>
         <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
         {{-- Customer ทำ search ด้วยไม่เป็น --}}
@@ -34,12 +34,13 @@
         <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
     </div>
     <div id="poItemsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
-    <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
+        <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
     </div>
     <div class="mb-6 flex space-x-8">
         <x-submit-button label="Submit" />
         <x-back-button label="Cancel" />
     </div>
+    
 </form>
 
 
@@ -110,5 +111,12 @@
             specCount--;
         }
     }
+
+    document.getElementById('poForm').addEventListener('submit', function(event) {
+        if (specCount === 0) {
+            event.preventDefault(); // Prevent form submission if specCount is 0
+            alert('Please add at least one spec before submitting.');
+        }
+    });
 </script>
 @endsection

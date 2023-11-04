@@ -147,4 +147,25 @@ class SaleOrderController extends Controller
 
         ]);
     }
+
+    public function option(Request $request)
+    {   
+        $status = $request->input('sort_by');
+        $so = SaleOrder::get();
+        $title = "";
+        // dd($status);
+        if ($status === 'completed') {
+            // Query the PurchaseOrder table to find records where 'produce_status' is true
+            $so = SaleOrder::where('delivery_status', true)->get();
+            $title = "Finished";
+        }
+        else if ($status === 'notYetComplete'){
+            $so = SaleOrder::where('delivery_status', false)->get();
+            $title = "Unfinished";
+        }
+        return view('sale-orders.index', [
+            'title' => 'Sale Orders > ' . $title,
+            'saleOrders' => $so
+        ]);
+    }
 }

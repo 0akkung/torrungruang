@@ -19,20 +19,23 @@
         </div>
         <div class="col-span-2">
             <!-- มีเวลาค่อยทำ seachbar-->
-            <!-- <button href="/po/delete" class="p-2 bg-gray-900 text-white hover:bg-gray-800 text-md font-semibold">ลบใบสั่งซื้อ</button> มีเวลาค่อยทำ เฉพาะยังไม่เปิดใบสั่งขาย -->
-            <select id="status" name="status" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Choose PO status</option>
-                <option value="notYetComplete">Not yet completed</option>
-                <option value="awaitingPayment">Awaiting payment</option>
-                <option value="PaymentHasBeenMade">Payment has been made</option>
-            </select>
+            <form action="{{ route('purchase-order.option') }}" method="GET">
+                @csrf
+                <select name="sort_by" id="sortBy" onchange="this.form.submit()" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="" selected>Choose PO status</option>
+                    <option value="notYetComplete">Not yet completed</option>
+                    <option value="awaitingPayment">Awaiting payment</option>
+                    <option value="PaymentHasBeenMade">Payment has been made</option>
+                </select>
+            </form>
+
         </div>
 
     </div>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-table text-white">
+    <table class="w-full text-table text-left text-gray-400">
+        <thead class="text-table-header uppercase bg-table text-white">
                 <tr>
                     <th scope="col" class="px-6 py-3">PO ID</th>
                     <th scope="col" class="px-6 py-3">Customer ID </th>
@@ -86,3 +89,17 @@
     </div>
 </div>
 @endsection
+
+<script>
+    // function submit(e){
+    //     console.log(e);
+    // }
+    // var element = document.getElementById('sortBy');
+    // console.log(element);
+    // var text = element.options[element.selectedIndex].text;
+    // console.log(text);
+    // .addEventListener('change', function() {
+    //     console.log("ku")
+    //     // this.form.submit();
+    // });
+</script>

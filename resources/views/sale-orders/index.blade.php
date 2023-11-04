@@ -19,29 +19,30 @@
             </form>
         </div>
         <div class="col-span-2">
-            <!-- มีเวลาค่อยทำ seachbar-->
-            <!-- <button href="/po/delete" class="p-2 bg-gray-900 text-white hover:bg-gray-800 text-md font-semibold">ลบใบสั่งซื้อ</button> มีเวลาค่อยทำ เฉพาะยังไม่เปิดใบสั่งขาย -->
-            <select id="status" name="status" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Choose SO status</option>
-                <option value="notYetComplete">Not yet completed</option>
-                <option value="awaitingPayment">Completed</option>
-            </select>
+            <form action="{{ route('sale-order.option') }}" method="GET">
+                @csrf
+                <select name="sort_by" id="sortBy" onchange="this.form.submit()" class="bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="" selected>Choose SO status</option>
+                    <option value="notYetComplete">Unfinished</option>
+                    <option value="completed">Finished</option>
+                </select>
+            </form>
         </div>
 
     </div>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-400">
-            <thead class="text-xs uppercase bg-table text-white">
+    <table class="w-full text-table text-left text-gray-400">
+        <thead class="text-table-header uppercase bg-table text-white">
                 <tr>
-                    <th class="px-6 py-3 text-center">SO ID</th>
-                    <th class="px-6 py-3 text-center"> PO ID </th>
-                    <th class="px-6 py-3 text-center"> Company ID </th>
-                    <th class="px-6 py-3 text-center"> Company Name</th>
-                    <th class="px-6 py-3 text-center">Price (add VAT + 1.07%)</th>
-                    <th class="px-6 py-3 text-center">Delivery Status</th>
-                    <th class="px-6 py-3 text-center">Create SO Date</th>
-                    <th class="px-6 py-3 text-center">Action</th>
+                    <th class="px-6 py-3">SO ID</th>
+                    <th class="px-6 py-3"> PO ID </th>
+                    <th class="px-6 py-3"> Company ID </th>
+                    <th class="px-6 py-3"> Company Name</th>
+                    <th class="px-6 py-3">Price (add VAT + 1.07%)</th>
+                    <th class="px-6 py-3">Delivery Status</th>
+                    <th class="px-6 py-3">Create SO Date</th>
+                    <th class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody>

@@ -25,8 +25,8 @@
     </div>
 
 <div class="overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-400">
-        <thead class="text-xs uppercase bg-table text-white">
+    <table class="w-full text-table text-left text-gray-400">
+        <thead class="text-table-header uppercase bg-table text-white">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Spec ID

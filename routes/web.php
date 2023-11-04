@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('po', PurchaseOrderController::class);
     Route::get('/po-search', [PurchaseOrderController::class, 'search'])->name('purchase-order.search');
-
+    Route::get('/purchase-order/option', [PurchaseOrderController::class,'option'])->name('purchase-order.option');
 
     Route::resource('customers', CustomerController::class);
 
@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('so', SaleOrderController::class);
     Route::get('/so-search', [SaleOrderController::class, 'search'])->name('sale-order.search');
+    Route::get('/sale-order/option', [SaleOrderController::class,'option'])->name('sale-order.option');
 
     Route::resource('deliveries', DeliveryController::class);
     Route::get('/delivery-search', [DeliveryController::class, 'search'])->name('delivery.search');
