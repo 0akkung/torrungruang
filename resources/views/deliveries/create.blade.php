@@ -12,12 +12,13 @@
             <label for="saleOrder_id" class="block font-bold mb-4">Select Sale Order</label>
             <select id="saleOrder_id" name="saleOrder_id" class="border rounded-lg px-20 mb-4">
                 @foreach($saleOrders as $saleOrder)
-                    <option value="{{ $saleOrder->id }}">{{ $saleOrder->id }}</option>    
+                    <option value="{{ $saleOrder->id }}" data-customer="{{ $saleOrder->purchaseOrder->customer }}" 
+                        data-purchaseorder="{{$saleOrder->purchaseOrder}}"> {{ $saleOrder->id }}</option>    
                 @endforeach
             </select>
-            <div id="poShow"></div>
-            <div id="poItemsTable">
-                <table id = "poItemsTable" class="">
+            <div id="soShow"></div>
+            <div id="soItemsTable">
+                <table id = "soItemsTable" class="">
                     <thead class="text-xs uppercase bg-table text-white">
                         <tr>
                             <th class="px-6 py-3 text-center">NO.</th>
@@ -38,4 +39,28 @@
         </div>
     </form>
 </div>
+<script>
+    window.onload = function() {
+    var selectElement = document.getElementById("saleOrder_id");
+    var selectedValueElement = document.getElementById("soShow");
+    var tableElement = document.getElementById("soItemsTable");
+    var selectElement = document.getElementById("saleOrder_id");
+    var selectedValueElement = document.getElementById("soShow");
+    
+    selectElement.addEventListener("change", function() {
+        var selectedValue = selectElement.value;
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var customer = JSON.parse(selectedOption.getAttribute("data-customer"));
+        var purchaseOrder = JSON.parse(selectedOption.getAttribute("data-purchaseorder"));
+        var htmlContent = `
+        <p>SO ID: ${selectedValue}</p>
+        <p>PO ID: ${purchaseOrder.id}</p>
+        <p>Customer ID: ${customer.id}</p>
+        <p>Company Name: ${customer.company_name}</p>
+    `;
+    selectedValueElement.innerHTML = htmlContent;
+    });
+};
+
+</script>
 @endsection

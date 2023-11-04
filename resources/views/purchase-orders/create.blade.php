@@ -107,6 +107,7 @@
         console.log("Deleting item with ID:", specId);
         if(poItemElement) {
             poItemElement.remove();
+            specCount--;
         }
     }
 </script>
