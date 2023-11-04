@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('deliveries', DeliveryController::class);
     Route::get('/delivery-search', [DeliveryController::class, 'search'])->name('delivery.search');
+    Route::get('/delivery/option', [DeliveryController::class,'option'])->name('delivery.option');
+
 
     Route::resource('invoices', InvoiceController::class);
     Route::get('/invoice-search', [InvoiceController::class, 'search'])->name('invoice.search');

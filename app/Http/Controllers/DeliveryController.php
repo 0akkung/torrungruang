@@ -46,7 +46,9 @@ class DeliveryController extends Controller
 
         return view('deliveries.create', [
             'title' => "Delivery > Create",
-            'saleOrders' => $saleOrders
+            'saleOrders' => $saleOrders,
+            'soItems' => [],
+            'so' => [] 
         ]);
     }
 
@@ -55,8 +57,9 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        $saleOrder = SaleOrder::find($request->get('saleOrder_id'));
-        //dd($saleOrder);
+        $saleOrderID = $request->input('saleOrder'); // Adjust this according to the actual field name in your form
+        $saleOrder = SaleOrder::find($saleOrderID);
+        $saleOrder->load('delivery');
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
@@ -64,14 +67,14 @@ class DeliveryController extends Controller
         //dd($purchaseOrder);
         $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
         //dd($poItems);
-        foreach ($poItems as $poItem){
+        foreach ($poItems as $poItem) {
             $check_item = true;
-            if($poItem->remaining_quantity !== 0) {
+            if ($poItem->remaining_quantity !== 0) {
                 $check_item = false;
                 break;
             }
         }
-        if($check_item){
+        if ($check_item) {
             $saleOrder->delivery_status = true;
             $purchaseOrder->produce_status = true;
         }
@@ -120,5 +123,22 @@ class DeliveryController extends Controller
     public function destroy(Delivery $delivery)
     {
         //
+    }
+
+    public function option(Request $request)
+    {
+        $id = $request->input('search_by_delivery');
+        $so = SaleOrder::find($id);
+        $so->load('soItems');
+        $saleOrders = SaleOrder::doesntHave('delivery')->get();
+        // dd($so->soItems);
+
+        // dd($status);
+        return view('deliveries.create', [
+            'title' => 'Delivery > Create > Sale Order ID : ' . $so->id,
+            'soItems' => $so->soItems,
+            'saleOrders' => $saleOrders,
+            'so' => $so
+        ]);
     }
 }
