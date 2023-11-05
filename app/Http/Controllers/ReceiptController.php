@@ -36,6 +36,11 @@ class ReceiptController extends Controller
      */
     public function create()
     {
+        $purchaseOrders = PurchaseOrder::where('produce_status', true)->whereHas('invoice')->whereDoesntHave('receipt')->get();
+        if ( count($purchaseOrders) === 0 ) {
+            return redirect()->back()->with('error', "Cannot Create Receipt without any Purchase Order's Invoice");
+        }
+
         $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('receipt')->get();  //เอาที่สร้างใบวางบิลแล้ว
         return view('receipts.create', [
             'title' => "Receipt > Create",

@@ -28,6 +28,12 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        $purchaseOrders = PurchaseOrder::where('produce_status', true)->doesntHave('invoice')->get();
+
+        if ( count($purchaseOrders) === 0 ) {
+            return redirect()->back()->with('error', 'Cannot Create Invoice without any Finished Purchase Order');
+        }
+
         $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('invoice')->get();
         return view('invoices.create', [
             'title' => "Invoice > Create",
