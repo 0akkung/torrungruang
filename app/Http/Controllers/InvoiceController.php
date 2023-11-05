@@ -126,6 +126,6 @@ class InvoiceController extends Controller
             'saleOrders' => $saleOrders
         ]
         );
-        return $pdf->download('invoices.pdf');
+        return $pdf->stream('invoices.pdf');
     }
 }

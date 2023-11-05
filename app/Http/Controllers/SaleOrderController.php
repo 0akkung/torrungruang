@@ -90,7 +90,7 @@ class SaleOrderController extends Controller
         }
         $saleOrder->total_order_price = $saleOrder->original_order_price * (1.07);
         $saleOrder->save();
-        $purchaseOrder->saleOrders()->save($saleOrder);
+        $purchaseOrder->saleOrders()->save($saleOrder);//->dd();
 
         return redirect()->route('so.index')->with('success', 'Sale Order Created successfully!');
     }
