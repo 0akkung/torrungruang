@@ -174,7 +174,7 @@ class SaleOrderController extends Controller
     public function createOption(Request $request)
     {   
         $id = $request->input('purchaseOrder_id');
-        $purchaseOrders = PurchaseOrder::get();
+        $purchaseOrders = PurchaseOrder::where('produce_status',false)->get();
         $po = PurchaseOrder::find($id);
         $po->load('poItems');
         return view('sale-orders.create', [
