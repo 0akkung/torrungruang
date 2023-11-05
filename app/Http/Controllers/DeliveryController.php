@@ -64,6 +64,7 @@ class DeliveryController extends Controller
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
         $purchaseOrder = PurchaseOrder::find($saleOrder->purchase_order_id);
+
         //dd($purchaseOrder);
         $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
         //dd($poItems);
@@ -78,6 +79,8 @@ class DeliveryController extends Controller
             $saleOrder->delivery_status = true;
             $purchaseOrder->produce_status = true;
         }
+        
+        $saleOrder->delivery_status = true;
         $purchaseOrder->save();
         $saleOrder->save();
         return redirect()->route('deliveries.index')->with('success', 'Delivery Bill Created successfully!');
