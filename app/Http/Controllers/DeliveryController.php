@@ -40,6 +40,11 @@ class DeliveryController extends Controller
     public function create()
     {
         $saleOrders = SaleOrder::doesntHave('delivery')->get();
+
+        if ( count($saleOrders) === 0  ) {
+            return redirect()->back()->with('error', 'Cannot Create Delivery without any Sale Order');
+        }
+
         //$saleOrders = SaleOrder::doesntHave('delivery')->dd();  query
 
         //dd($saleOrders);

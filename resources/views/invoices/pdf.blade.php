@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="background-color: #fff; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                        <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
                             <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333; ">{{$invoice->id}}</td>
                             <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$invoice->bill_date}}</td>
                         </tr>
@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="background-color: #fff; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                        <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
                             <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333; ">{{$purchaseOrder->id}}</td>
                             <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$customer->company_name}}</td>
                         </tr>
@@ -61,7 +61,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="background-color: #fff; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                        <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
                             <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$purchaseOrder->customer_po_id}}</td>
                             <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$customer->purchaser_name}}</td>
                         </tr>
@@ -75,7 +75,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="background-color: #fff; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                        <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
                             <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$customer->phone_number}}</td>
                             <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$address->address_detail}}</td>
                         </tr>
@@ -94,7 +94,7 @@
                 </thead>
                 <tbody>
                     @foreach ($saleOrders as $saleOrder)
-                    <tr style="background-color: #fff; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                    <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
                         <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$loop->iteration}}</td>
                         <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$saleOrder->delivery->delivery_date}}</td>
                         <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$saleOrder->total_order_price}}</td>

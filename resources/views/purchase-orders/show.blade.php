@@ -90,7 +90,7 @@
                 <div>Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->original_order_price}}&nbsp;Baht</div>
                 <div>Price Inclusive of 7% VAT&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->total_order_price}}&nbsp;Baht</div>
             </div>
-            <div class="flex flex-col space-y-2">
+            <div class="flex flex-col space-y-2 text-lg font-semibold">
                 <div class="mb-2">
                     Shipping status&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;
                     @if($purchaseOrder->produce_status == 0)
