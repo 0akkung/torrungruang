@@ -36,9 +36,8 @@ class PurchaseOrderController extends Controller
                 ->with('error', 'Cannot Create Purchase Order without any Customers and Specs');
         }
 
-        $selectedCustomerId = 1;
         $selectedSpecs = [];
-        $selectedCustomer = Customer::find($selectedCustomerId);
+        $selectedCustomer = Customer::first();
 
         return view('purchase-orders.create', [
             'title' => 'Create Purchase Orders',
