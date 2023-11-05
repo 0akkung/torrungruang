@@ -68,22 +68,23 @@ class DeliveryController extends Controller
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);
-        $purchaseOrder = PurchaseOrder::find($saleOrder->purchase_order_id);
+        $purchaseOrder = PurchaseOrder::find($saleOrder->purchase_order_id); // หา po หลัก
 
-        //dd($purchaseOrder);
-        $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
-        //dd($poItems);
-        foreach ($poItems as $poItem) {
-            $check_item = true;
-            if ($poItem->remaining_quantity !== 0) {
-                $check_item = false;
+        $sos = $purchaseOrder->saleOrders()->get();
+        //dd($so);
+
+        foreach ($sos as $so){
+            $check_so = true;
+            if ($so->doesntHave('delivery')->exists()){
+                $check_so = false;
                 break;
             }
         }
-        if ($check_item) {
-            $saleOrder->delivery_status = true;
+        if ($check_so) {
             $purchaseOrder->produce_status = true;
         }
+
+
         
         $saleOrder->delivery_status = true;
         $purchaseOrder->save();
