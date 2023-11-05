@@ -64,7 +64,7 @@ class DeliveryController extends Controller
     {
         $saleOrderID = $request->input('saleOrder'); // Adjust this according to the actual field name in your form
         $saleOrder = SaleOrder::find($saleOrderID);
-        $saleOrder->load('delivery');
+        // $saleOrder->load('delivery');
         $delivery = new Delivery();
         $delivery->delivery_date = now();
         $saleOrder->delivery()->save($delivery);

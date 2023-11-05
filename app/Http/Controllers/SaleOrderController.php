@@ -32,24 +32,26 @@ class SaleOrderController extends Controller
     {
         $purchaseOrders = PurchaseOrder::where('produce_status',false)->get();
         $count = 0;
+        $poItemsArray = []; //ใช้ข้างล่างด้วย อย่าลบ
         foreach($purchaseOrders as $po){
-            $poItems = $po->poItems()->where('remaining_quantity',0)->get();
+            $poItems = $po->poItems()->where('remaining_quantity', '!=', 0)->get();
             if (count($poItems) > 0){
                 $count += 1;
+                $poItemsArray[] = $po;
             }
         }
         if ($count === 0) {
             return redirect()->back()->with('error', 'Cannot Create Sale Order without any Unfinished Purchase Order');
         }
-
         $specs = RopeSpec::get();
         $selectedPurchaseOrder = 1;
         $customers = Customer::get();
-        $purchaseOrders = PurchaseOrder::get();
+        // $purchaseOrders = PurchaseOrder::get();
         $poItems = PoItem::with('ropeSpec')->get();
         return view('sale-orders.create', [
             'title' => 'Sale Orders > Create',
-            'purchaseOrders' => $purchaseOrders,
+            // 'purchaseOrders' => $purchaseOrders,
+            'purchaseOrders' => $poItemsArray,
             'customers' => $customers,
             'selectedPurchaseOrder' => $selectedPurchaseOrder,
             'specs' => $specs,
