@@ -11,8 +11,8 @@
     <form action="{{ route('delivery.option') }}" method="GET">
         @csrf
         <select name="search_by_delivery" id="sortByDelivery" onchange="this.form.submit()" class="mt-5 mb-5 bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            @foreach($saleOrders as $saleOrder)
             <option value="" selected>Choose SO ID</option>
+            @foreach($saleOrders as $saleOrder)
             <option value="{{ $saleOrder->id }}" data-customer="{{ $saleOrder->purchaseOrder->customer }}" data-purchaseorder="{{$saleOrder->purchaseOrder}}">
                 {{ $saleOrder->id }}
             </option>

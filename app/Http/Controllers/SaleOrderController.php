@@ -90,7 +90,7 @@ class SaleOrderController extends Controller
         }
         $saleOrder->total_order_price = $saleOrder->original_order_price * (1.07);
         $saleOrder->save();
-        $purchaseOrder->saleOrders()->save($saleOrder);
+        $purchaseOrder->saleOrders()->save($saleOrder);//->dd();
 
         return redirect()->route('so.index')->with('success', 'Sale Order Created successfully!');
     }
@@ -167,5 +167,19 @@ class SaleOrderController extends Controller
             'title' => 'Sale Orders > ' . $title,
             'saleOrders' => $so
         ]);
+    }
+    public function printPDF(SaleOrder $so)
+    {
+        $address = Address::find($so->purchaseOrder->address_id);
+        $pdf = app('dompdf.wrapper')->loadView('sale-orders.pdf', [
+            'title' => "SalesOrders > Detail",
+            'saleOrder' => $so,
+            'purchaseOrder' => $so->purchaseOrder,
+            'soItems' => $so->soItems,
+            'customer' => $so->purchaseOrder->customer,
+            'address' => $address
+        ]
+        );
+        return $pdf->stream('sale-orders.pdf');
     }
 }
