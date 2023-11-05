@@ -57,7 +57,7 @@
                             <th scope="col" class="px-6 py-3 text-center">SPEC ID</th>
                             <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
                             <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
-                          
+
                             <th scope="col" class="px-6 py-3 text-center">UNIT</th>
                             <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
                             <th scope="col" class="px-6 py-3 text-center">amount</th>
@@ -70,7 +70,7 @@
                             <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->rope_spec_id}}</td>
                             <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
                             <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->order_quantity}}</td>
-                           
+
                             <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->unit}}</td>
                             <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->unit_price}}</td>
                             <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->po_item_price}}</td>
@@ -79,18 +79,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-lg font-semibold flex flex-col space-y-1 mb-2 mt-1">
-                <div>
-                    หมายเหตุ {{$purchaseOrder->note}}
-                </div>
-                <div>ราคาทั้งหมด {{$purchaseOrder->original_order_price}}</div>
-                <div>ราคาหลังรวมVAT 7% {{$purchaseOrder->total_order_price}}</div>
+            <div class="text-lg font-semibold flex flex-col space-y-5 mb-2 mt-1">
+                <div>Note&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->note}}</div>
+                <div>Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->original_order_price}}&nbsp;Baht</div>
+                <div>Price Inclusive of 7% VAT&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->total_order_price}}&nbsp;Baht</div>
+                <div>Recipient&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$receipt->receipter_name}}</div>
             </div>
-            <div class="flex flex-col space-y-2">
-                <div class="mb-2">
-                   ผู้รับเงิน {{$receipt->receipter_name}}
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

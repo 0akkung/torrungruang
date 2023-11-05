@@ -75,8 +75,8 @@
                 </table>
             </div>
             <div class="text-lg font-semibold flex flex-col space-y-1 mb-1 mt-1">
-                <div>ราคาทั้งหมด&nbsp;&nbsp;:&nbsp;&nbsp;{{$saleOrder->total_order_price}}</div>
-                <div>Billing Office&nbsp;&nbsp;:&nbsp;&nbsp;{{$invoice->Billing_Officer}}</div>
+                <div>Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$saleOrder->total_order_price}}&nbsp;Baht</div>
+                <div>Billing Office&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$invoice->Billing_Officer}}</div>
             </div>
         </div>
     </div>

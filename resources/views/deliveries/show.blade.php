@@ -94,8 +94,8 @@
                 </table>
             </div>
             <div class="text-lg font-semibold flex flex-col space-y-1 mb-1 mt-1">
-                <div>ราคาทั้งหมด  {{$saleOrder->original_order_price}}</div>
-                <div>ราคาหลังรวมVAT 7%  {{$saleOrder->total_order_price}}</div>
+                <div>Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$saleOrder->original_order_price}}&nbsp;Baht</div>
+                <div>Price Inclusive of 7% VAT&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$saleOrder->total_order_price}}&nbsp;Baht</div>
             </div>
         </div>
     </div>

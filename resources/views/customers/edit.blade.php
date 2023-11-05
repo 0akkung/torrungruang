@@ -10,13 +10,11 @@
         <form action="{{ route('customers.update', ['customer' => $customer]) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="mb-5">
-                <label for="name" class="block mb-2 font-bold text-gray-600">Company Name</label>
-                <input type="text" id="company_name" name="company_name" autocomplete="off" value="{{$customer->company_name}}" placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
-                <label for="name" class="block mb-2 font-bold text-gray-600">Purchaser Name</label>
-                <input type="text" id="purchaser_name" name="purchaser_name" autocomplete="off" value="{{$customer->purchaser_name}}" placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
-                <label for="name" class="block mb-2 font-bold text-gray-600">Phone Number</label>
-                <input type="text" id="phone_number" name="phone_number" autocomplete="off" value="{{$customer->phone_number}}" placeholder="Insert Spec Name" class="border border-gray-300 shadow p-3 w-full rounded-lg ">
+            @csrf
+            <x-custom-text-input name="company_name" label="Company Name" type="text" placeholder="Company Name Inc." />
+            <x-custom-text-input name="purchaser_name" label="Purchaser Name" type="text" placeholder="Name - Surname" />
+            <div class="w-1/6">
+                <x-custom-text-input name="phone_number" label="Phone No." type="tel" placeholder="0912345678" />
             </div>
             <div class="flex space-x-8">
                 <x-submit-button label="Submit" />

@@ -1,87 +1,126 @@
-<div class="flex mb-5">
-    <h1 class="px-1 bg-tag py-1 mr-1"></h1>
-    <h1 class="px-1 bg-tag py-1"></h1>
-    <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Receipt Detail</h1>
-</div>
-<div class="w-full">
-    <div class="bg-white p-5 border w-full rounded-[12px] shadow-md">
-        <div>
-            <div class="grid grid-cols-4 mb-6 mt-6 text-lg font-semibold">
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 text-sm font-semibold">Receipt ID</p>
-                    <p>{{$receipt->id}}</p>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        body {
+            font-weight: bolder;
+            font-size: 18px;
+            /* ปรับขนาดตัวอักษรตามต้องการ */
+        }
+
+        h1,
+        th,
+        td,
+        div {
+            font-weight: bolder;
+            font-size: 20px;
+            /* ปรับขนาดตัวอักษรตามต้องการ */
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding: 0.5rem;">
+        <div style="display: flex; flex-direction: row; margin-bottom: 1.25rem; text-align: center;">
+            <h1 style="padding: 0.05rem; background-color: #0599a6; padding-top: 0.1rem;"></h1>
+            <h1 style="color: #0599a6; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; font-weight: bold; font-size: 2rem;">Receipt Detail</h1>
+            <h1 style="padding: 0.05rem; background-color: #0599a6; padding-top: 0.1rem;"></h1>
+        </div>
+
+        <div style="width: 100%;">
+            <div style="background-color: #fff; padding: 1.25rem; border: 1px solid #e5e5e5; width: 100%; border-radius: 12px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                    <table style="width: 100%; font-size: 0.875rem;  text-align: left; color: #666; border-radius: 12px;">
+                        <thead style="font-size: 0.75rem; text-transform: uppercase; background-color: #0599a6; color: #fff;">
+                            <tr>
+                                <th style="padding: 0.375rem 1rem;">Receipt ID</th>
+                                <th style="padding: 0.375rem 1rem;">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                                <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333; ">{{$receipt->id}}</td>
+                                <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$purchaseOrder->purchase_date}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="width: 100%; font-size: 0.875rem; text-align: left; color: #666; border-radius: 12px;">
+                        <thead style="font-size: 0.75rem; text-transform: uppercase; background-color: #0599a6; color: #fff;">
+                            <tr>
+                                <th style="padding: 0.375rem 1rem;">Company Name</th>
+                                <th style="padding: 0.375rem 1rem;">Original PO ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                                <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333; ">{{$customer->company_name}}</td>
+                                <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$purchaseOrder->customer_po_id}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="width: 100%; font-size: 0.875rem; text-align: left; color: #666; border-radius: 12px;">
+                        <thead style="font-size: 0.75rem; text-transform: uppercase; background-color: #0599a6; color: #fff;">
+                            <tr>
+                                <th style="padding: 0.375rem 1rem;">Purchaser</th>
+                                <th style="padding: 0.375rem 1rem;">Tel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                                <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$customer->purchaser_name}}</td>
+                                <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$customer->phone_number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table style="width: 100%;  text-align: left; color: #666; border-radius: 12px;">
+                        <thead style="font-size: 0.75rem; text-transform: uppercase; background-color: #0599a6; color: #fff;">
+                            <tr>
+                                <th style="padding: 0.375rem 1rem;">Shipping address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                                <td style="padding: 0.5rem 1rem; font-weight: 600; color: #333;">{{$address->address_detail}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Date</p>
-                    <p>{{$purchaseOrder->purchase_date}}</p>
-                </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Company Name</p>
-                    <p>{{$customer->company_name}}</p>
-                </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Original PO ID</p>
-                    <p>{{$purchaseOrder->customer_po_id}}</p>
-                </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Purchaser</p>
-                    <p>{{$customer->purchaser_name}}</p>
-                </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Tel</p>
-                    <p>{{$customer->phone_number}}</p>
-                </div>
-                <div class="col-span-2 flex flex-col">
-                    <p class="text-gray-600 font-semibold text-sm">Shipping address</p>
-                    <p>{{$address->address_detail}}</p>
-                </div>
-            </div>
-            <div>
-                <div class="p-2 bg-table text-white font-bold text-lg text-center rounded-t-lg">
-                    Description
-                </div>
-                <hr class="border-2 border-gray-300">
-                <table class="w-full text-sm text-left text-gray-400 rounded-lg">
-                    <thead class="text-xs uppercase bg-table text-white">
+
+                <div style="padding: 0.5rem; background-color: #0599a6; color: #fff; font-weight: bold;  text-align: center; border-top-left-radius: 12px; border-top-right-radius: 12px;">Description</div>
+                <table style="width: 100%;  text-align: left; color: #666; border-radius: 12px;">
+                    <thead style=" text-transform: uppercase; background-color: #0599a6; color: #fff;">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-center">NO.</th>
-                            <th scope="col" class="px-6 py-3 text-center">SPEC ID</th>
-                            <th scope="col" class="px-6 py-3 text-center">SPEC NAME</th>
-                            <th scope="col" class="px-6 py-3 text-center">QUANTITY</th>
-                          
-                            <th scope="col" class="px-6 py-3 text-center">UNIT</th>
-                            <th scope="col" class="px-6 py-3 text-center">UNIT PRICE</th>
-                            <th scope="col" class="px-6 py-3 text-center">amount</th>
+                            <th style="padding: 0.375rem 1rem;">NO.</th>
+                            <th style="padding: 0.375rem 1rem;">SPEC ID</th>
+                            <th style="padding: 0.375rem 1rem;">SPEC NAME</th>
+                            <th style="padding: 0.375rem 1rem;">QUANTITY</th>
+                            <th style="padding: 0.375rem 1rem;">UNIT</th>
+                            <th style="padding: 0.375rem 1rem;">UNIT PRICE</th>
+                            <th style="padding: 0.375rem 1rem;">AMOUNT</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($poItems as $poItem)
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-3 font-medium text-gray-900">{{$loop->iteration}}</td>
-                            <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->rope_spec_id}}</td>
-                            <td class="px-6 py-3 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
-                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->order_quantity}}</td>
-                           
-                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->unit}}</td>
-                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->unit_price}}</td>
-                            <td class="px-6 py-3 font-medium text-gray-900 whitespace-nowrap">{{$poItem->po_item_price}}</td>
+                        <tr style="background-color: #ddd; border-bottom: 1px solid #e5e5e5; text-align: center;">
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$loop->iteration}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->rope_spec_id}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->ropeSpec->spec_name}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->order_quantity}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->unit}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->unit_price}}</td>
+                            <td style="padding: 0.375rem 1rem; font-weight: 600; color: #333;">{{$poItem->po_item_price}}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div class="text-lg font-semibold flex flex-col space-y-1 mb-2 mt-1">
-                <div>
-                    หมายเหตุ {{$purchaseOrder->note}}
-                </div>
-                <div>ราคาทั้งหมด {{$purchaseOrder->original_order_price}}</div>
-                <div>ราคาหลังรวมVAT 7% {{$purchaseOrder->total_order_price}}</div>
-            </div>
-            <div class="flex flex-col space-y-2">
-                <div class="mb-2">
-                   ผู้รับเงิน {{$receipt->receipter_name}}
+                <div style="font-weight: 600; display: flex; flex-direction: column; margin-top: 1.5rem;">
+                    <div style="margin-bottom: 0.5rem;">Note&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->note}}</div>
+                    <div style="margin-bottom: 0.5rem;">Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->original_order_price}}&nbsp;Baht</div>
+                    <div>Price Inclusive of 7% VAT&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$purchaseOrder->total_order_price}}&nbsp;Baht</div>
+                    <div style="margin-bottom: 0.5rem;">Recipient&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$receipt->receipter_name}}</div>
                 </div>
             </div>
         </div>
     </div>
-</div>
