@@ -10,8 +10,8 @@
     <form action="{{ route('invoice.option') }}" method="GET">
         @csrf
         <select id="purchaseOrder_id" name="purchaseOrder_id" onchange="this.form.submit()" class="mt-5 mb-5 bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            @foreach($purchaseOrders as $purchaseOrder)
             <option value="" selected>Choose PO ID</option>
+            @foreach($purchaseOrders as $purchaseOrder)
             <option value="{{ $purchaseOrder->id }}">{{ $purchaseOrder->id }}</option>
             @endforeach
         </select>
