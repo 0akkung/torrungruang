@@ -39,8 +39,9 @@ class ReceiptController extends Controller
         $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('receipt')->get();  //เอาที่สร้างใบวางบิลแล้ว
         return view('receipts.create', [
             'title' => "Receipt > Create",
-            'purchaseOrders'=> $purchaseOrders
-            
+            'purchaseOrders'=> $purchaseOrders,
+            'po' => [],
+            'poItems' => []
         ]);
     }
 
@@ -49,7 +50,9 @@ class ReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        $purchaseOrder = PurchaseOrder::find($request->get('purchaseOrder_id'));
+        $purchaseOrderID = $request->input('purchaseOrder'); // Adjust this according to the actual field name in your form
+        $purchaseOrder = PurchaseOrder::find($purchaseOrderID);
+        $purchaseOrder->load('receipt');
         //dd($purchaseOrder);
         $receipt = new Receipt();
         $receipt->pay_date = now();
@@ -100,5 +103,19 @@ class ReceiptController extends Controller
     public function destroy(Receipt $receipt)
     {
         //
+    }
+
+    public function option(Request $request)
+    {
+        $id = $request->input('purchaseOrder_id');
+        $po = PurchaseOrder::find($id);
+        $po->load('poItems');
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('receipt')->get();  //เอาที่สร้างใบวางบิลแล้ว
+        return view('receipts.create', [
+            'title' => 'Receipt > Create > Purchase Order ID : ' . $po->id,
+            'poItems' => $po->poItems,
+            'purchaseOrders' => $purchaseOrders,
+            'po' => $po
+        ]);
     }
 }

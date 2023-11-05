@@ -31,7 +31,7 @@
                     @endif
                 @endforeach
             </select>
-            <div id="poShow"></div>
+            <div id="poShow" class="text-base mt-5 mb-5"></div>
             
         
             <div id="poItemsTable">
@@ -83,8 +83,8 @@
         var selectedValue = selectElement.value;
         var selectedOption = selectElement.options[selectElement.selectedIndex];
         var customer = JSON.parse(selectedOption.getAttribute("data-customer"));
-        selectedValueElement.textContent = "PO ID : " + selectedValue + " Customer ID : " + customer.id + 
-        " Company Name : " + customer.company_name;
+        selectedValueElement.textContent = "PO ID : " + selectedValue + "    |   Customer ID : " + customer.id + 
+        "    |   Company Name : " + customer.company_name;
     });
 
     function displayPoItems(poItems) {
