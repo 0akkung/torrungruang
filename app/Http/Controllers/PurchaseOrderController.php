@@ -57,7 +57,8 @@ class PurchaseOrderController extends Controller
             'address_id' => ['required'],
             'customer_id' => ['required'],
             'due_date' => ['required'],
-            'customer_po_id' => ['required'],
+            'customer_po_id' => ['required', 'min:1', 'max:255'],
+            'note' => ['required', 'min:2', 'max:255'],
         ]);
 
         $customer = Customer::findOrFail($request->get('customer_id'));   //find customer from create-form naka
@@ -69,8 +70,6 @@ class PurchaseOrderController extends Controller
         $purchase_order->customer_po_id = $request->get('customer_po_id');
         $purchase_order->note = $request->get('note');
         $purchase_order->address_id = $address_id;
-        // $purchaseOrder->original_order_price = $request->get('original_order_price');
-        // $purchaseOrder->total_order_price = $request->get('total_order_price');
         $purchase_order->produce_status = false;
         $purchase_order->payment_status = false;
 
@@ -115,7 +114,7 @@ class PurchaseOrderController extends Controller
             'poItems' => $po->poItems,
             'address' =>  $address
         ]);
-    }   
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -154,7 +153,7 @@ class PurchaseOrderController extends Controller
     }
 
     public function option(Request $request)
-    {   
+    {
         $status = $request->input('sort_by');
         $po = PurchaseOrder::get();
         $title = "";

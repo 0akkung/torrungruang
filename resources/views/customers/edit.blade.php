@@ -11,10 +11,13 @@
             @csrf
             @method('PUT')
             @csrf
-            <x-custom-text-input name="company_name" label="Company Name" type="text" placeholder="Company Name Inc." />
-            <x-custom-text-input name="purchaser_name" label="Purchaser Name" type="text" placeholder="Name - Surname" />
+            <x-custom-text-input name="company_name" label="Company Name" type="text" placeholder="Company Name Inc."
+                                 value="{{ old('company_name', $customer->company_name) }}"/>
+            <x-custom-text-input name="purchaser_name" label="Purchaser Name" type="text" placeholder="Name - Surname"
+                                 value="{{ old('purchaser_name', $customer->purchaser_name) }}"/>
             <div class="w-1/6">
-                <x-custom-text-input name="phone_number" label="Phone No." type="tel" placeholder="0912345678" />
+                <x-custom-text-input name="phone_number" label="Phone No." type="tel" placeholder="0912345678"
+                                     value="{{ old('phone_number', $customer->phone_number) }}"/>
             </div>
             <div class="flex space-x-8">
                 <x-submit-button label="Submit" />

@@ -17,7 +17,7 @@ class CustomTextInput extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $label, $type = 'text', $placeholder, $value = null)
+    public function __construct($name, $label, $type = 'text', $placeholder = null, $value = null)
     {
         $this->name = $name;
         $this->label = $label;

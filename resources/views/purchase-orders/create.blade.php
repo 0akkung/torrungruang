@@ -11,36 +11,73 @@
 <form id="poForm" action="{{ route('po.store') }}" method="POST">
     @csrf
     <div class="bg-white p-5 border w-auto rounded-[12px] shadow-md">
-        <label for="due_date" class="block font-bold mb-2">Due Date</label>
-        <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
-        {{-- Customer ทำ search ด้วยไม่เป็น --}}
-        <label for="customer_id" class="block font-bold mb-2">Customer</label>
-        <select id="customer_id" name="customer_id" class="border rounded-lg px-20" data-addresses="{{ json_encode($customers->pluck('addresses', 'id')) }}">
-            @foreach($customers as $customer)
-            <option value="{{ $customer->id }}">{{ $customer->company_name }}</option>
-            @endforeach
-        </select>
-        <label for="address_id" class="block font-bold mb-2">Customer Address</label>
-        <select id="address_id" name="address_id" class="border rounded-lg px-20">
-            @foreach($selectedCustomer->addresses as $address)
-            <option value="{{ $address->id }}">{{ $address->address_detail }}</option>
-            @endforeach
-        </select>
 
-        <label for="customer_po_id" class="block font-bold mb-2">Customer PO ID</label>
-        <input type="text" id="customer_po_id" name="customer_po_id" class="border rounded-lg p-2 mb-2">
+        <!-- Due Date -->
+        <div class="mb-6">
+            <label for="due_date" class="block font-bold mb-2">Due Date</label>
+            <input type="date" id="due_date" name="due_date" class="border rounded-lg p-2 mb-2">
+            @error('due_date')
+            <div class="text-red-400 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
 
-        <label for="customer_po_id" class="block font-bold mb-2">Note: (หมายเหตุ)</label>
-        <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
+        <!-- Customer -->
+        <div class="mb-6">
+            <label for="customer_id" class="block font-bold mb-2">Customer</label>
+            <select id="customer_id" name="customer_id" class="border rounded-lg px-20" data-addresses="{{ json_encode($customers->pluck('addresses', 'id')) }}">
+                @foreach($customers as $customer)
+                <option value="{{ $customer->id }}">{{ $customer->company_name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Customer Address -->
+        <div class="mb-6">
+            <label for="address_id" class="block font-bold mb-2">Customer Address</label>
+            <select id="address_id" name="address_id" class="border rounded-lg px-20">
+                @foreach($selectedCustomer->addresses as $address)
+                <option value="{{ $address->id }}">{{ $address->address_detail }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <!-- Customer PO ID -->
+        <div class="mb-6">
+            <label for="customer_po_id" class="block font-bold mb-2">Customer PO ID</label>
+            <input type="text" id="customer_po_id" name="customer_po_id" class="border rounded-lg p-2 mb-2">
+            @error('customer_po_id')
+            <div class="text-red-400 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
+
+        <!-- Note -->
+        <div class="mb-6">
+            <label for="note" class="block font-bold mb-2">Note (หมายเหตุ)</label>
+            <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
+            @error('note')
+            <div class="text-red-400 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+
     </div>
-    <div id="poItemsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
+
+
+    <div id="specsContainer" class="bg-white p-5 border w-full rounded-[12px] shadow-md mt-5 mb-5">
         <button type="button" onclick="addSpecField()" class="text-white font-semibold p-2 rounded-md bg-cyan-700 mb-2 text-center ">+ Add Spec</button>
     </div>
+
     <div class="mb-6 flex space-x-8">
         <x-submit-button label="Submit" />
         <x-back-button label="Cancel" />
     </div>
-    
+
 </form>
 
 
@@ -66,14 +103,14 @@
 
     function addSpecField() {
         specCount++;
-        const container = document.getElementById('poItemsContainer');
+        const container = document.getElementById('specsContainer');
         const div = document.createElement('div');
         div.className = 'mb-4';
         const specId = `poItem-${specCount}`;
         //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
             <div class="bg-gray-100 rounded-lg p-5" id="${specId}">
-            <h2 class="text-xl font-semibold mb-2">Po Item #${specCount}</h2>
+            <h2 class="text-xl font-semibold mb-2">Spec #${specCount}</h2>
             <label for="po_items[${specCount}][spec_id]" class="block font-bold mb-2">Spec</label>
             <select id="po_items[${specCount}][spec_id]" name="po_items[${specCount}][spec_id]" class="border rounded-lg p-2 mb-2">
                 @foreach($specs as $spec)

@@ -35,7 +35,7 @@
                     Spec Name
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Description
+                    Detail
                 </th>
                 <th scope="col" class="pl-6 py-3">
                     Action
