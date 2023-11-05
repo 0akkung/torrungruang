@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-<div style="padding: 0.5rem;text-align:(">
+<div style="padding: 0.5rem;">
     <div style="display: flex; flex-direction: row; margin-bottom: 1.25rem; text-align: center;">
         <h1 style="padding: 0.05rem; background-color: #0599a6; padding-top: 0.25rem;"></h1>
         <h1 style="color: #0599a6; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block; font-weight: bold; font-size: 2rem;">Invoice Detail</h1>
@@ -103,7 +103,7 @@
                 </tbody>
             </table>
             <div style="font-weight: 600; display: flex; flex-direction: column; margin-top: 1.5rem;">
-                <div style="margin-bottom: 0.5rem;">Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$saleOrder->total_order_price}}</div>
+                <div style="margin-bottom: 0.5rem;">Total price&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$saleOrder->total_order_price}}&nbsp;Baht</div>
                 <div>Billing Office&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;{{$invoice->Billing_Officer}}</div>
             </div>
         </div>

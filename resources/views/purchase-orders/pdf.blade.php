@@ -1,3 +1,27 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        body {
+            font-weight: bolder;
+            font-size: 18px;
+            /* ปรับขนาดตัวอักษรตามต้องการ */
+        }
+
+        h1,
+        th,
+        td,
+        div {
+            font-weight: bolder;
+            font-size: 20px;
+            /* ปรับขนาดตัวอักษรตามต้องการ */
+        }
+    </style>
+</head>
+
+<body>
 <div style="padding: 2rem;">
     <div style="display: flex; flex-direction: row; margin-bottom: 1.25rem; text-align: center;">
         <h1 style="padding: 0.05rem; background-color: #0599a6; padding-top: 0.25rem;"></h1>
@@ -67,7 +91,7 @@
     
     
     
-                <div style="width: 100%; text-align: center; margin-top: 1rem; padding: 0.5rem; background-color: #0599a6; color: #fff; font-weight: bold; font-size: 0.875rem; text-align: center;">Description</div>
+                <div style="width: auto; text-align: center; margin-top: 1rem; padding: 0.5rem; background-color: #0599a6; color: #fff; font-weight: bold; font-size: 0.875rem; text-align: center; border-top-left-radius: 12px; border-top-right-radius: 12px;">Description</div>
                 <table style="width: 100%; color: #666;">
                     <thead style="font-size: 0.75rem; text-transform: uppercase; background-color: #0599a6; color: #fff;">
                         <tr>
@@ -127,3 +151,4 @@
     </div>
     </div>
 </div>
+</body>
