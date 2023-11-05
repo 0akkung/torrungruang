@@ -39,7 +39,8 @@ class CustomerController extends Controller
         $request->validate([
             'company_name' => ['required', 'min:2', 'max:255'],
             'purchaser_name' => ['required', 'min:2', 'max:255'],
-            'phone_number' => ['required', 'numeric', 'digits:10']
+            'phone_number' => ['required', 'numeric', 'digits:10'],
+            'address' => ['required', 'min:2', 'max:255']
         ]);
 
         $customer = new Customer();
@@ -47,6 +48,10 @@ class CustomerController extends Controller
         $customer->purchaser_name = $request->get('purchaser_name');
         $customer->phone_number = $request->get('phone_number');
         $customer->save();
+
+        $address = new Address();
+        $address->address_detail = $request->get('address');
+        $customer->addresses()->save($address);
 
         return redirect()->route('customers.index')->with('success', 'Customer Created successfully!');
     }
@@ -79,13 +84,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        $request->validate([
+            'company_name' => ['required', 'min:2', 'max:255'],
+            'purchaser_name' => ['required', 'min:2', 'max:255'],
+            'phone_number' => ['required', 'numeric', 'digits:10']
+        ]);
+
         $customer->company_name = $request->get('company_name');
         $customer->purchaser_name = $request->get('purchaser_name');
         $customer->phone_number = $request->get('phone_number');
         $customer->save();
+
         return redirect()->route('customers.show',['customer' => $customer]);
     }
-    
+
     public function search(Request $request)
     {
         $search = $request->input('search');
@@ -113,6 +125,10 @@ class CustomerController extends Controller
     }
     public function storeAddress(Request $request,Customer $customer)
     {
+        $request->validate([
+            'address_detail' => ['required', 'min:2', 'max:255']
+        ]);
+
         $address = new Address();
         $address->address_detail = $request->get('address_detail');
         $customer->addresses()->save($address);
@@ -128,6 +144,10 @@ class CustomerController extends Controller
     }
     public function updateAddress(Request $request,Customer $customer,Address $address)
     {
+        $request->validate([
+            'address_detail' => ['required', 'min:2', 'max:255']
+        ]);
+
         $address->address_detail = $request->get('address_detail');
         $customer->addresses()->save($address);
             return redirect()->route('customers.show',['customer' => $customer]);
