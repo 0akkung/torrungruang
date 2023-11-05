@@ -117,6 +117,7 @@ class InvoiceController extends Controller
     {
         $address = Address::find($invoice->purchaseOrder->address_id);
         $saleOrders = SaleOrder::where('purchase_order_id', $invoice->purchaseOrder->id)->get();  //ดึง saleOrders
+
         
         $pdf = app('dompdf.wrapper')->loadView('invoices.pdf', [
 

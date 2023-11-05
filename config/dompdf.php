@@ -45,7 +45,7 @@ return array(
          * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
          * Symbol, ZapfDingbats.
          */
-        "font_dir" => storage_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
+        "font_dir" => public_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
 
         /**
          * The location of the DOMPDF font cache directory
@@ -186,7 +186,7 @@ return array(
          * Used if no suitable fonts can be found. This must exist in the font folder.
          * @var string
          */
-        "default_font" => "serif",
+        "default_font" => "THSarabunNew",
 
         /**
          * Image DPI setting
