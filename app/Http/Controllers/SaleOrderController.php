@@ -31,17 +31,16 @@ class SaleOrderController extends Controller
     public function create()
     {
         $purchaseOrders = PurchaseOrder::where('produce_status',false)->get();
-
+        $count = 0;
         foreach($purchaseOrders as $po){
             $poItems = $po->poItems()->where('remaining_quantity',0)->get();
             if (count($poItems) > 0){
-                break;
-            }
-            else{
-                return redirect()->back()->with('error', 'Cannot Create Sale Order without any Unfinished Purchase Order');
+                $count += 1;
             }
         }
-
+        if ($count === 0) {
+            return redirect()->back()->with('error', 'Cannot Create Sale Order without any Unfinished Purchase Order');
+        }
 
         $specs = RopeSpec::get();
         $selectedPurchaseOrder = 1;
