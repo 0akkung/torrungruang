@@ -7,44 +7,73 @@
     <h1 class="text-header bg-white shadow-md px-5 py-1 inline text-2xl font-bold rounded-r-lg">Create Sale Order</h1>
 </div>
 <div class="bg-white p-5 border w-full rounded-[12px] shadow-md">
-    <form action="{{ route('so.store') }}" method="POST">
+    <label for="purchaseOrder_id" class="block font-bold mb-4 text-xl">Select Purchase Order</label>
+    <form action="{{ route('sale-order.createOption') }}" method="GET">
+        @csrf
+        <select id="purchaseOrder_id" name="purchaseOrder_id" onchange="this.form.submit()" class="mt-5 mb-5 bg-gray-50 border-cyan-700 border-2 text-cyan-700 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option value="" selected>Choose PO ID</option>
+            @foreach($purchaseOrders as $purchaseOrder)
+            <option value="{{ $purchaseOrder->id }}">{{ $purchaseOrder->id }}</option>
+            @endforeach
+        </select>
+    </form>
+    <div class="mb-5 mt-5 flex flex-col">
+        @if ($po)
+        <div class="grid grid-cols-2 gap-20">
+            <div class="text-lg col-span-1 flex">
+                <span class="text-gray-600 font-semibold">PO ID : </span>
+                <span class="font-bold ml-3">{{$po->id}}<span>
+            </div>
+            <div class="text-lg col-span-1 flex">
+                <span class="text-gray-600 font-semibold">CUSTOMER PO ID : </span>
+                <span class="font-bold ml-3">{{$po->customer_po_id}}<span>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-20">
+            <div class="text-lg col-span-1 flex">
+                <span class="text-gray-600 font-semibold">Customer ID : </span>
+                <span class="font-bold ml-3">{{$po->customer->id}}<span>
+            </div>
+            <div class="text-lg col-span-1 flex">
+                <span class="text-gray-600 font-semibold">Company Name : </span>
+                <span class="font-bold ml-3">{{$po->customer->company_name}}<span>
+            </div>
+        </div>
+        @endif
+    </div>
+    <form action="{{ route('so.store',['purchaseOrder'=> $po]) }}" method="POST">
         @csrf
         <div class="mb-6">
-            <label for="purchaseOrder_id" class="block font-bold mb-4">Select Purchase Order</label>
-            <select id="purchaseOrder_id" name="purchaseOrder_id" class="border rounded-lg px-20 mb-4">
-                @foreach($purchaseOrders as $purchaseOrder)
-                    @if( $purchaseOrder->produce_status !== 1 && $purchaseOrder->payment_status !== 1)        {{-- ลองกรองจากcontrollerแล้วไม่ผ่าน งง --}}
-                        {{-- เช็ค poItem remain_quantity --}}
-                        @php
-                            $isValidPurchaseOrder = false;
-                            foreach($purchaseOrder->poItems as $poItem) {
-                                if($poItem->remaining_quantity !== 0) {
-                                    $isValidPurchaseOrder = true;
-                                    break;
-                                }
-                            }
-                        @endphp                        
-                        @if($isValidPurchaseOrder)
-                        <option value="{{ $purchaseOrder->id }}" data-customer="{{ $purchaseOrder->customer }}">{{ $purchaseOrder->id }}</option>
-                        @endif
-                        
-                    @endif
-                @endforeach
-            </select>
-            <div id="poShow" class="text-base mt-5 mb-5"></div>
-            
-        
-            <div id="poItemsTable">
-                <table id = "poItemsTable" class="">
-                    <thead class="text-xs uppercase bg-table text-white">
+            <div>
+                <div class="p-2 bg-table text-white font-bold text-lg text-center rounded-t-lg">
+                    Description
+                </div>
+                <hr class="border-2 border-gray-300">
+                <table class="w-full text-table text-left text-gray-400">
+                    <thead class="text-table-header uppercase bg-table text-white">
                         <tr>
-                            <th class="px-6 py-3 text-center">SPEC ID</th>
-                            <th class="px-6 py-3 text-center"> SPEC NAME</th>
-                            <th class="px-6 py-3 text-center"> ORDER QUANTITY</th>
-                            <th class="px-6 py-3 text-center"> จำนวนที่ต้องการเบิก (คิดไม่อกก)</th>
-                            <th class="px-6 py-3 text-center"></th>
+                            <th scope="col" class="px-6 py-3">NO.</th>
+                            <th scope="col" class="px-6 py-3">SPEC ID</th>
+                            <th scope="col" class="px-6 py-3">SPEC NAME</th>
+                            <th scope="col" class="px-6 py-3">REMAINING QUANTITY</th>
+                            <th scope="col" class="px-6 py-3">ORDER QUANTITY</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @foreach ($poItems as $poItem)
+                        <tr class="bg-white border-b">
+                            <td class="px-6 py-3 font-medium text-gray-900">{{$loop->iteration}}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900">{{$poItem->rope_spec_id}}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900">{{ $poItem->remaining_quantity }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 ">
+                                <input type="number" id="sale_quantity_{{ $poItem->id }}" name="sale_quantity_{{ $poItem->id }}" 
+                                class="border rounded-lg p-2 mb-2" value="0" min="0" max="{{ $poItem->remaining_quantity }}"
+                                {{ $poItem->remaining_quantity === 0 ? 'disabled' : '' }} required>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -55,76 +84,4 @@
     </form>
 </div>
 
-<script>
-    window.onload = function() {
-            var purchaseOrderId = document.getElementById('purchaseOrder_id').value;
-            var poItems = @json($poItems->toArray());
-            var filteredPoItems = poItems.filter(function(poItem) {
-                return poItem.purchase_order_id == purchaseOrderId;
-        });
-        
-        displayPoItems(filteredPoItems);
-    };
-    document.getElementById('purchaseOrder_id').addEventListener('change', function() {
-
-            var purchaseOrderId = this.value;
-            
-            var poItems = @json($poItems->toArray());
-            var filteredPoItems = poItems.filter(function(poItem) {
-                return poItem.purchase_order_id == purchaseOrderId;
-        });
-        displayPoItems(filteredPoItems);
-    });
-    
-    //อันนี้โชว์po ที่เลือก
-    var selectElement = document.getElementById("purchaseOrder_id");
-    var selectedValueElement = document.getElementById("poShow");
-    selectElement.addEventListener("change", function() {
-        var selectedValue = selectElement.value;
-        var selectedOption = selectElement.options[selectElement.selectedIndex];
-        var customer = JSON.parse(selectedOption.getAttribute("data-customer"));
-        selectedValueElement.textContent = "PO ID : " + selectedValue + "    |   Customer ID : " + customer.id + 
-        "    |   Company Name : " + customer.company_name;
-    });
-
-    function displayPoItems(poItems) {
-        var tableHTML = ` 
-            <table id="poItemsTable" class="">
-                <thead class="text-xs uppercase bg-table text-white">
-                    <tr>
-                        <th class="px-6 py-3 text-center">SPEC ID</th>
-                        <th class="px-6 py-3 text-center">SPEC NAME</th>
-                        <th class="px-6 py-3 text-center">ORDER QUANTITY</th>
-                        <th class="px-6 py-3 text-center">จำนวนที่ต้องการเบิก (คิดไม่อกก)</th>
-                        <th class="px-6 py-3 text-center"></th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-
-        poItems.forEach(function(poItem) {
-            if(poItem.rope_spec_id && poItem.rope_spec_id){
-                tableHTML += `
-                    <tr class="text-center bg-gray-200">
-                        <td class="px-6 py-4">${poItem.rope_spec_id}</td>
-                        <td class="px-6 py-4">${poItem.rope_spec.spec_name}</td>
-                        <td class="px-6 py-4">${poItem.remaining_quantity}</td>
-                        <td class="px-6 py-4 text-center">
-                            <input type="number" id="sale_quantity_${poItem.id}" name="sale_quantity_${poItem.id}" 
-                            class="border rounded-lg p-2 mb-2" value="0" min="0" max="${poItem.remaining_quantity}"
-                            ${poItem.remaining_quantity === 0 ? 'disabled' : 'value="0"'}>
-                        </td>
-                        <td class="px-6 py-4 text-center"></td>
-                    </tr>
-                `;
-            }
-        });
-
-        tableHTML += `</tbody></table>`;
-
-        document.getElementById('poItemsTable').innerHTML = tableHTML;
-    }
-
-
-</script>
 @endsection

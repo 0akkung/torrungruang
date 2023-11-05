@@ -42,7 +42,8 @@ class SaleOrderController extends Controller
             'customers' => $customers,
             'selectedPurchaseOrder' => $selectedPurchaseOrder,
             'specs' => $specs,
-            'poItems' => $poItems
+            'poItems' => $poItems,
+            'po'=> []
         ]);
     }
 
@@ -51,7 +52,8 @@ class SaleOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $purchaseOrder = PurchaseOrder::find($request->get('purchaseOrder_id'));   //หา purchase order ที่เลือก
+        $purchaseOrderID = $request->input('purchaseOrder'); 
+        $purchaseOrder = PurchaseOrder::find($purchaseOrderID);
         //dd($purchaseOrder); // check purchase_order  pass 
         $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
 
@@ -166,6 +168,20 @@ class SaleOrderController extends Controller
         return view('sale-orders.index', [
             'title' => 'Sale Orders > ' . $title,
             'saleOrders' => $so
+        ]);
+    }
+
+    public function createOption(Request $request)
+    {   
+        $id = $request->input('purchaseOrder_id');
+        $purchaseOrders = PurchaseOrder::get();
+        $po = PurchaseOrder::find($id);
+        $po->load('poItems');
+        return view('sale-orders.create', [
+            'title' => 'Sale Order > Create > Purchase Order ID : ' . $po->id,
+            'poItems' => $po->poItems,
+            'purchaseOrders' =>  $purchaseOrders,
+            'po' => $po
         ]);
     }
     public function printPDF(SaleOrder $so)
