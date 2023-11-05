@@ -32,7 +32,8 @@ class PurchaseOrderController extends Controller
         $customers = Customer::get();
 
         if ( count($specs) === 0 || count($customers) === 0 ) {
-            return redirect()->back()->with('error', 'Cannot Create Purchase Order without any Customers and Specs');
+            return redirect()->back()
+                ->with('error', 'Cannot Create Purchase Order without any Customers and Specs');
         }
 
         $selectedCustomerId = 1;
