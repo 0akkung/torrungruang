@@ -31,8 +31,9 @@ class InvoiceController extends Controller
         $purchaseOrders = PurchaseOrder::where('produce_status', 1)->where('payment_status', 0)->doesntHave('invoice')->get();
         return view('invoices.create', [
             'title' => "Invoice > Create",
-            'purchaseOrders'=> $purchaseOrders
-            
+            'purchaseOrders'=> $purchaseOrders,
+            'po' => [],
+            'poItems' => []
         ]);
     }
 
@@ -41,7 +42,9 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $purchaseOrder = PurchaseOrder::find($request->get('purchaseOrder_id'));
+        $purchaseOrderID = $request->input('purchaseOrder'); // Adjust this according to the actual field name in your form
+        $purchaseOrder = PurchaseOrder::find($purchaseOrderID);
+        $purchaseOrder->load('invoice');
         //dd($purchaseOrder);
         $invoice = new Invoice();
         $invoice->bill_date = now();
@@ -71,7 +74,7 @@ class InvoiceController extends Controller
             // 'deliveries' => $invoice->purchaseOrder->saleOrder->delivery,
             'customer' => $invoice->purchaseOrder->customer,
             'address' => $address,
-            'saleOrders' => $saleOrders
+            'saleOrders' => $saleOrders,
         ]);
     }
 
@@ -127,5 +130,19 @@ class InvoiceController extends Controller
         ]
         );
         return $pdf->stream('invoices.pdf');
+    }
+
+    public function option(Request $request)
+    {
+        $id = $request->input('purchaseOrder_id');
+        $po = PurchaseOrder::find($id);
+        $po->load('poItems');
+        $purchaseOrders = PurchaseOrder::where('produce_status',true)->get();
+        return view('invoices.create', [
+            'title' => 'Invoice > Create > Purchase Order ID : ' . $po->id,
+            'poItems' => $po->poItems,
+            'purchaseOrders' => $purchaseOrders,
+            'po' => $po
+        ]);
     }
 }

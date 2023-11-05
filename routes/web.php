@@ -59,12 +59,16 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('deliveries', DeliveryController::class);
     Route::get('/delivery-search', [DeliveryController::class, 'search'])->name('delivery.search');
+    Route::get('/delivery/option', [DeliveryController::class,'option'])->name('delivery.option');
+
 
     Route::resource('invoices', InvoiceController::class);
     Route::get('/invoice-search', [InvoiceController::class, 'search'])->name('invoice.search');
+    Route::get('/invoice/option', [InvoiceController::class,'option'])->name('invoice.option');
 
     Route::resource('receipts', ReceiptController::class);
     Route::get('/receipt-search', [ReceiptController::class, 'search'])->name('receipt.search');
+    Route::get('/receipt/option', [ReceiptController::class,'option'])->name('receipt.option');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
