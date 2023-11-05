@@ -40,7 +40,7 @@
                     <th scope="col" class="px-6 py-3">PO ID</th>
                     <th scope="col" class="px-6 py-3">Customer ID </th>
                     <th scope="col" class="px-6 py-3">Company Name</th>
-                    <th scope="col" class="px-6 py-3">Price (add VAT + 1.07%)</th>
+                    <th scope="col" class="px-6 py-3">Price</th>
                     <th scope="col" class="px-6 py-3">Payment Status</th>
                     <th scope="col" class="px-6 py-3 ">Produce Status</th>
                     <th scope="col" class="px-6 py-3 ">Order Date</th>

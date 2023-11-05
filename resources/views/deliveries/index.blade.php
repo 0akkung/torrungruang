@@ -32,7 +32,7 @@
           <th scope="col" class="px-6 py-3">SO ID </th>
           <th scope="col" class="px-6 py-3">Customer ID</th>
           <th scope="col" class="px-6 py-3">Company Name</th>
-          <th scope="col" class="px-6 py-3">Price (add VAT + 1.07%)</th>
+          <th scope="col" class="px-6 py-3">Price</th>
           <th scope="col" class="px-6 py-3">Delivery Date</th>
           <th scope="col" class="px-6 py-3">Action</th>
         </tr>

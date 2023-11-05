@@ -42,7 +42,7 @@ class SaleOrderController extends Controller
             'customers' => $customers,
             'selectedPurchaseOrder' => $selectedPurchaseOrder,
             'specs' => $specs,
-            'poItems' => $poItems,
+            'poItems' => [],
             'po'=> []
         ]);
     }

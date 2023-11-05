@@ -39,7 +39,7 @@
                     <th class="px-6 py-3"> PO ID </th>
                     <th class="px-6 py-3"> Company ID </th>
                     <th class="px-6 py-3"> Company Name</th>
-                    <th class="px-6 py-3">Price (add VAT + 1.07%)</th>
+                    <th class="px-6 py-3">Price</th>
                     <th class="px-6 py-3">Delivery Status</th>
                     <th class="px-6 py-3">Create SO Date</th>
                     <th class="px-6 py-3">Action</th>
