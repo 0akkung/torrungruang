@@ -118,4 +118,19 @@ class ReceiptController extends Controller
             'po' => $po
         ]);
     }
+
+    public function printPDF(Receipt $receipt)
+    {
+        $address = Address::find($receipt->purchaseOrder->address_id);
+        $pdf = app('dompdf.wrapper')->loadView('receipts.pdf', [
+            'title' => "Receipt > Detail",
+            'receipt' => $receipt,
+            'purchaseOrder' => $receipt->purchaseOrder,
+            'customer' => $receipt->purchaseOrder->customer,
+            'address' => $address,
+            'poItems' => $receipt->purchaseOrder->poItems
+        ]
+        );
+        return $pdf->stream('receipts.pdf');
+    }
 }

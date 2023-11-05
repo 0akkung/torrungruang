@@ -10,7 +10,9 @@ use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RopeSpecController;
 use App\Http\Controllers\SaleOrderController;
 use App\Models\Invoice;
+use App\Models\PurchaseOrder;
 use App\Models\Receipt;
+use App\Models\SaleOrder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,8 +77,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/pdf', [PDFController::class, 'pdf'])->name('pdf');
-    Route::get('/invoices/{invoice}/pdf', [InvoiceController::class, 'printPDF'])
-    ->name('invoices.printPDF');
+    Route::get('/invoices/{invoice}/pdf', [InvoiceController::class, 'printPDF'])->name('invoices.printPDF');
+    Route::get('/deliveries/{delivery}/pdf', [DeliveryController::class, 'printPDF'])->name('deliveries.printPDF');
+    Route::get('/po/{po}/pdf', [PurchaseOrderController::class, 'printPDF'])->name('po.printPDF');
+    Route::get('/so/{so}/pdf', [SaleOrderController::class, 'printPDF'])->name('so.printPDF');
+    Route::get('/receipts/{receipt}/pdf', [ReceiptController::class, 'printPDF'])->name('receipts.printPDF');
 });
 
 require __DIR__.'/auth.php';

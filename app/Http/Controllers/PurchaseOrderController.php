@@ -177,5 +177,18 @@ class PurchaseOrderController extends Controller
             'purchaseOrders' => $po
         ]);
     }
+    public function printPDF(PurchaseOrder $po)
+    {
+        $address = Address::find($po->address_id);
+        $pdf = app('dompdf.wrapper')->loadView('purchase-orders.pdf', [
+            'title' => "PurchaseOrders > Detail",
+            'purchaseOrder' => $po,
+            'customer' => $po->customer,
+            'poItems' => $po->poItems,
+            'address' =>  $address
+        ]
+        );
+        return $pdf->stream('purchase-orders.pdf');
+    }
 
 }

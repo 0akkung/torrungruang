@@ -141,4 +141,19 @@ class DeliveryController extends Controller
             'so' => $so
         ]);
     }
+    public function printPDF(Delivery $delivery)
+    {
+        $address = Address::find($delivery->saleOrder->purchaseOrder->address_id);
+        $pdf = app('dompdf.wrapper')->loadView('deliveries.pdf', [
+            'title' => "Delivery > Detail",
+            'delivery' => $delivery,
+            'saleOrder' => $delivery->saleOrder,
+            'purchaseOrder' => $delivery->saleOrder->purchaseOrder,
+            'soItems' => $delivery->saleOrder->soItems,
+            'customer' => $delivery->saleOrder->purchaseOrder->customer,
+            'address' => $address
+        ]
+        );
+        return $pdf->stream('deliveries.pdf');
+    }
 }
