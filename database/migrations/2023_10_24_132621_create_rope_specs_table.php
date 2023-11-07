@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('spec_name')->unique();
             $table->string('spec_detail');
+            $table->integer('frequency')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -13,7 +13,7 @@ class RopeSpecController extends Controller
      */
     public function index()
     {
-        $specs = RopeSpec::get();
+        $specs = RopeSpec::all()->sortByDesc('frequency');
         return view('specs.index', [
             'title' => "Rope Specs",
             'specs' => $specs

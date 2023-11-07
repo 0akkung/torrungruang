@@ -18,7 +18,7 @@ class RopeSpecFactory extends Factory
     {
         return [
             'spec_name' => fake()->unique()->realTextBetween(3, 20),
-            'spec_detail' => fake()->sentence()
+            'spec_detail' => fake()->sentence(),
         ];
     }
 }

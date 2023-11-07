@@ -81,6 +81,10 @@ class PurchaseOrderController extends Controller
             $spec_id = $order['spec_id'];
             $spec = RopeSpec::find($spec_id); //หาspecที่ส่งมา
 
+            // Increase frequency for sorting
+            $spec->frequency++;
+            $spec->save();
+
             $item = new PoItem();
             $item->rope_spec_id = $spec_id;
             $item->order_quantity = $order['order_quantity'];
