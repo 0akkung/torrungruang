@@ -107,11 +107,13 @@
         const div = document.createElement('div');
         div.className = 'mb-4';
         const specId = `poItem-${specCount}`;
+
         //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
             <div class="bg-gray-100 rounded-lg p-5" id="${specId}">
             <h2 class="text-xl font-semibold mb-2">Spec #${specCount}</h2>
             <label for="po_items[${specCount}][spec_id]" class="block font-bold mb-2">Spec</label>
+
             <select id="po_items[${specCount}][spec_id]" name="po_items[${specCount}][spec_id]" class="border rounded-lg p-2 mb-2">
                 @foreach($specs as $spec)
                     @if (!in_array($spec->id, $selectedSpecs))
@@ -119,12 +121,15 @@
                     @endif
                 @endforeach
             </select>
+
             <label for="po_items[${specCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
             <input type="number" id="po_items[${specCount}][order_quantity]" name="po_items[${specCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
             value="0" min="0" step="0.01">
+
             <label for="po_items[${specCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
             <input type="number" id="po_items[${specCount}][unit_price]" name="po_items[${specCount}][unit_price]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0" step="0.01">
+            value="0" min="0" max="5000" step="0.01">
+
             <label for="po_items[${specCount}][unit]" class="block font-bold mb-2">Unit</label>
             <select id="po_items[${specCount}][unit]" name="po_items[${specCount}][unit]" class="border rounded-lg p-2 mb-2">
                 <option value="kilogram">Kilogram</option>

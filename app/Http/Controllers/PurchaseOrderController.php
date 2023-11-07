@@ -56,7 +56,7 @@ class PurchaseOrderController extends Controller
         $request->validate([
             'address_id' => ['required'],
             'customer_id' => ['required'],
-            'due_date' => ['required'],
+            'due_date' => ['required', 'after:now'],
             'customer_po_id' => ['required', 'min:1', 'max:255'],
             'note' => ['required', 'min:2', 'max:255'],
         ]);
