@@ -65,12 +65,16 @@ class SaleOrderController extends Controller
      */
     public function store(Request $request)
     {
-        $purchaseOrderID = $request->input('purchaseOrder'); 
+        $request->validate([
+            'purchaseOrder' => ['required'],
+        ]);
+
+        $purchaseOrderID = $request->input('purchaseOrder');
         $purchaseOrder = PurchaseOrder::find($purchaseOrderID);
-        //dd($purchaseOrder); // check purchase_order  pass 
+        //dd($purchaseOrder); // check purchase_order  pass
         $poItems = PoItem::where('purchase_order_id', $purchaseOrder->id)->get();
 
-        // dd($poItems); pass   
+        // dd($poItems); pass
         $saleOrder = new SaleOrder();
         $saleOrder->sale_date = now();
         $saleOrder->delivery_status = false;
@@ -83,7 +87,7 @@ class SaleOrderController extends Controller
                 $saleQuantity = 0;
             }
             $spec = RopeSpec::find($poItem->rope_spec_id);
-            //dd($spec); 
+            //dd($spec);
             $soItem = new SoItem();
             $soItem->sale_quantity = $saleQuantity;
             // dd($soItem);
@@ -164,7 +168,7 @@ class SaleOrderController extends Controller
     }
 
     public function option(Request $request)
-    {   
+    {
         $status = $request->input('sort_by');
         $so = SaleOrder::get();
         $title = "";
@@ -185,7 +189,7 @@ class SaleOrderController extends Controller
     }
 
     public function createOption(Request $request)
-    {   
+    {
         $id = $request->input('purchaseOrder_id');
         $purchaseOrders = PurchaseOrder::where('produce_status',false)->get();
         $po = PurchaseOrder::find($id);

@@ -17,16 +17,18 @@
             @endforeach
         </select>
     </form>
+
+    @if ($po)
     <div class="mb-5 mt-5 flex flex-col">
-        @if ($po)
+
         <div class="grid grid-cols-2 gap-20">
             <div class="text-lg col-span-1 flex">
                 <span class="text-gray-600 font-semibold">PO ID : </span>
-                <span class="font-bold ml-3">{{$po->id}}<span>
+                <span class="font-bold ml-3">{{$po->id}}</span>
             </div>
             <div class="text-lg col-span-1 flex">
                 <span class="text-gray-600 font-semibold">CUSTOMER PO ID : </span>
-                <span class="font-bold ml-3">{{$po->customer_po_id}}<span>
+                <span class="font-bold ml-3">{{$po->customer_po_id}}</span>
             </div>
         </div>
         <div class="grid grid-cols-2 gap-20">
@@ -39,10 +41,9 @@
                 <span class="font-bold ml-3">{{$po->customer->company_name}}<span>
             </div>
         </div>
-        @endif
+
     </div>
     <form action="{{ route('so.store',['purchaseOrder'=> $po]) }}" method="POST">
-        @csrf
         <div class="mb-6">
             <div>
                 <div class="p-2 bg-table text-white font-bold text-lg text-center rounded-t-lg">
@@ -67,7 +68,7 @@
                             <td class="px-6 py-4 font-medium text-gray-900">{{$poItem->ropeSpec->spec_name}}</td>
                             <td class="px-6 py-4 font-medium text-gray-900">{{ $poItem->remaining_quantity }}</td>
                             <td class="px-6 py-4 font-medium text-gray-900 ">
-                                <input type="number" id="sale_quantity_{{ $poItem->id }}" name="sale_quantity_{{ $poItem->id }}" 
+                                <input type="number" id="sale_quantity_{{ $poItem->id }}" name="sale_quantity_{{ $poItem->id }}"
                                 class="border rounded-lg p-2 mb-2" value="0" min="0" max="{{ $poItem->remaining_quantity }}"
                                 {{ $poItem->remaining_quantity === 0 ? 'disabled' : '' }} required>
                             </td>
@@ -82,6 +83,7 @@
             <x-back-button label="Cancel" />
         </div>
     </form>
+    @endif
 </div>
 
 @endsection

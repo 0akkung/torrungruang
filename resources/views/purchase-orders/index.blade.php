@@ -45,7 +45,6 @@
                     <th scope="col" class="px-6 py-3 ">Produce Status</th>
                     <th scope="col" class="px-6 py-3 ">Order Date</th>
                     <th scope="col" class="px-6 py-3 ">Delivery Date</th>
-                    <th scope="col" class="px-6 py-3 ">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +57,8 @@
                 @endif
 
                 @foreach ($purchaseOrders as $purchaseOrder)
-                <tr class="bg-white border-b">
+                    <tr onclick="location.href='{{ route('po.show',['po'=> $purchaseOrder]) }}'" class="bg-white border-b hover:bg-gray-50 cursor-pointer">
+
                     <td class="px-6 py-4 font-medium text-gray-900">{{$purchaseOrder->id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900">{{$purchaseOrder->customer->id}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->customer->company_name}}</td>
@@ -79,9 +79,6 @@
                     </td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->purchase_date}}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{$purchaseOrder->due_date}}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        <a href="{{ route('po.show',['po'=> $purchaseOrder]) }}" class="text-cyan-800 hover:underline font-bold">Detail</a>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

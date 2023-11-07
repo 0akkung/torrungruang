@@ -53,7 +53,7 @@ class DeliveryController extends Controller
             'title' => "Delivery > Create",
             'saleOrders' => $saleOrders,
             'soItems' => [],
-            'so' => [] 
+            'so' => []
         ]);
     }
 
@@ -62,6 +62,10 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'saleOrder' => ['required'],
+        ]);
+
         $saleOrderID = $request->input('saleOrder'); // Adjust this according to the actual field name in your form
         $saleOrder = SaleOrder::find($saleOrderID);
         // $saleOrder->load('delivery');
@@ -85,7 +89,7 @@ class DeliveryController extends Controller
         }
 
 
-        
+
         $saleOrder->delivery_status = true;
         $purchaseOrder->save();
         $saleOrder->save();

@@ -21,7 +21,7 @@
         <div class="grid grid-cols-2 gap-20">
             <div class="text-lg col-span-1 flex">
                 <span class="text-gray-600 font-semibold">PO ID : </span>
-                <span class="font-bold ml-3">{{$po->id}}<span>
+                <span class="font-bold ml-3">{{$po->id}} </span>
             </div>
             <div class="text-lg col-span-1 flex">
                 <span class="text-gray-600 font-semibold">Price : </span>

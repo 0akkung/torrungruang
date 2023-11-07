@@ -12,7 +12,7 @@ use Barryvdh\DomPDF\PDF;
 
 class InvoiceController extends Controller
 {
-    
+
     public function index()
     {
         $invoices = Invoice::get();
@@ -28,7 +28,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        $purchaseOrders = PurchaseOrder::where('produce_status', true)->doesntHave('invoice')->get();
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->doesntHave('invoice')->get();
 
         if ( count($purchaseOrders) === 0 ) {
             return redirect()->back()->with('error', 'Cannot Create Invoice without any Finished Purchase Order');
@@ -54,7 +54,7 @@ class InvoiceController extends Controller
         //dd($purchaseOrder);
         $invoice = new Invoice();
         $invoice->bill_date = now();
-        $invoice->billing_officer = auth()->user()->name;  
+        $invoice->billing_officer = auth()->user()->name;
         $invoice->payment_date = now()->addMonth();   //กำหนดจ่ายตังภายใน 1 เดือน
         $purchaseOrder->invoice()->save($invoice);
         return redirect()->route('invoices.index')->with('success', 'Invoice Created successfully!');
@@ -124,7 +124,7 @@ class InvoiceController extends Controller
         $address = Address::find($invoice->purchaseOrder->address_id);
         $saleOrders = SaleOrder::where('purchase_order_id', $invoice->purchaseOrder->id)->get();  //ดึง saleOrders
 
-        
+
         $pdf = app('dompdf.wrapper')->loadView('invoices.pdf', [
 
             'title' => "Invoice > Detail",

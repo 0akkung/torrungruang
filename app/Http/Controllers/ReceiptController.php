@@ -36,7 +36,7 @@ class ReceiptController extends Controller
      */
     public function create()
     {
-        $purchaseOrders = PurchaseOrder::where('produce_status', true)->whereHas('invoice')->whereDoesntHave('receipt')->get();
+        $purchaseOrders = PurchaseOrder::where('produce_status', 1)->whereHas('invoice')->whereDoesntHave('receipt')->get();
         if ( count($purchaseOrders) === 0 ) {
             return redirect()->back()->with('error', "Cannot Create Receipt without any Purchase Order's Invoice");
         }
@@ -55,13 +55,17 @@ class ReceiptController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'purchaseOrder' => ['required'],
+        ]);
+
         $purchaseOrderID = $request->input('purchaseOrder'); // Adjust this according to the actual field name in your form
         $purchaseOrder = PurchaseOrder::find($purchaseOrderID);
         $purchaseOrder->load('receipt');
         //dd($purchaseOrder);
         $receipt = new Receipt();
         $receipt->pay_date = now();
-        $receipt->receipter_name = auth()->user()->name;  
+        $receipt->receipter_name = auth()->user()->name;
         $purchaseOrder->receipt()->save($receipt);
         $purchaseOrder->payment_status = true;
         $purchaseOrder->save();

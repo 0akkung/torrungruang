@@ -56,15 +56,7 @@
 
 
         <!-- Note -->
-        <div class="mb-6">
-            <label for="note" class="block font-bold mb-2">Note (หมายเหตุ)</label>
-            <input type="text" id="note" name="note" class="border rounded-lg p-2 mb-2">
-            @error('note')
-            <div class="text-red-400 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
+        <x-text-area name="note" label="Note (หมายเหตุ)" placeholder='Insert "-" if no note' />
 
     </div>
 
@@ -124,11 +116,11 @@
 
             <label for="po_items[${specCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
             <input type="number" id="po_items[${specCount}][order_quantity]" name="po_items[${specCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0" step="0.01">
+            value="0" min="0.1" step="0.1">
 
             <label for="po_items[${specCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
             <input type="number" id="po_items[${specCount}][unit_price]" name="po_items[${specCount}][unit_price]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0" max="5000" step="0.01">
+            value="0" min="0.01" max="5000" step="0.01">
 
             <label for="po_items[${specCount}][unit]" class="block font-bold mb-2">Unit</label>
             <select id="po_items[${specCount}][unit]" name="po_items[${specCount}][unit]" class="border rounded-lg p-2 mb-2">
