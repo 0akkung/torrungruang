@@ -14,7 +14,6 @@
             <div class="w-1/6">
                 <x-custom-text-input name="phone_number" label="Phone No." type="tel" placeholder="0912345678" />
             </div>
-            <x-text-area name="address" label="Address" placeholder="Insert Address" />
             <div class="flex space-x-8">
                 <x-submit-button label="Submit" />
                 <x-back-button label="Cancel" />

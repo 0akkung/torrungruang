@@ -40,8 +40,7 @@ class CustomerController extends Controller
             'company_name' => ['required', 'min:2', 'max:255'],
             'purchaser_name' => ['required', 'min:2', 'max:255'],
             'phone_number' => ['required', 'numeric', 'digits:10'],
-            'address' => ['required', 'min:2', 'max:255']
-        ]);
+            ]);
 
         $customer = new Customer();
         $customer->company_name = $request->get('company_name');
@@ -49,11 +48,8 @@ class CustomerController extends Controller
         $customer->phone_number = $request->get('phone_number');
         $customer->save();
 
-        $address = new Address();
-        $address->address_detail = $request->get('address');
-        $customer->addresses()->save($address);
-
-        return redirect()->route('customers.index')->with('success', 'Customer Created successfully!');
+        return redirect()->route('customers.show', ['customer' => $customer])
+            ->with('success', 'Customer Created successfully!');
     }
 
     /**

@@ -100,6 +100,7 @@
         div.className = 'mb-4';
         const specId = `poItem-${specCount}`;
 
+
         //สร้างลูปให้กดเพิ่มitem น่าจะต้องใช้วิธีนี่แหละ
         div.innerHTML = `
             <div class="bg-gray-100 rounded-lg p-5" id="${specId}">
@@ -116,11 +117,11 @@
 
             <label for="po_items[${specCount}][order_quantity]" class="block font-bold mb-2">Order Quantity</label>
             <input type="number" id="po_items[${specCount}][order_quantity]" name="po_items[${specCount}][order_quantity]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0.1" step="0.1">
+            value="100" min="10" max="1000000" step="0.01">
 
             <label for="po_items[${specCount}][unit_price]" class="block font-bold mb-2">Unit Price</label>
             <input type="number" id="po_items[${specCount}][unit_price]" name="po_items[${specCount}][unit_price]" class="border rounded-lg p-2 mb-2"
-            value="0" min="0.01" max="5000" step="0.01">
+            value="0" min="0.01" max="1000000" step="0.01">
 
             <label for="po_items[${specCount}][unit]" class="block font-bold mb-2">Unit</label>
             <select id="po_items[${specCount}][unit]" name="po_items[${specCount}][unit]" class="border rounded-lg p-2 mb-2">
@@ -131,6 +132,7 @@
                 <option value="coil">Coil</option>
                 <option value="piece">Piece</option>
             </select>
+
                 <button type="button" onclick="deletePoItem('${specId}')" class="ml-3">Delete</button>
             </div>
         `;
