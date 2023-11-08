@@ -75,8 +75,10 @@ class DeliveryController extends Controller
         $purchaseOrder = PurchaseOrder::find($saleOrder->purchase_order_id); // หา po หลัก
 
         $sos = $purchaseOrder->saleOrders()->get();
-        //dd($so);
+        //dd($sos);
 
+        // จะเปลี่ยน produce_status
+        // เช็คก่อนว่า SO นั้นมีใบ deli ครบอ้ะยางง
         foreach ($sos as $so){
             $check_so = true;
             if ($so->doesntHave('delivery')->exists()){
@@ -85,7 +87,16 @@ class DeliveryController extends Controller
             }
         }
         if ($check_so) {
-            $purchaseOrder->produce_status = true;
+            $check_poItem = true; // check remaining of each po;
+            $poItems = $purchaseOrder->poItems()->get();
+            foreach ($poItems as $poItem) {
+                if($poItem->remaining_quantity !== 0){
+                    $check_poItem = false;
+                }
+            }
+            if($check_poItem){
+                $purchaseOrder->produce_status = true; 
+            }
         }
 
 

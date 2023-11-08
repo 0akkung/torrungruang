@@ -44,6 +44,7 @@
 
     </div>
     <form action="{{ route('so.store',['purchaseOrder'=> $po]) }}" method="POST">
+        @csrf
         <div class="mb-6">
             <div>
                 <div class="p-2 bg-table text-white font-bold text-lg text-center rounded-t-lg">
